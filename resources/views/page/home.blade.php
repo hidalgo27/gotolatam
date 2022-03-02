@@ -27,8 +27,8 @@
                 <h3 class="text-xl text-gray-50 hidden sm:block">Take Advantage of affordable deposits and flexible terms to plan your Peru adventure with confidence, Free cancellation insurance offered with 25% deposit. T&C apply.</h3>
 
                 <h4 class="font-bold text-secondary mt-6">Destinations</h4>
-                @foreach($destination as $destinations)
-                <a href="{{ route('destinations.show', $destinations) }}" class="font-bold  block text-sm hover:text-primary">{{$destinations->nombre}}</a>
+                @foreach($destination_p as $destinations)
+                <a href="{{ route('destinations.show', strtolower($destinations)) }}" class="font-bold  block text-sm hover:text-primary">{{ucwords(strtolower($destinations))}}</a>
                 @endforeach
                 <span class="my-5 block"></span>
                 @livewire('page.form-inquire')

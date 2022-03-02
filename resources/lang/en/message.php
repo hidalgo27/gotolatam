@@ -79,7 +79,7 @@ return [
 
     'button_detail' => 'View details',
     'button_all' => 'View All',
-    'button_book' => 'Local Travel Advisors',
+    'button_book' => 'Book Now',
     'button_inquire' => 'Inquire Now',
     'button_next' => 'Next',
     'button_prev' => 'Previous',
