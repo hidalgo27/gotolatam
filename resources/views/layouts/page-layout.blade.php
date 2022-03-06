@@ -360,7 +360,7 @@
     <header>
         <div class="border-b dark:border-gray-900 dark:border-opacity-40  shadow p-4 bg-gray-50 dark:bg-gray-800 items-center flex flex-wrap">
             <div class="mx-auto">
-                <a href="/"><img src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" alt="" class="w-full"></a>
+                <a href="/"><img src="https://gotolatam.s3.us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" alt="" class="w-full"></a>
             </div>
             <div class="flex-1 p-3 dark:text-gray-400 hidden sm:inline-block">
                 <div class='console-container'>
