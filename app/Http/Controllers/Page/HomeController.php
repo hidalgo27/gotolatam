@@ -133,7 +133,7 @@ class HomeController extends Controller
         $destinations = TDestino::all();
 
 
-        return view('page.destinations-packages', compact('paquetes_api', 'pais', 'destinations'));
+        return view('page.destinations-packages', compact('paquetes_api', 'pais', 'destinations', 'destino'));
     }
 
     public function category() {

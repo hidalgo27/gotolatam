@@ -5,7 +5,7 @@
 {{--        @endforeach--}}
 
         <div class="absolute bottom-0 left-0 p-12">
-            <h1 class="text-5xl font-semibold text-gray-50">{{__('message.dest_deta_title')}}</h1>
+            <h1 class="text-5xl font-semibold text-gray-50">{{$pais->nombre}} Travel Packages</h1>
         </div>
     </section>
 

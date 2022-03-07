@@ -516,19 +516,25 @@
                     </p>
                     <ul class="mt-2 space-y-2">
                         <li>
-                            <a href="{{route('destinations.show', 'cusco')}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Cusco</a>
+                            <a href="{{route('destinations.show', 'peru')}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Peru</a>
                         </li>
                         <li>
-                            <a href="{{route('destinations.show', 'machu-picchu')}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">MachuPicchu</a>
+                            <a href="{{route('destinations.show', 'colombia')}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Colombia</a>
                         </li>
                         <li>
-                            <a href="{{route('destinations.show', 'puno')}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Lake Titicaca</a>
+                            <a href="{{route('destinations.show', 'ecuador')}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Ecuador</a>
                         </li>
                         <li>
-                            <a href="{{route('destinations.show', 'arequipa')}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Colca Canyon</a>
+                            <a href="{{route('destinations.show', 'chile')}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Chile</a>
                         </li>
                         <li>
-                            <a href="{{route('destinations.show', 'arequipa')}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Nazca Lines</a>
+                            <a href="{{route('destinations.show', 'bolivia')}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Bolivia</a>
+                        </li>
+                        <li>
+                            <a href="{{route('destinations.show', 'argentina')}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Argentina</a>
+                        </li>
+                        <li>
+                            <a href="{{route('destinations.show', 'brasil')}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Brasil</a>
                         </li>
                     </ul>
                 </div>
@@ -663,7 +669,7 @@
     })();
 
     // function([string1, string2],target id,[color1,color2])
-    consoleText(['Go with the Experts', 'Vamos a Perú'], 'text',['#585858','#7F8429','#f9a825']);
+    consoleText(['Go to Peru', 'Go to Ecuador', 'Go to Chile', 'Go to Colombia', 'Go to Brasil', 'Go to Argentina', 'Go to Bolivia'], 'text',['#585858','#7F8429','#f9a825']);
 
     function consoleText(words, id, colors) {
         if (colors === undefined) colors = ['#fff'];
