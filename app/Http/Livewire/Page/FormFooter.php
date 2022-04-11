@@ -46,7 +46,7 @@ class FormFooter extends Component
             'phone' => 'required'
         ]);
 
-        $from = 'info@gotoperu.com';
+        $from = 'info@gotolatam.com';
 
         if ($this->values_number == '6'){
             $travellers = $this->values_number_input;
@@ -61,9 +61,9 @@ class FormFooter extends Component
 
         Mail::send(['html' => 'notifications.page.client-form-design'], ['name' => $this->name], function ($messaje) {
             $messaje->to($this->email, $this->name)
-                ->subject('GotoPeru')
+                ->subject('GotoLatam')
                 /*->attach('ruta')*/
-                ->from('info@gotoperu.com', 'GotoPeru');
+                ->from('info@gotolatam.com', 'GotoLatam');
         });
         Mail::send(['html' => 'notifications.page.admin-form-footer'], [
 
@@ -78,11 +78,11 @@ class FormFooter extends Component
             'code' => $this->phonecountry,
 
         ], function ($messaje) use ($from) {
-            $messaje->to($from, 'GotoPeru')
-                ->subject('GotoPeru')
-//                    ->cc($from2, 'GotoPeru')
+            $messaje->to($from, 'GotoLatam')
+                ->subject('GotoLatam')
+//                    ->cc($from2, 'GotoLatam')
                 /*->attach('ruta')*/
-                ->from('info@gotoperu.com', 'GotoPeru');
+                ->from('info@gotolatam.com', 'GotoLatam');
         });
 
         $this->reset('values_categories');

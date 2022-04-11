@@ -22,25 +22,25 @@ class FormSubscribe extends Component
             'email' => 'required|email'
         ]);
 
-        $from = 'info@gotoperu.com';
+        $from = 'info@gotolatam.com';
 
 
         Mail::send(['html' => 'notifications.page.response-subscribe'], ['name' => $this->name], function ($messaje) {
             $messaje->to($this->email, $this->name)
-                ->subject('GotoPeru')
+                ->subject('GotoLatam')
                 /*->attach('ruta')*/
-                ->from('info@gotoperu.com', 'GotoPeru');
+                ->from('info@gotolatam.com', 'GotoLatam');
         });
         Mail::send(['html' => 'notifications.page.admin-form-subscribe'], [
             'nombre' => $this->name,
             'email' => $this->email,
 
         ], function ($messaje) use ($from) {
-            $messaje->to($from, 'GotoPeru')
-                ->subject('GotoPeru')
-//                    ->cc($from2, 'GotoPeru')
+            $messaje->to($from, 'GotoLatam')
+                ->subject('GotoLatam')
+//                    ->cc($from2, 'GotoLatam')
                 /*->attach('ruta')*/
-                ->from('info@gotoperu.com', 'GotoPeru');
+                ->from('info@gotolatam.com', 'GotoLatam');
         });
 
 
