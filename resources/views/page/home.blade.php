@@ -31,7 +31,7 @@
                 <a href="{{ route('destinations.show', strtolower($destinations)) }}" class="font-bold  block text-sm hover:text-primary">{{ucwords(strtolower($destinations))}}</a>
                 @endforeach
                 <span class="my-5 block"></span>
-                @livewire('page.form-inquire')
+{{--                @livewire('page.form-inquire')--}}
             </div>
         </div>
 

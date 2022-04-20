@@ -284,7 +284,7 @@
 <div x-data="{menu: false}">
     <div class="fixed bg-12 bottom-0 w-full z-30 sm:hidden">
 {{--        @livewire('page.form-inquire')--}}
-        <a href="#form-dream-adventure" class="btn-secondary text-center w-full block">{{__('message.button_book')}}</a>
+        <a href="#form-dream-adventure" class="btn-primary text-center w-full block">{{__('message.button_book')}}</a>
         <div class="menu-movil bg-gray-50 dark:bg-gray-800 flex gap-4 w-full mx-auto grid grid-cols-5 gap-3 text-center">
             @foreach($nav_links as $nav_link_m)
                 @if($nav_link_m['state'] == 1 OR $nav_link_m['state'] == 2)

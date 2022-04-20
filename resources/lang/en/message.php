@@ -5,7 +5,7 @@ return [
     'msc_client_email' => 'Thank you for contacting us, a GOTOPERU representative will contact you shortly.',
     'msg_default' => 'THE BEST VACATIONS IN PERU WITH THE BEST PERUVIAN OPERATOR',
 
-    'nav_item1' => 'Peru Travel Packages',
+    'nav_item1' => 'Latam Travel Packages',
     'nav_item2' => 'Only Tours',
     'nav_item3' => 'Destination',
     'nav_item4' => 'Holels',
@@ -79,7 +79,7 @@ return [
 
     'button_detail' => 'View details',
     'button_all' => 'View All',
-    'button_book' => 'Book Now',
+    'button_book' => 'Free Quote',
     'button_inquire' => 'Inquire Now',
     'button_next' => 'Next',
     'button_prev' => 'Previous',
