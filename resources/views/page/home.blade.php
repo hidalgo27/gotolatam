@@ -434,6 +434,7 @@
     <section class="grid md:grid-cols-2 sm:grid-cols-1 mx-auto gap-0">
 
         @foreach($category_block as $category_b)
+
             <div class="overflow-hidden relative group">
                 <a href="{{ route('category.show', $category_b) }}">
                     <div class="relative">
@@ -455,27 +456,27 @@
 
     </section>
 
-    <section class="grid md:grid-cols-5 sm:grid-cols-1">
-        @foreach($category_footer as $category_f)
-            <div class="overflow-hidden relative group">
-                <a href="{{ route('category.show', $category_f) }}">
-                    <div class="relative">
-                        <img src="{{$category_f->imagen}}" alt="" class="h-20r object-cover min-w-full  transition duration-500 ease-in-out transform group-hover:-translate-x-0 group-hover:scale-105">
-                        <div class="absolute inset-0 gradient-cicle-gray"></div>
-                    </div>
-                    <div class="absolute w-full bottom-0 inset-x-0 p-3">
-                        <div class="py-2 px-4 text-gray-100 shadow-lg rounded-lg">
-                            <h2 class="text-lg font-semibold">{{$category_f->nombre}}</h2>
-                            <div class="font-normal text-sm">
-                                {!! $category_f->resumen !!}
-                            </div>
-                            {{--                        <a href="" class="float-right font-bold">View self-drive tours</a>--}}
-                        </div>
-                    </div>
-                </a>
-            </div>
-        @endforeach
-    </section>
+{{--    <section class="grid md:grid-cols-5 sm:grid-cols-1">--}}
+{{--        @foreach($category_footer as $category_f)--}}
+{{--            <div class="overflow-hidden relative group">--}}
+{{--                <a href="{{ route('category.show', $category_f) }}">--}}
+{{--                    <div class="relative">--}}
+{{--                        <img src="{{$category_f->imagen}}" alt="" class="h-20r object-cover min-w-full  transition duration-500 ease-in-out transform group-hover:-translate-x-0 group-hover:scale-105">--}}
+{{--                        <div class="absolute inset-0 gradient-cicle-gray"></div>--}}
+{{--                    </div>--}}
+{{--                    <div class="absolute w-full bottom-0 inset-x-0 p-3">--}}
+{{--                        <div class="py-2 px-4 text-gray-100 shadow-lg rounded-lg">--}}
+{{--                            <h2 class="text-lg font-semibold">{{$category_f->nombre}}</h2>--}}
+{{--                            <div class="font-normal text-sm">--}}
+{{--                                {!! $category_f->resumen !!}--}}
+{{--                            </div>--}}
+{{--                            --}}{{--                        <a href="" class="float-right font-bold">View self-drive tours</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--        @endforeach--}}
+{{--    </section>--}}
 
 
     <div class="bg-gray-100 pt-12  dark:bg-gray-800">
