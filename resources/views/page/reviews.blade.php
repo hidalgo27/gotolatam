@@ -1,4 +1,5 @@
-<x-page-layout>
+@extends('layouts.page-layout')
+@section('content')
     <section class="-mt-32 h-80vh -z-1 relative">
         <img src="{{asset('images/banners/mapi.jpg')}}" alt="" class="h-full w-full object-cover object-top">
         <div class="absolute bottom-0 left-0 p-12">
@@ -224,4 +225,4 @@
         </script>
 
     @endpush
-</x-page-layout>
+@endsection

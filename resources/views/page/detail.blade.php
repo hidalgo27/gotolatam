@@ -1,4 +1,5 @@
-<x-page-layout>
+@extends('layouts.page-layout')
+@section('content')
     @foreach($paquetes as $paquete)
         <section class="-mt-32 h-80vh -z-1 relative">
             @foreach($paquete['imagen_paquetes'] as $imagen)
@@ -291,6 +292,6 @@
         @push('scripts')
             <script src="https://cdn.wetravel.com/master/core-app/assets/embed_checkout.js"></script>
         @endpush
-</x-page-layout>
+@endsection
 
 

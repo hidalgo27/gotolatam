@@ -1,4 +1,5 @@
-<x-page-layout>
+@extends('layouts.page-layout')
+@section('content')
     <section class="bg-gray-50 py-12">
         <div class="w-full md:w-3/5 mx-auto grid grid-cols-1 md:grid-cols-1 flex items-center">
             <div class="col-span-1 px-6 md:px-0 justify-between text-gray-500">
@@ -59,4 +60,4 @@
         </script>
 
     @endpush
-</x-page-layout>
+@endsection

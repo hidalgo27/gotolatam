@@ -1,4 +1,5 @@
-<x-page-layout>
+@extends('layouts.page-layout')
+@section('content')
     <section class="-mt-32 h-80vh -z-1 relative">
 {{--        @foreach($destinations->destino_imagen as $imagen)--}}
             <img src="{{$pais->imagen}}" alt="" class="h-full w-full object-cover">
@@ -95,5 +96,5 @@
     <section class="mt-12">
         @livewire('page.form-footer')
     </section>
-</x-page-layout>
+@endsection
 

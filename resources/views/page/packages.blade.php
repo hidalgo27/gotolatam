@@ -1,4 +1,5 @@
-<x-page-layout>
+@extends('layouts.page-layout')
+@section('content')
 <section class="-mt-20 h-75vh -z-1 relative">
     <img src="{{asset('images/1327.jpg')}}" alt="" class="h-full w-full object-cover object-top">
     <div class="absolute bottom-0 left-0 p-12">
@@ -26,4 +27,5 @@
     @push('scripts')
         <script src="https://cdn.wetravel.com/master/core-app/assets/embed_checkout.js"></script>
     @endpush
-</x-page-layout>
+
+@endsection

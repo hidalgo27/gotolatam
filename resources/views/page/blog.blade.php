@@ -1,4 +1,5 @@
-<x-page-layout>
+@extends('layouts.page-layout')
+@section('content')
     <section class="bg-gray-100">
         <div class="container grid grid-cols-1 md:grid-cols-3 flex items-center">
             <div class="col-span-1  justify-between p-6 text-gray-500 order-2 md:order-1">
@@ -85,4 +86,4 @@
         </script>
 
     @endpush
-</x-page-layout>
+@endsection
