@@ -444,8 +444,8 @@
     </nav>
 
 
-{{--    @yield('content')--}}
-    {{$slot}}
+    @yield('content')
+{{--    {{$slot}}--}}
 
 <section class="grid gap-12 bg-gray-100 py-6 grid-cols-8 dark:bg-gray-600 hidden md:inline-flex"><!--.row -->
     <div>

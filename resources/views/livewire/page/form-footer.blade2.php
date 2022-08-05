@@ -4,10 +4,9 @@
         <h3 class="text-2xl font-semibold mt-2 text-gray-600 dark:text-gray-300">{{__('message.form_footer_title')}}</h3>
         <p class=" tracking-tighter text-sm">{{__('message.form_footer_par1')}}</p>
     </div>
-    <form wire:submit.prevent="store" class="grid grid-cols-1 gap-12 w-11/12 md:w-7/12 lg:w-1/2 xl:w-2/5 items-center mx-auto">
-{{--        <div x-show="!data">--}}
-        <div class="">
-            <div class=" mx-auto grid grid-cols-6 gap-2">
+    <form wire:submit.prevent="store">
+        <div x-show="!data">
+            <div class="w-11/12 md:w-7/12 lg:w-1/2 xl:w-1/3 mx-auto grid grid-cols-6 gap-2">
                 <div class="col-span-6 flex flex-col text-center">
                     <h2 class="text-lg font-bold">{{__('message.form_footer_subtitle1')}}</h2>
                     <p class="text-xs  font-semibold">{{__('message.form_footer_par2')}}</p>
@@ -38,7 +37,7 @@
                 </div>
             </div>
 
-            <div class=" mx-auto mt-3 grid grid-cols-6 mt-4 gap-2">
+            <div class="w-11/12 md:w-7/12 lg:w-1/2 xl:w-1/3 mx-auto mt-3 grid grid-cols-6 mt-4 gap-2">
                 <div class="col-span-6 flex flex-col text-center">
                     <h2 class="text-lg font-bold ">{{__('message.form_footer_subtitle2')}}</h2>
                 </div>
@@ -77,7 +76,7 @@
                 </div>
             </div>
 
-            <div class=" mx-auto mt-3 grid grid-cols-6 mt-4 gap-2">
+            <div class="w-11/12 md:w-7/12 lg:w-1/2 xl:w-1/3 mx-auto mt-3 grid grid-cols-6 mt-4 gap-2">
                 <div class="col-span-6 flex flex-col text-center">
                     <h2 class="text-lg font-bold ">{{__('message.form_footer_subtitle3')}}</h2>
                 </div>
@@ -107,7 +106,7 @@
                 </div>
             </div>
 
-            <div class=" mx-auto mt-3 grid grid-cols-6 mt-6 gap-2">
+            <div class="w-11/12 md:w-7/12 lg:w-1/2 xl:w-1/3 mx-auto mt-3 grid grid-cols-6 mt-6 gap-2">
                 <label class="md:col-span-1 hidden md:inline-flex bg-gray-50 dark:bg-gray-700 border border-gray-400  flex items-center justify-center bg-gray-100 dark:bg-gray-700 ">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -123,12 +122,21 @@
                 </div>
             </div>
 
-{{--        </div>--}}
+        </div>
 
-{{--        <div x-show="data">--}}
+        <div x-show="data">
+            <div class="w-11/12 md:w-7/12 lg:w-1/2 xl:w-1/3 mx-auto mt-3 grid grid-cols-6 gap-2 flex">
+                <div class="md:col-span-1 hidden md:inline-flex bg-gray-50 dark:bg-gray-700 border border-gray-400 p-5 flex items-center justify-center bg-gray-100 dark:bg-gray-700 ">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                </div>
+                <textarea wire:model="comment" class="col-span-6 md:col-span-5 bg-gray-50 dark:bg-gray-700 border border-gray-400 p-5 bg-gray-50 dark:bg-gray-700  w-full focus:outline-none" rows="4" placeholder="{{__('message.form_footer_par9')}}"></textarea>
+    {{--            <textarea name="" id="" cols="30" rows="10"></textarea>--}}
+                <p class="text-xs col-span-6 text-right text-gray-400 font-bold">{{__('message.form_footer_par13')}}</p>
+            </div>
 
-
-            <div class=" mx-auto mt-3 grid grid-cols-6 mt-4 md:mt-6 gap-2">
+            <div class="w-11/12 md:w-7/12 lg:w-1/2 xl:w-1/3 mx-auto mt-3 grid grid-cols-6 mt-4 md:mt-6 gap-2">
                 <label class="md:col-span-1 hidden md:inline-flex bg-gray-50 dark:bg-gray-700 border border-gray-400 p-5 flex items-center justify-center bg-gray-100 dark:bg-gray-700 ">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -142,7 +150,7 @@
                 </div>
             </div>
 
-            <div class=" mx-auto mt-3 grid grid-cols-6 mt-4 md:mt-6 gap-2">
+            <div class="w-11/12 md:w-7/12 lg:w-1/2 xl:w-1/3 mx-auto mt-3 grid grid-cols-6 mt-4 md:mt-6 gap-2">
                 <label class="md:col-span-1 hidden md:inline-flex bg-gray-50 dark:bg-gray-700 border border-gray-400 p-5 flex items-center justify-center bg-gray-100 dark:bg-gray-700 ">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -156,7 +164,7 @@
                 </div>
             </div>
 
-            <div class=" mx-auto mt-3 grid grid-cols-6 mt-4 md:mt-6 gap-2">
+            <div class="w-11/12 md:w-7/12 lg:w-1/2 xl:w-1/3 mx-auto mt-3 grid grid-cols-6 mt-4 md:mt-6 gap-2">
                 <label class="md:col-span-1 hidden md:inline-flex bg-gray-50 dark:bg-gray-700 border border-gray-400 p-5 flex items-center justify-center bg-gray-100 dark:bg-gray-700 ">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -166,30 +174,13 @@
                     <input wire:model="phone" id="phone" type="text" class="phone_number bg-gray-50 dark:bg-gray-700 border border-gray-400 p-3 md:p-5 bg-gray-50 dark:bg-gray-700  w-full focus:outline-none" placeholder=" {{__('message.form_footer_par12')}}">
                 </div>
             </div>
-
-            <div class=" mx-auto mt-3 grid grid-cols-6 gap-2 flex">
-                <div class="md:col-span-1 hidden md:inline-flex bg-gray-50 dark:bg-gray-700 border border-gray-400 p-5 flex items-center justify-center bg-gray-100 dark:bg-gray-700 ">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                    </svg>
-                </div>
-                <textarea wire:model="comment" class="col-span-6 md:col-span-5 bg-gray-50 dark:bg-gray-700 border border-gray-400 p-5 bg-gray-50 dark:bg-gray-700  w-full focus:outline-none" rows="4" placeholder="{{__('message.form_footer_par9')}}"></textarea>
-                {{--            <textarea name="" id="" cols="30" rows="10"></textarea>--}}
-                <p class="text-xs col-span-6 text-right text-gray-400 font-bold">{{__('message.form_footer_par13')}}</p>
-            </div>
-
-{{--        </div>--}}
         </div>
 
-        <div class="mx-auto">
-{{--            <button type="button" class="btn-next" x-show="data" @click="data = !data">{{__('message.button_prev')}}</button>--}}
-{{--            <button type="button" class="btn-secondary ml-auto" x-show="!data" @click="data = !data">{{__('message.button_next')}}</button>--}}
-{{--            <button type="submit" class="btn-primary" x-show="data" wire:click="load_submit">--}}
-{{--                {{__('message.button_send')}} <span wire:loading wire:target="load_submit"><div class="lds-hourglass"></div></span>--}}
-{{--            </button>--}}
 
-
-            <button type="submit" class="btn-primary"  wire:click="load_submit">
+        <div class="w-11/12 md:w-7/12 lg:w-1/2 xl:w-1/3 mx-auto mt-3 flex justify-between">
+            <button type="button" class="btn-next" x-show="data" @click="data = !data">{{__('message.button_prev')}}</button>
+            <button type="button" class="btn-secondary ml-auto" x-show="!data" @click="data = !data">{{__('message.button_next')}}</button>
+            <button type="submit" class="btn-primary" x-show="data" wire:click="load_submit">
                 {{__('message.button_send')}} <span wire:loading wire:target="load_submit"><div class="lds-hourglass"></div></span>
             </button>
         </div>
@@ -224,7 +215,6 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
-
 
             let input = document.querySelector(".phone_number");
 
