@@ -215,7 +215,7 @@
 
     <section class="px-6 container grid grid-cols-1 md:grid-cols-4 my-12">
         <div class="text-center w-full col-span-4 items-center text-3xl text-secondary dark:text-secondary font-bold gap-2">
-            PERU TRAVEL PACKAGES
+            SOUTH AMERICA  TRAVEL PACKAGES
             <div class="border-4 h-1 w-12 border-primary mx-auto mt-3"></div>
         </div>
         <div class="col-span-4 text-center mt-4">
@@ -272,7 +272,7 @@
             <div class="inset-0 flex items-center text-white w-full">
                 <div class="w-full grid grid-cols-1 md:grid-cols-6 items-center">
                     <div class="p-6 col-span-4">
-                        <h3 class="font-semibold block text-xl">Your Peruvian Travel Operator</h3>
+                        <h3 class="font-semibold block text-xl">Your LATAM Travel Operator</h3>
                         <p class="block my-6">
                             Trust our team of local travel experts to plan an unforgettable trip full of must-see attractions and our favorite hidden gems of the land of the Incas. Our peruvian experts have all traveled down the same roads, trains and treks and know what you’re about to experience.
                             Every Peru tour offered is regularly inspected to ensure our travelers have an amazing experience.
@@ -716,7 +716,7 @@
                     ABOUT GOTOPERU
                 </h3>
                 <p class="block my-12">
-                    We are a travel operator with Headquarters in Cusco City and offices in the main destinations of Peru catering to travelers who want an original, authentic and unforgettable experience at the land of the Incas.
+                    We are a travel operator with Headquarters in Cusco City and offices in the main destinations of LATAM catering to travelers who want an original, authentic and unforgettable experience at the land of the Incas.
                 </p>
 
                 <h3 class="font-medium">Personalized Service</h3>

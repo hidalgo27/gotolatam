@@ -47,7 +47,7 @@ return [
     'social_li4' => 'Travel with an Award-Winning Team',
     'social_li5' => '100% Financial Protection',
 
-    'subtitle6' => 'Peru Travel Information',
+    'subtitle6' => 'South America Travel Information',
     'info_sub1' => 'Hotels',
     'info_par1' => 'At GOTOPERU our expert local team handpicked the best Peru hotels at each category. All feature excellent locations and facilities for a comfortable stay, plus the best service and warm peruvian hospitality. Our hotels will be a great part of an unforgettable Peru vacation! Select your preferred Hotel category for all our Peru travel packages.',
 

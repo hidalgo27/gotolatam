@@ -8,6 +8,7 @@ use App\Models\TCategoria;
 use App\Models\TDestino;
 use App\Models\THotel;
 use App\Models\THotelDestino;
+use App\Models\TPais;
 use App\Models\TPaquete;
 use App\Models\TPaqueteCategoria;
 use App\Models\TPaqueteDestino;
@@ -101,10 +102,96 @@ class HomeController extends Controller
     public function destinations() {
         $destinations = TDestino::all();
         $category = TCategoria::all();
-        return view('page.destination', compact('destinations', 'category'));
+        $pais = TPais::all();
+
+        return view('page.destination', compact('destinations', 'category', 'pais'));
     }
 
-    public function destinations_show(TDestino $destinations) {
+//    public function destinations() {
+//        $destinations = TDestino::all();
+//        $pais = TPais::all();
+//        return view('page.destination', compact('destinations','pais'));
+//    }
+
+//    public function destinations_show(TDestino $destinations) {
+////        return $destinations->id;
+////        $paquetes_api = Http::get(env('APP_URL').'/api/packages/destinations/'.$destinations->id);
+////        $paquetes_api = $paquetes_api->json();
+//
+////        $paquetes = TPaquete::where('is_p_t', 1)
+////            ->paquetes_destinos($destinations->id)
+//////            ->latest('id')
+////            ->paginate(8);
+////
+////
+////        return $paquetes;
+////        $paquetes_api = TPaqueteDestino::
+////        with('paquetes.precio_paquetes','destinos', 'paquetes.paquetes_destinos.destinos')
+////            ->where('iddestinos', $destinations->id)
+////            ->get();
+////        $category = TCategoria::all();
+////
+////        return view('page.destination-show', compact('paquetes_api', 'destinations', 'category'));
+//
+//        $destinations = TDestino::where('idpais', $pais->id)->get();
+//
+//
+//        return view('page.destination-show', compact('destinations', 'pais'));
+//    }
+
+    public function category() {
+        $category = TCategoria::all();
+        return view('page.category', compact('category'));
+    }
+//    public function category_show(TCategoria $categories) {
+////        return $destinations->id;
+////        $paquetes_api = Http::get(env('APP_URL').'/api/packages/destinations/'.$destinations->id);
+////        $paquetes_api = $paquetes_api->json();
+//
+////        $paquetes = TPaquete::where('is_p_t', 1)
+////            ->paquetes_destinos($destinations->id)
+//////            ->latest('id')
+////            ->paginate(8);
+////
+////
+////        return $paquetes;
+//        $paquetes_api = TPaqueteCategoria::
+//        with('paquetes.precio_paquetes','categoria', 'paquetes.paquetes_categoria.categoria')
+//            ->where('idcategoria', $categories->id)
+//            ->get();
+//
+//        $category = TCategoria::all();
+//
+//        return view('page.category-show', compact('paquetes_api', 'categories', 'category'));
+//    }
+
+
+    public function destinations_show(TPais $pais) {
+//        return $destinations->id;
+//        $paquetes_api = Http::get(env('APP_URL').'/api/packages/destinations/'.$destinations->id);
+//        $paquetes_api = $paquetes_api->json();
+
+//        $paquetes = TPaquete::where('is_p_t', 1)
+//            ->paquetes_destinos($destinations->id)
+////            ->latest('id')
+//            ->paginate(8);
+//
+//
+//        return $paquetes;
+//        $paquetes_api = TPaqueteDestino::
+//        with('paquetes.precio_paquetes','destinos', 'paquetes.paquetes_destinos.destinos')
+//            ->where('iddestinos', $destinations->id)
+//            ->get();
+
+//        dd($pais);
+
+        $destinations = TDestino::where('idpais', $pais->id)->get();
+
+
+        return view('page.destination-show', compact('destinations', 'pais'));
+    }
+
+    public function destinations_destino_show(TPais $pais, TDestino $destino) {
 //        return $destinations->id;
 //        $paquetes_api = Http::get(env('APP_URL').'/api/packages/destinations/'.$destinations->id);
 //        $paquetes_api = $paquetes_api->json();
@@ -118,37 +205,15 @@ class HomeController extends Controller
 //        return $paquetes;
         $paquetes_api = TPaqueteDestino::
         with('paquetes.precio_paquetes','destinos', 'paquetes.paquetes_destinos.destinos')
-            ->where('iddestinos', $destinations->id)
-            ->get();
-        $category = TCategoria::all();
-
-        return view('page.destination-show', compact('paquetes_api', 'destinations', 'category'));
-    }
-
-    public function category() {
-        $category = TCategoria::all();
-        return view('page.category', compact('category'));
-    }
-    public function category_show(TCategoria $categories) {
-//        return $destinations->id;
-//        $paquetes_api = Http::get(env('APP_URL').'/api/packages/destinations/'.$destinations->id);
-//        $paquetes_api = $paquetes_api->json();
-
-//        $paquetes = TPaquete::where('is_p_t', 1)
-//            ->paquetes_destinos($destinations->id)
-////            ->latest('id')
-//            ->paginate(8);
-//
-//
-//        return $paquetes;
-        $paquetes_api = TPaqueteCategoria::
-        with('paquetes.precio_paquetes','categoria', 'paquetes.paquetes_categoria.categoria')
-            ->where('idcategoria', $categories->id)
+            ->where('iddestinos', $destino->id)
             ->get();
 
-        $category = TCategoria::all();
+//        dd($pais);
 
-        return view('page.category-show', compact('paquetes_api', 'categories', 'category'));
+        $destinations = TDestino::all();
+
+
+        return view('page.destinations-packages', compact('paquetes_api', 'pais', 'destinations', 'destino'));
     }
 
     public function about(){
