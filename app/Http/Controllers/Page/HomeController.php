@@ -255,7 +255,8 @@ class HomeController extends Controller
     public function reviews(){
         $testinomials = TTestimonio::all();
         $category = TCategoria::all();
-        return view('page.reviews', compact('testinomials', 'category'));
+        $teams = TTeam::all();
+        return view('page.reviews', compact('testinomials', 'category', 'teams'));
     }
 
     public function tours(){
