@@ -776,7 +776,7 @@
     </section>
 
 
-    <section class="bg-secondary bg-opacity-60 my-12 py-12">
+    <section class="bg-secondary bg-opacity-60 mt-12 py-12">
         <div class="container text-center grid  grid-cols-1 md:grid-cols-2 gap-6">
             <div class="text-center">
 
@@ -808,99 +808,99 @@
         </div>
     </section>
 
-    <section class="container" x-data="{ openDes: 1 }" id="hotels">
-        <div class="flex mb-3 items-center text-lg text-gray-700 font-bold gap-2 dark:text-gray-400">
-            <div class="">
-                {{--                                    <span class="inline-block w-1 h-2.5 bg-secondary ml-1"></span>--}}
-                {{--                                    <span class="inline-block w-3 h-2.5 bg-secondary ml-1"></span>--}}
-                <span class="inline-block w-5 h-2.5 bg-secondary"></span>
-            </div> Recommended Hotels
-        </div>
-        <div class=" mt-6 ">
-            <ul class="flex flex-nowrap overflow-x-scroll gap-3">
-                @foreach($paquete['paquetes_destinos'] as $paquete_destino)
-                    {{--                            {{$loop->iteration}}--}}
+{{--    <section class="container" x-data="{ openDes: 1 }" id="hotels">--}}
+{{--        <div class="flex mb-3 items-center text-lg text-gray-700 font-bold gap-2 dark:text-gray-400">--}}
+{{--            <div class="">--}}
+{{--                --}}{{--                                    <span class="inline-block w-1 h-2.5 bg-secondary ml-1"></span>--}}
+{{--                --}}{{--                                    <span class="inline-block w-3 h-2.5 bg-secondary ml-1"></span>--}}
+{{--                <span class="inline-block w-5 h-2.5 bg-secondary"></span>--}}
+{{--            </div> Recommended Hotels--}}
+{{--        </div>--}}
+{{--        <div class=" mt-6 ">--}}
+{{--            <ul class="flex flex-nowrap overflow-x-scroll gap-3">--}}
+{{--                @foreach($paquete['paquetes_destinos'] as $paquete_destino)--}}
+{{--                    --}}{{--                            {{$loop->iteration}}--}}
 
-                    <li @click="openDes = {{$loop->iteration}}" class="inline-block border py-2 px-4 font-medium w-full cursor-pointer text-center transition duration-300 py-3" :class="openDes == {{$loop->iteration}} ? 'bg-primary text-white' : 'bg-white hover:text-primary'">
-                        <div class="">{{$paquete_destino['destinos']['nombre']}}</div>
-                    </li>
-                    {{--                        <li @click="openDes = 2" class="inline-block border py-2 px-4 font-medium w-full cursor-pointer text-center transition duration-300 py-3" :class="openDes == 2 ? 'bg-primary text-white' : 'bg-white hover:text-primary'">--}}
-                    {{--                            <div class="">Full Itinerary</div>--}}
-                    {{--                        </li>--}}
-                @endforeach
-            </ul>
-        </div>
+{{--                    <li @click="openDes = {{$loop->iteration}}" class="inline-block border py-2 px-4 font-medium w-full cursor-pointer text-center transition duration-300 py-3" :class="openDes == {{$loop->iteration}} ? 'bg-primary text-white' : 'bg-white hover:text-primary'">--}}
+{{--                        <div class="">{{$paquete_destino['destinos']['nombre']}}</div>--}}
+{{--                    </li>--}}
+{{--                    --}}{{--                        <li @click="openDes = 2" class="inline-block border py-2 px-4 font-medium w-full cursor-pointer text-center transition duration-300 py-3" :class="openDes == 2 ? 'bg-primary text-white' : 'bg-white hover:text-primary'">--}}
+{{--                    --}}{{--                            <div class="">Full Itinerary</div>--}}
+{{--                    --}}{{--                        </li>--}}
+{{--                @endforeach--}}
+{{--            </ul>--}}
+{{--        </div>--}}
 
-        <section class="mt-6 grid grid-cols-1  gap-4">
-            <div class="col-span-2 order-2 md:order-1">
-                @foreach($paquete['paquetes_destinos'] as $paquete_destino)
-                    <div x-show="openDes === {{$loop->iteration}}" x-transition:enter="transition duration-500 transform ease-in" x-transition:enter-start="opacity-0">
-                        {{--                            <div class="">{{$paquete_destino['destinos']['nombre']}}</div>--}}
-                        <div class="grid grid-cols-1">
-                            @foreach($hoteles_destinos->where('iddestinos', $paquete_destino->destinos->id)->take(3) as $hoteles_destino)
-                                <div class="grid grid-cols-3 gap-4 mb-4 border">
-                                    <div class="col-span-3 md:col-span-1">
-                                        {{--                @if($hotel->imagen)--}}
-                                        {{--                    <img src="{{$hotel->imagen}}" alt="{{$hotel->nombre}}" class="object-cover w-full h-full">--}}
-                                        {{--                @else--}}
-                                        <img src="{{$hoteles_destino->hotel->imagen}}" alt="" class="object-cover w-full h-full">
-                                        {{--                @endif--}}
+{{--        <section class="mt-6 grid grid-cols-1  gap-4">--}}
+{{--            <div class="col-span-2 order-2 md:order-1">--}}
+{{--                @foreach($paquete['paquetes_destinos'] as $paquete_destino)--}}
+{{--                    <div x-show="openDes === {{$loop->iteration}}" x-transition:enter="transition duration-500 transform ease-in" x-transition:enter-start="opacity-0">--}}
+{{--                        --}}{{--                            <div class="">{{$paquete_destino['destinos']['nombre']}}</div>--}}
+{{--                        <div class="grid grid-cols-1">--}}
+{{--                            @foreach($hoteles_destinos->where('iddestinos', $paquete_destino->destinos->id)->take(3) as $hoteles_destino)--}}
+{{--                                <div class="grid grid-cols-3 gap-4 mb-4 border">--}}
+{{--                                    <div class="col-span-3 md:col-span-1">--}}
+{{--                                        --}}{{--                @if($hotel->imagen)--}}
+{{--                                        --}}{{--                    <img src="{{$hotel->imagen}}" alt="{{$hotel->nombre}}" class="object-cover w-full h-full">--}}
+{{--                                        --}}{{--                @else--}}
+{{--                                        <img src="{{$hoteles_destino->hotel->imagen}}" alt="" class="object-cover w-full h-full">--}}
+{{--                                        --}}{{--                @endif--}}
 
-                                    </div>
-                                    <div class="col-span-3 md:col-span-2 p-6">
-                                        <h3 class="font-bold text-gray-500">{{$hoteles_destino->hotel->nombre}}</h3>
-                                        <div class="flex">
-                                            @for($i=0; $i < $hoteles_destino->hotel->estrellas; $i++)
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                                </svg>
-                                            @endfor
-                                        </div>
-                                        <div class="pt-2 flex text-sm mb-6">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            </svg>
-                                            <p class="ml-2">{{$hoteles_destino->hotel->direccion}}</p>
-                                        </div>
+{{--                                    </div>--}}
+{{--                                    <div class="col-span-3 md:col-span-2 p-6">--}}
+{{--                                        <h3 class="font-bold text-gray-500">{{$hoteles_destino->hotel->nombre}}</h3>--}}
+{{--                                        <div class="flex">--}}
+{{--                                            @for($i=0; $i < $hoteles_destino->hotel->estrellas; $i++)--}}
+{{--                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">--}}
+{{--                                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />--}}
+{{--                                                </svg>--}}
+{{--                                            @endfor--}}
+{{--                                        </div>--}}
+{{--                                        <div class="pt-2 flex text-sm mb-6">--}}
+{{--                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />--}}
+{{--                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />--}}
+{{--                                            </svg>--}}
+{{--                                            <p class="ml-2">{{$hoteles_destino->hotel->direccion}}</p>--}}
+{{--                                        </div>--}}
 
-                                        <div class="text-sm">
-                                            <p>{!! $hoteles_destino->hotel->descripcion !!}</p>
-                                        </div>
+{{--                                        <div class="text-sm">--}}
+{{--                                            <p>{!! $hoteles_destino->hotel->descripcion !!}</p>--}}
+{{--                                        </div>--}}
 
-                                        @php $services = explode(',', $hoteles_destino->hotel->servicios); @endphp
-                                        {{--                                            <p class="text-gray-500"><b>{{__('message.hote_subtitle1')}}:</b></p>--}}
+{{--                                        @php $services = explode(',', $hoteles_destino->hotel->servicios); @endphp--}}
+{{--                                        --}}{{--                                            <p class="text-gray-500"><b>{{__('message.hote_subtitle1')}}:</b></p>--}}
 
-                                        <div class="flex bg-blue-100 p-3 flex-wrap gap-4 mt-3 justify-center relative">
-                                            @foreach($services as $service)
-                                                <div class="inline-flex text-sm">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                                    </svg>
-                                                    {{$service}}
-                                                </div>
-                                            @endforeach
-                                        </div>
+{{--                                        <div class="flex bg-blue-100 p-3 flex-wrap gap-4 mt-3 justify-center relative">--}}
+{{--                                            @foreach($services as $service)--}}
+{{--                                                <div class="inline-flex text-sm">--}}
+{{--                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />--}}
+{{--                                                    </svg>--}}
+{{--                                                    {{$service}}--}}
+{{--                                                </div>--}}
+{{--                                            @endforeach--}}
+{{--                                        </div>--}}
 
-                                        <div class="flex mt-6 text-sm">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                            </svg>
-                                            <a href="{{$hoteles_destino->hotel->url}}" class="btn btn-outline-secondary text-blue-600 ml-2" target="_blank">{{ucfirst(strtolower($hoteles_destino->hotel->nombre))}}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </section>
+{{--                                        <div class="flex mt-6 text-sm">--}}
+{{--                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />--}}
+{{--                                            </svg>--}}
+{{--                                            <a href="{{$hoteles_destino->hotel->url}}" class="btn btn-outline-secondary text-blue-600 ml-2" target="_blank">{{ucfirst(strtolower($hoteles_destino->hotel->nombre))}}</a>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            @endforeach--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                @endforeach--}}
+{{--            </div>--}}
+{{--        </section>--}}
 
-        <section class="my-12 text-center">
-            <a href="{{route('hotels')}}" class="btn btn-primary">View more hotels</a>
-        </section>
-    </section>
+{{--        <section class="my-12 text-center">--}}
+{{--            <a href="{{route('hotels')}}" class="btn btn-primary">View more hotels</a>--}}
+{{--        </section>--}}
+{{--    </section>--}}
 
     {{--        <div class="container mt-12 hidden mb-3">--}}
     {{--            <div class="flex items-center text-lg text-gray-700 font-bold gap-2">--}}
@@ -947,187 +947,187 @@
     {{--            </div>--}}
     {{--        </section>--}}
 
-    <section class="container hidden md:block mt-4" id="reviews">
+{{--    <section class="container hidden md:block mt-4" id="reviews">--}}
 
-        <div class="flex mb-3 items-center text-lg text-gray-700 font-bold gap-2 dark:text-gray-400">
-            <span class="inline-block w-5 h-2.5 bg-secondary"></span> {{__('message.subtitle5')}}
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-            <div class="col-span-2 flex gap-4 flex-wrap content-between overflow-hidden">
-                <div class="w-full">
-                    <div class="grid grid-cols-2 w-full items-center text-center text-gray-700 dark:text-gray-300 gap-2">
-                        <div class="border p-4 w-full">
-                            <p class="block text-4xl font-bold">97%</p>
-                            <p class="text-xs">{{__('message.social_con1')}}</p>
-                        </div>
-                        <div class="border p-4 w-full">
-                            <p class="block text-3xl font-bold">9000 +</p>
-                            <p class="text-xs">{{__('message.social_con2')}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative">
-                    {{--            <div class="bg-fixed bg-cover bg-center bg-no-repeat" style="background-image: url({{asset('images/hotels-t.jpg')}})">--}}
-                    {{--                <img src="{{asset('images/hotels-t.jpg')}}" alt="" class="h-full object-cover min-w-full transition duration-500 ease-in-out transform hover:-translate-x-0 hover:scale-105">--}}
-                    <div class="flex items-center justify-center">
-                        <div class="border bg-white p-6 dark:bg-gray-800 text-gray-800 dark:text-gray-300">
-                            <p class="mb-2 flex inline-flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                {{__('message.social_li1')}}
-                            </p>
-                            <p class="mb-2 flex inline-flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                {{__('message.social_li2')}}
-                            </p>
-                            <p class="mb-2 flex inline-flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                {{__('message.social_li3')}}
-                            </p>
-                            <p class="mb-2 flex inline-flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                {{__('message.social_li4')}}
-                            </p>
-                            <p class="mb-2 flex inline-flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                </svg>
-                                {{__('message.social_li5')}}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex inline-flex items-center text-2xl text-gray-700 font-bold gap-3">
-                    <div class="border">
-                        <a href="https://www.tripadvisor.com.pe/Attraction_Review-g294314-d15202262-Reviews-Gotoperu-Cusco_Cusco_Region.html" target="_blank"><img src="https://gotoperu.com.mx/images/icons/tripadvisor.png" alt="" class="p-4 dark:filter dark:grayscale dark:invert"></a>
-                    </div>
-                    <div class="border">
-                        <a href="https://www.yelp.com/biz/gotoperu-washington?osq=gotoperu.com" target="_blank"><img src="https://gotoperu.com.mx/images/icons/yelp.png" alt="" class="p-4 dark:filter dark:grayscale dark:invert"></a>
-                    </div>
-                    <div class="border">
-                        <a href="https://www.trustpilot.com/review/gotoperu.com"><img src="https://gotoperu.com.mx/images/icons/trust.png" alt="" class="p-4 dark:filter dark:grayscale dark:invert"></a>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="col-span-3 grid grid-cols-1 items-center relative overflow-hidden bg-center bg-no-repeat bg-cover" style="background-image: url('{{asset('images/banners/redes.jpg')}}')">
-                {{--            <img src="{{asset('images/hotels-t.jpg')}}" alt="" class="h-full object-cover min-w-full transition duration-500 ease-in-out transform hover:-translate-x-0 hover:scale-105">--}}
-
-                {{--            <div class="absolute flex items-center inset-0 ">--}}
-                <div class="md:mx-16">
-                    <div class="w-full swiper-container mySwiper">
-                        <div class="swiper-wrapper">
-                            @foreach($testinomials as $testinomial)
-                                <div class="swiper-slide p-12">
-                                    <div class="my-10 mx-16 w-full mx-auto rounded-lg bg-gray-100 dark:bg-gray-800 shadow-lg px-5 pt-5 pb-10 text-gray-800 dark:text-gray-300">
-                                        <div class="w-full pt-1 text-center pb-5 -mt-16 mx-auto">
-                                            <a href="#" class="block relative">
-                                                <img alt="profil" src="https://gotoperu.com.mx/images/video-testimonial/2.jpg" class="mx-auto object-cover rounded-full h-20 w-20 z-30"/>
-                                            </a>
-                                        </div>
-                                        <div class="w-full mb-6">
-                                            <div class="text-3xl text-indigo-500 text-left leading-tight h-3">
-                                                “
-                                            </div>
-                                            <p class="text-sm text-gray-600 dark:text-gray-100 text-center px-5">
-                                                {{ Str::limit($testinomial->contenido, 150) }}
-                                            </p>
-                                            <div class="text-3xl text-indigo-500 text-right leading-tight h-3 -mt-3">
-                                                ”
-                                            </div>
-                                        </div>
-                                        <div class="w-full text-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto cursor-pointer text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg>
-
-                                            <p class="text-md text-indigo-500 font-bold text-center">
-                                                {{ $testinomial->nombre }}
-                                            </p>
-                                            <p class="text-xs text-gray-500 dark:text-gray-300 text-center">
-                                                {{ $testinomial->ciudad }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="swiper-button-next btn-next"></div>
-                        <div class="swiper-button-prev btn-prev"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </section>
-    <section class="container mt-6 mb-12 ">
-        {{--        <div class="flex mb-3 items-center text-2xl text-gray-700 dark:text-primary font-bold gap-2">--}}
-        {{--            <div class="">--}}
-        {{--                <span class="inline-block w-1 h-2.5 bg-secondary ml-1"></span>--}}
-        {{--                <span class="inline-block w-3 h-2.5 bg-secondary ml-1"></span>--}}
-        {{--                <span class="inline-block w-5 h-2.5 bg-secondary"></span>--}}
-        {{--            </div> Social Media--}}
-        {{--        </div>--}}
-
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-            <div class="col-span-3 grid grid-cols-1 items-center relative bg-fixed bg-center bg-no-repeat bg-cover" style="background-image: url({{asset('images/hotels-t.jpg')}})">
-                <div class="flex relative">
-                    {{--                    <div class="elfsight-app-ba7c9526-9468-4d5b-b378-68ec76259e00"></div>--}}
-                    <img src="{{asset('images/banners/social.jpg')}}" alt="" class="object-cover h-full w-full">
-                    <div class="absolute inset-0 gradient-cicle-gray"></div>
-                </div>
-            </div>
-            <div class="col-span-2 flex gap-4 flex-col justify-between content-between overflow-hidden">
-                <div class="">
-                    <div class="flex items-center text-center text-gray-700 dark:text-gray-300 gap-2">
-                        <div class="border p-4 w-1/2">
-                            <p class="block text-4xl font-bold">30 000</p>
-                            <p class="text-xs">FACEBOOK FANS</p>
-                        </div>
-                        <div class="border p-4 w-1/2">
-                            <p class="block text-3xl font-bold">#gotoperu</p>
-                            <p class="text-xs">INSTAGRAM HASHTAG</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="">
-                    {{--            <div class="bg-fixed bg-cover bg-center bg-no-repeat" style="background-image: url({{asset('images/hotels-t.jpg')}})">--}}
-
-                    <div class="bg-gray-500 bg-opacity-10 text-center p-12">
-                        <img src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" alt="" class="mx-auto py-4">
-                        <h3>{{__('message.revi_subtitle1')}}</h3>
-                        <p>{{__('message.revi_par3')}}</p>
-                    </div>
-                </div>
-                <div class="grid grid-cols-4 items-center text-2xl text-gray-700 font-bold gap-3">
-                    <div class="border">
-                        <a href="https://www.instagram.com/go.to.peru/" target="_blank"><img src="{{asset('images/logos/instagram.png')}}" alt="" class="p-6"></a>
-                    </div>
-                    <div class="border">
-                        <a href="https://www.facebook.com/GOTOPERUcom/" target="_blank"><img src="{{asset('images/logos/facebook.png')}}" alt="" class="p-6"></a>
-                    </div>
-                    <div class="border">
-                        <a href="https://www.youtube.com/channel/UCWjJ10j-_BfNTDnmjBug8Ng" target="_blank"><img src="{{asset('images/logos/youtube.png')}}" alt="" class="p-6"></a>
-                    </div>
-                    <div class="border">
-                        <a href="https://www.tiktok.com/@gotoperu" target="_blank"><img src="{{asset('images/logos/tiktok.png')}}" alt="" class="p-6"></a>
-                    </div>
-                </div>
+{{--        <div class="flex mb-3 items-center text-lg text-gray-700 font-bold gap-2 dark:text-gray-400">--}}
+{{--            <span class="inline-block w-5 h-2.5 bg-secondary"></span> {{__('message.subtitle5')}}--}}
+{{--        </div>--}}
+{{--        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">--}}
+{{--            <div class="col-span-2 flex gap-4 flex-wrap content-between overflow-hidden">--}}
+{{--                <div class="w-full">--}}
+{{--                    <div class="grid grid-cols-2 w-full items-center text-center text-gray-700 dark:text-gray-300 gap-2">--}}
+{{--                        <div class="border p-4 w-full">--}}
+{{--                            <p class="block text-4xl font-bold">97%</p>--}}
+{{--                            <p class="text-xs">{{__('message.social_con1')}}</p>--}}
+{{--                        </div>--}}
+{{--                        <div class="border p-4 w-full">--}}
+{{--                            <p class="block text-3xl font-bold">9000 +</p>--}}
+{{--                            <p class="text-xs">{{__('message.social_con2')}}</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="relative">--}}
+{{--                    --}}{{--            <div class="bg-fixed bg-cover bg-center bg-no-repeat" style="background-image: url({{asset('images/hotels-t.jpg')}})">--}}
+{{--                    --}}{{--                <img src="{{asset('images/hotels-t.jpg')}}" alt="" class="h-full object-cover min-w-full transition duration-500 ease-in-out transform hover:-translate-x-0 hover:scale-105">--}}
+{{--                    <div class="flex items-center justify-center">--}}
+{{--                        <div class="border bg-white p-6 dark:bg-gray-800 text-gray-800 dark:text-gray-300">--}}
+{{--                            <p class="mb-2 flex inline-flex">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />--}}
+{{--                                </svg>--}}
+{{--                                {{__('message.social_li1')}}--}}
+{{--                            </p>--}}
+{{--                            <p class="mb-2 flex inline-flex">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />--}}
+{{--                                </svg>--}}
+{{--                                {{__('message.social_li2')}}--}}
+{{--                            </p>--}}
+{{--                            <p class="mb-2 flex inline-flex">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />--}}
+{{--                                </svg>--}}
+{{--                                {{__('message.social_li3')}}--}}
+{{--                            </p>--}}
+{{--                            <p class="mb-2 flex inline-flex">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />--}}
+{{--                                </svg>--}}
+{{--                                {{__('message.social_li4')}}--}}
+{{--                            </p>--}}
+{{--                            <p class="mb-2 flex inline-flex">--}}
+{{--                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />--}}
+{{--                                </svg>--}}
+{{--                                {{__('message.social_li5')}}--}}
+{{--                            </p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="flex inline-flex items-center text-2xl text-gray-700 font-bold gap-3">--}}
+{{--                    <div class="border">--}}
+{{--                        <a href="https://www.tripadvisor.com.pe/Attraction_Review-g294314-d15202262-Reviews-Gotoperu-Cusco_Cusco_Region.html" target="_blank"><img src="https://gotoperu.com.mx/images/icons/tripadvisor.png" alt="" class="p-4 dark:filter dark:grayscale dark:invert"></a>--}}
+{{--                    </div>--}}
+{{--                    <div class="border">--}}
+{{--                        <a href="https://www.yelp.com/biz/gotoperu-washington?osq=gotoperu.com" target="_blank"><img src="https://gotoperu.com.mx/images/icons/yelp.png" alt="" class="p-4 dark:filter dark:grayscale dark:invert"></a>--}}
+{{--                    </div>--}}
+{{--                    <div class="border">--}}
+{{--                        <a href="https://www.trustpilot.com/review/gotoperu.com"><img src="https://gotoperu.com.mx/images/icons/trust.png" alt="" class="p-4 dark:filter dark:grayscale dark:invert"></a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
 
-            </div>
-        </div>
+{{--            </div>--}}
+{{--            <div class="col-span-3 grid grid-cols-1 items-center relative overflow-hidden bg-center bg-no-repeat bg-cover" style="background-image: url('{{asset('images/banners/redes.jpg')}}')">--}}
+{{--                --}}{{--            <img src="{{asset('images/hotels-t.jpg')}}" alt="" class="h-full object-cover min-w-full transition duration-500 ease-in-out transform hover:-translate-x-0 hover:scale-105">--}}
 
-    </section>
+{{--                --}}{{--            <div class="absolute flex items-center inset-0 ">--}}
+{{--                <div class="md:mx-16">--}}
+{{--                    <div class="w-full swiper-container mySwiper">--}}
+{{--                        <div class="swiper-wrapper">--}}
+{{--                            @foreach($testinomials as $testinomial)--}}
+{{--                                <div class="swiper-slide p-12">--}}
+{{--                                    <div class="my-10 mx-16 w-full mx-auto rounded-lg bg-gray-100 dark:bg-gray-800 shadow-lg px-5 pt-5 pb-10 text-gray-800 dark:text-gray-300">--}}
+{{--                                        <div class="w-full pt-1 text-center pb-5 -mt-16 mx-auto">--}}
+{{--                                            <a href="#" class="block relative">--}}
+{{--                                                <img alt="profil" src="https://gotoperu.com.mx/images/video-testimonial/2.jpg" class="mx-auto object-cover rounded-full h-20 w-20 z-30"/>--}}
+{{--                                            </a>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="w-full mb-6">--}}
+{{--                                            <div class="text-3xl text-indigo-500 text-left leading-tight h-3">--}}
+{{--                                                “--}}
+{{--                                            </div>--}}
+{{--                                            <p class="text-sm text-gray-600 dark:text-gray-100 text-center px-5">--}}
+{{--                                                {{ Str::limit($testinomial->contenido, 150) }}--}}
+{{--                                            </p>--}}
+{{--                                            <div class="text-3xl text-indigo-500 text-right leading-tight h-3 -mt-3">--}}
+{{--                                                ”--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="w-full text-center">--}}
+{{--                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto cursor-pointer text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />--}}
+{{--                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />--}}
+{{--                                            </svg>--}}
+
+{{--                                            <p class="text-md text-indigo-500 font-bold text-center">--}}
+{{--                                                {{ $testinomial->nombre }}--}}
+{{--                                            </p>--}}
+{{--                                            <p class="text-xs text-gray-500 dark:text-gray-300 text-center">--}}
+{{--                                                {{ $testinomial->ciudad }}--}}
+{{--                                            </p>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            @endforeach--}}
+{{--                        </div>--}}
+{{--                        <div class="swiper-button-next btn-next"></div>--}}
+{{--                        <div class="swiper-button-prev btn-prev"></div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+
+{{--    </section>--}}
+{{--    <section class="container mt-6 mb-12 ">--}}
+{{--        --}}{{--        <div class="flex mb-3 items-center text-2xl text-gray-700 dark:text-primary font-bold gap-2">--}}
+{{--        --}}{{--            <div class="">--}}
+{{--        --}}{{--                <span class="inline-block w-1 h-2.5 bg-secondary ml-1"></span>--}}
+{{--        --}}{{--                <span class="inline-block w-3 h-2.5 bg-secondary ml-1"></span>--}}
+{{--        --}}{{--                <span class="inline-block w-5 h-2.5 bg-secondary"></span>--}}
+{{--        --}}{{--            </div> Social Media--}}
+{{--        --}}{{--        </div>--}}
+
+{{--        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">--}}
+{{--            <div class="col-span-3 grid grid-cols-1 items-center relative bg-fixed bg-center bg-no-repeat bg-cover" style="background-image: url({{asset('images/hotels-t.jpg')}})">--}}
+{{--                <div class="flex relative">--}}
+{{--                    --}}{{--                    <div class="elfsight-app-ba7c9526-9468-4d5b-b378-68ec76259e00"></div>--}}
+{{--                    <img src="{{asset('images/banners/social.jpg')}}" alt="" class="object-cover h-full w-full">--}}
+{{--                    <div class="absolute inset-0 gradient-cicle-gray"></div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="col-span-2 flex gap-4 flex-col justify-between content-between overflow-hidden">--}}
+{{--                <div class="">--}}
+{{--                    <div class="flex items-center text-center text-gray-700 dark:text-gray-300 gap-2">--}}
+{{--                        <div class="border p-4 w-1/2">--}}
+{{--                            <p class="block text-4xl font-bold">30 000</p>--}}
+{{--                            <p class="text-xs">FACEBOOK FANS</p>--}}
+{{--                        </div>--}}
+{{--                        <div class="border p-4 w-1/2">--}}
+{{--                            <p class="block text-3xl font-bold">#gotoperu</p>--}}
+{{--                            <p class="text-xs">INSTAGRAM HASHTAG</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="">--}}
+{{--                    --}}{{--            <div class="bg-fixed bg-cover bg-center bg-no-repeat" style="background-image: url({{asset('images/hotels-t.jpg')}})">--}}
+
+{{--                    <div class="bg-gray-500 bg-opacity-10 text-center p-12">--}}
+{{--                        <img src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" alt="" class="mx-auto py-4">--}}
+{{--                        <h3>{{__('message.revi_subtitle1')}}</h3>--}}
+{{--                        <p>{{__('message.revi_par3')}}</p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="grid grid-cols-4 items-center text-2xl text-gray-700 font-bold gap-3">--}}
+{{--                    <div class="border">--}}
+{{--                        <a href="https://www.instagram.com/go.to.peru/" target="_blank"><img src="{{asset('images/logos/instagram.png')}}" alt="" class="p-6"></a>--}}
+{{--                    </div>--}}
+{{--                    <div class="border">--}}
+{{--                        <a href="https://www.facebook.com/GOTOPERUcom/" target="_blank"><img src="{{asset('images/logos/facebook.png')}}" alt="" class="p-6"></a>--}}
+{{--                    </div>--}}
+{{--                    <div class="border">--}}
+{{--                        <a href="https://www.youtube.com/channel/UCWjJ10j-_BfNTDnmjBug8Ng" target="_blank"><img src="{{asset('images/logos/youtube.png')}}" alt="" class="p-6"></a>--}}
+{{--                    </div>--}}
+{{--                    <div class="border">--}}
+{{--                        <a href="https://www.tiktok.com/@gotoperu" target="_blank"><img src="{{asset('images/logos/tiktok.png')}}" alt="" class="p-6"></a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+
+{{--            </div>--}}
+{{--        </div>--}}
+
+{{--    </section>--}}
 
 
 

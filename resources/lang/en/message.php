@@ -1,13 +1,13 @@
 <?php
 return [
-    'seo_title' => 'Peru Travel Packages',
+    'seo_title' => 'Latam Travel Packages',
     'msg_email' => 'Thank you for reaching out to us!',
     'msc_client_email' => 'Thank you for contacting us, a GOTOPERU representative will contact you shortly.',
     'msg_default' => 'THE BEST VACATIONS IN PERU WITH THE BEST PERUVIAN OPERATOR',
 
     'nav_item1' => 'Latam Travel Packages',
     'nav_item2' => 'Only Tours',
-    'nav_item3' => 'Destination',
+    'nav_item3' => 'Countries',
     'nav_item4' => 'Holels',
     'nav_item5' => 'About Us',
     'nav_item6' => 'Reviews',
@@ -225,9 +225,9 @@ return [
     'resp_title1' => 'Social Responsability',
     'resp_part1' => 'Experience Peru with an award-winning team on a completely customized, private or small group tour for an authentic trip of a lifetime. With our 97% satisfaction rate, round-the-clock local support and 100% financial protection, explore 20+ enchanting destinations around the land of the Incas safely and seamlessly. Our 9,000+ enchanted guests will vouch for us.',
 
-    'form_footer_title' => 'Book With Confidence',
+    'form_footer_title' => 'Free Quote',
     'form_footer_par1' => "We're flexible! Postpone your tour with zero cost up to 10 days prior to departure.",
-    'form_footer_subtitle1' => 'HOTEL QUALITY',
+    'form_footer_subtitle1' => 'HOTEL CATEGORY',
     'form_footer_par2' => '(OPTIONAL. You may choose more than one)',
     'form_footer_subtitle2' => 'NUMBER OF TRAVELERS',
     'form_footer_subtitle3' => 'TRIP LENGTH',
