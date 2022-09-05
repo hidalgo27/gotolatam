@@ -502,61 +502,60 @@
 {{--            <span class="hidden md:inline-flex inline-block w-5 h-2.5 bg-secondary dark:bg-primary"></span>--}}
 {{--        </div> {{__('message.subtitle6')}}--}}
 {{--    </div>--}}
-    <section class="grid grid-cols-1 md:grid-cols-5">
-        <div class="md:col-span-3 relative">
-            <img src="{{asset('images/banners/confidence/experienced-tour-guides.jpg')}}" alt="" class="object-cover h-full w-full">
-            <div class="absolute inset-0 gradient-cicle-gray flex items-center text-white text-center w-full">
-                <div class="w-full text-center">
-                    <h3 class="font-semibold block text-lg md:text-4xl">POPULAR: MACHUPICCHU FULL DAY</h3>
-                    <p class="block mb-6">Book online and save up to 20%. All included: trains, entrances, buses, guide, transfers</p>
-                    <div class="font-semibold text-white dark:text-gray-700 text-xs md:text-5xl mt-auto">
-                        <div class="text-xs ">Price p.p. from</div>
-                        $299 <span class="text-sm text-secondary">usd</span>
-                    </div>
+{{--    <section class="grid grid-cols-1 md:grid-cols-5">--}}
+{{--        <div class="md:col-span-3 relative">--}}
+{{--            <img src="{{asset('images/banners/confidence/experienced-tour-guides.jpg')}}" alt="" class="object-cover h-full w-full">--}}
+{{--            <div class="absolute inset-0 gradient-cicle-gray flex items-center text-white text-center w-full">--}}
+{{--                <div class="w-full text-center">--}}
+{{--                    <h3 class="font-semibold block text-lg md:text-4xl">POPULAR: MACHUPICCHU FULL DAY</h3>--}}
+{{--                    <p class="block mb-6">Book online and save up to 20%. All included: trains, entrances, buses, guide, transfers</p>--}}
+{{--                    <div class="font-semibold text-white dark:text-gray-700 text-xs md:text-5xl mt-auto">--}}
+{{--                        <div class="text-xs ">Price p.p. from</div>--}}
+{{--                        $299 <span class="text-sm text-secondary">usd</span>--}}
+{{--                    </div>--}}
 
-                    <div class="block mt-6">
-                        <a href="peru-travel-packages/machu-picchu-full-day" class="btn-secondary">View Tours</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="md:col-span-2 bg-gray-800 text-white dark:bg-gray-700 dark:bg-opacity-90 p-6 dark:text-gray-50 flex items-center">
-            <div class="">
-                <h3 class="font-semibold text-2xl">
-                    GET IN TOUCH WITH ONE OF OUR LOCAL TRAVEL EXPERTS
-                </h3>
-                <p class="block my-12">
-                    Whatever your needs, we are here to help. If you have any questions about our packages or services, please do not hesitate to contact us.
-                </p>
-                <div class="flex justify-center gap-12">
-                    <div class="text-center">
-                        <a href="https://api.whatsapp.com/send?phone=12024911478" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                            </svg>
-                            Chat
-                        </a>
-                    </div>
-                    <div class="text-center">
-                        <a href="mailto:info@gotoperu.com">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                            Email
-                        </a>
-                    </div>
-                    <div class="text-center">
-                        <a href="https://api.whatsapp.com/send?phone=12024911478" target="_blank">
-                            <img src="{{asset('images/whatsapp-i.png')}}" alt="" class="mx-auto w-14 h-10">
-                            Whatsapp
-                        </a>
-                    </div>
-                </div>
+{{--                    <div class="block mt-6">--}}
+{{--                        <a href="peru-travel-packages/machu-picchu-full-day" class="btn-secondary">View Tours</a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="md:col-span-2 bg-gray-800 text-white dark:bg-gray-700 dark:bg-opacity-90 p-6 dark:text-gray-50 flex items-center">--}}
+{{--            <div class="">--}}
+{{--                <h3 class="font-semibold text-2xl">--}}
+{{--                    GET IN TOUCH WITH ONE OF OUR LOCAL TRAVEL EXPERTS--}}
+{{--                </h3>--}}
+{{--                <p class="block my-12">--}}
+{{--                    Whatever your needs, we are here to help. If you have any questions about our packages or services, please do not hesitate to contact us.--}}
+{{--                </p>--}}
+{{--                <div class="flex justify-center gap-12">--}}
+{{--                    <div class="text-center">--}}
+{{--                        <a href="https://api.whatsapp.com/send?phone=12024911478" target="_blank">--}}
+{{--                            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />--}}
+{{--                            </svg>--}}
+{{--                            Chat--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                    <div class="text-center">--}}
+{{--                        <a href="mailto:info@gotoperu.com">--}}
+{{--                            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />--}}
+{{--                            </svg>--}}
+{{--                            Email--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                    <div class="text-center">--}}
+{{--                        <a href="https://api.whatsapp.com/send?phone=12024911478" target="_blank">--}}
+{{--                            <img src="{{asset('images/whatsapp-i.png')}}" alt="" class="mx-auto w-14 h-10">--}}
+{{--                            Whatsapp--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 {{--                <a href="#" class="btn-primary">{{__('message.button_all')}}</a>--}}
-            </div>
-        </div>
-    </section>
-
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
     <section class="px-6 container grid grid-cols-1 md:grid-cols-4 my-12">
         <div class="text-center w-full col-span-4 items-center text-2xl text-gray-700 dark:text-secondary font-bold gap-2">
             Recomended Travel Packages
@@ -566,6 +565,19 @@
             See and learn about our tours from our valued Nordic Visitor customers.
         </div>
     </section>
+    <section class="container hidden md:block mt-6">
+
+{{--        <div class="flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">--}}
+{{--            <div class="border-4 h-1 w-12 border-secondary"></div> {{__('message.subtitle5')}}--}}
+{{--        </div>--}}
+        <div class="elfsight-app-d1e14e4b-52d0-4ad9-9068-f94e0de6bf50"></div>
+
+        <div class="mt-6">
+            <div class="elfsight-app-45e6b553-4db1-4009-9a37-a98b273413ec"></div>
+        </div>
+
+    </section>
+
     <section>
         <div class="container">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -1001,6 +1013,7 @@
 @endpush
 @push('scripts')
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://apps.elfsight.com/p/platform.js" defer></script>
 
     <script>
         var swiper = new Swiper(".mySwiper", {

@@ -11,9 +11,10 @@
 {{--    </div>--}}
 
 <section class="container py-12 text-gray-500 text-center mx-auto">
-    <p class="text-sm">{{__('message.pack_par1')}}</p>
-    <p class="text-sm my-6">{{__('message.pack_par2')}}</p>
-    <p>{{__('message.pack_par3')}}</p>
+    <p>South America has a unique combination of breathtaking landscapes and fascinating peoples that can't be found anywhere else on Earth. The highest waterfall, longest mountain range, and largest rainforest can all be found on the world's fourth largest continent, which is also home to beautiful beaches, historic towns, and modern metropolises. One of the highlights of your life will be the adventure of a lifetime that is traveling through South America.</p>
+{{--    <p class="text-sm">{{__('message.pack_par1')}}</p>--}}
+{{--    <p class="text-sm my-6">{{__('message.pack_par2')}}</p>--}}
+{{--    <p>{{__('message.pack_par3')}}</p>--}}
 </section>
 
 <section class="container grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">

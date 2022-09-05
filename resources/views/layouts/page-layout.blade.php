@@ -504,9 +504,8 @@
                 <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
                     <img src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-white.png" alt="" class="mx-auto">
                 </a>
+                <p class="mt-4 font-semibold text-secondary">CONTACT US ALSO VIA EMAIL: travel@gotolatam.com</p>
             </div>
-
-
             <div class="grid grid-cols-2 gap-4 dark:text-gray-300 md:grid-cols-5 mb-24">
                 <div>
                     <p class="font-semibold tracking-wide text-secondary mb-6">
@@ -599,9 +598,11 @@
                     </p>
                     <div class="bg-gray-900 p-4 rounded-lg shadow-inner">
                         <p class="mb-2 text-gray-300">
-                            {{__('message.footer_par1')}}
+{{--                            {{__('message.footer_par1')}}--}}
+                            Contact a South America travel expert
+                            We always aim to reply within 24 hours.
                         </p>
-{{--                        <a href="" class="btn-primary lg:px-4 block text-center mt-4">Contact Us</a>--}}
+                        <a href="#form-dream-adventure" class="btn-primary lg:px-4 block text-center mt-4">Send us a  Enquiry</a>
 {{--                                                    @livewire('page.form-inquire')--}}
                     </div>
                 </div>
@@ -613,6 +614,12 @@
                 {{--                        </p>--}}
                 {{--                    </div>--}}
                 {{--                </div>--}}
+            </div>
+
+            <div class="flex flex-col justify-between pt-5 sm:flex-row">
+                <p class="text-sm dark:text-gray-300">
+                    <span class="font-semibold">PERU MAIN OFFICE:</span>  Avenida El Sol 449 . Cusco , Cusco , Peru | <span class="font-semibold">USA OFFICE:</span>  501 E Kennedy Blvd, Tampa, FL 33602
+                </p>
             </div>
 
             <div class="flex flex-col justify-between pt-5 pb-10 border-t border-gray-500 sm:flex-row">
@@ -684,7 +691,7 @@
     })();
 
     // function([string1, string2],target id,[color1,color2])
-    consoleText(['Go to Peru', 'Go to Ecuador', 'Go to Chile', 'Go to Colombia', 'Go to Brasil', 'Go to Argentina', 'Go to Bolivia'], 'text',['#585858','#7F8429','#f9a825']);
+    consoleText(['Part of gotoperu group','Go to Peru', 'Go to Ecuador', 'Go to Chile', 'Go to Colombia', 'Go to Brasil', 'Go to Argentina', 'Go to Bolivia'], 'text',['#f9a825','#585858','#7F8429','#f9a825']);
 
     function consoleText(words, id, colors) {
         if (colors === undefined) colors = ['#fff'];
