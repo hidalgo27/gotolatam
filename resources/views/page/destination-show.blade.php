@@ -17,7 +17,7 @@
 
     <section class="container py-12 text-gray-500 text-center mx-auto">
 {{--        <p>{{__('message.dest_deta_par1')}}</p>--}}
-        {!! $pais->resumen !!}
+        {!! $pais->descripcion !!}
     </section>
 
 
