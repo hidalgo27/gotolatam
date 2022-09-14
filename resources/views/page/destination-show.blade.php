@@ -1,5 +1,6 @@
 @extends('layouts.page-layout')
 @section('content')
+
     <section class="-mt-32 h-80vh -z-1 relative">
 {{--        @foreach($destinations->destino_imagen as $imagen)--}}
             <img src="{{$pais->imagen}}" alt="" class="h-full w-full object-cover">
@@ -15,8 +16,8 @@
 {{--    </div>--}}
 
     <section class="container py-12 text-gray-500 text-center mx-auto">
-        <p>{{__('message.dest_deta_par1')}}</p>
-
+{{--        <p>{{__('message.dest_deta_par1')}}</p>--}}
+        {!! $pais->resumen !!}
     </section>
 
 

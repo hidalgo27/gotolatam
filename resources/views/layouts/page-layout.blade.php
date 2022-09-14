@@ -500,9 +500,13 @@
         {{--            <path fill="currentColor" d="M0 22L120 16.7C240 11 480 1.00001 720 0.700012C960 1.00001 1200 11 1320 16.7L1440 22V54H1320C1200 54 960 54 720 54C480 54 240 54 120 54H0V22Z"></path>--}}
         {{--        </svg>--}}
         <div class="container pt-12">
-            <div class="text-center mb-20">
+            <div class="text-center mb-20 bg-gray-400 bg-opacity-50 rounded shadow p-6">
                 <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
-                    <img src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-white.png" alt="" class="mx-auto">
+                    <img src="https://gotolatam.s3.us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" alt="" class="mx-auto">
+                </a>
+                <span class="text-white px-3">part of</span>
+                <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
+                    <img src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" alt="" class="mx-auto">
                 </a>
                 <p class="mt-4 font-semibold text-secondary">CONTACT US ALSO VIA EMAIL: travel@gotolatam.com</p>
             </div>

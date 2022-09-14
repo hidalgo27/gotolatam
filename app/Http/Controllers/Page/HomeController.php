@@ -89,13 +89,16 @@ class HomeController extends Controller
 
         $hoteles_destinos = THotelDestino::all();
 
+        $teams = TTeam::all();
+
         return view('page.detail',
             compact(
                 'paquete',
                 'category',
                 'testinomials',
                 'hoteles_destinos',
-                'testinomials_r'
+                'testinomials_r',
+                'teams'
             ));
     }
 
