@@ -16,6 +16,7 @@ use App\Models\TPost;
 use App\Models\TTeam;
 use App\Models\TTestimonio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
@@ -46,6 +47,7 @@ class HomeController extends Controller
         $category_footer = TCategoria::where('orden_block', 1)->get();
 
         $destination = TDestino::all();
+        $pais2 = TPais::all();
 
         return view('page.home',
             compact(
@@ -57,7 +59,8 @@ class HomeController extends Controller
                 'category',
                 'category_block',
                 'category_footer',
-                'destination'
+                'destination',
+                'pais2'
             ));
     }
 
@@ -65,10 +68,12 @@ class HomeController extends Controller
     public function packages() {
         $paquetes = TPaquete::where('is_p_t', '1')->orderBy('duracion')->get();
         $category = TCategoria::all();
+        $pais2 = TPais::all();
         return view('page.packages',
             compact(
                 'paquetes',
-                'category'
+                'category',
+                'pais2'
             ));
     }
 
@@ -90,6 +95,7 @@ class HomeController extends Controller
         $hoteles_destinos = THotelDestino::all();
 
         $teams = TTeam::all();
+        $pais2 = TPais::all();
 
         return view('page.detail',
             compact(
@@ -98,7 +104,8 @@ class HomeController extends Controller
                 'testinomials',
                 'hoteles_destinos',
                 'testinomials_r',
-                'teams'
+                'teams',
+                'pais2'
             ));
     }
 
@@ -106,8 +113,9 @@ class HomeController extends Controller
         $destinations = TDestino::all();
         $category = TCategoria::all();
         $pais = TPais::all();
+        $pais2 = TPais::all();
 
-        return view('page.destination', compact('destinations', 'category', 'pais'));
+        return view('page.destination', compact('destinations', 'category', 'pais', 'pais2'));
     }
 
 //    public function destinations() {
@@ -144,7 +152,8 @@ class HomeController extends Controller
 
     public function category() {
         $category = TCategoria::all();
-        return view('page.category', compact('category'));
+        $pais2 = TPais::all();
+        return view('page.category', compact('category', 'pais2'));
     }
     public function category_show(TCategoria $categories) {
 //        return $destinations->id;
@@ -164,8 +173,9 @@ class HomeController extends Controller
             ->get();
 
         $category = TCategoria::all();
+        $pais2 = TPais::all();
 
-        return view('page.category-show', compact('paquetes_api', 'categories', 'category'));
+        return view('page.category-show', compact('paquetes_api', 'categories', 'category', 'pais2'));
     }
 
 
@@ -189,9 +199,9 @@ class HomeController extends Controller
 //        dd($pais);
 
         $destinations = TDestino::where('idpais', $pais->id)->get();
+        $pais2 = TPais::all();
 
-
-        return view('page.destination-show', compact('destinations', 'pais'));
+        return view('page.destination-show', compact('destinations', 'pais', 'pais2'));
     }
 
     public function destinations_destino_show(TPais $pais, TDestino $destino) {
@@ -212,34 +222,97 @@ class HomeController extends Controller
             ->get();
 
 //        dd($pais);
+        $pais2 = TPais::all();
 
         $destinations = TDestino::all();
 
 
-        return view('page.destinations-packages', compact('paquetes_api', 'pais', 'destinations', 'destino'));
+        return view('page.destinations-packages', compact('paquetes_api', 'pais', 'destinations', 'destino', 'pais2'));
+    }
+
+    public function country_show($number) {
+//        return $destinations->id;
+//        $paquetes_api = Http::get(env('APP_URL').'/api/packages/destinations/'.$destinations->id);
+//        $paquetes_api = $paquetes_api->json();
+
+//        $paquetes = TPaquete::where('is_p_t', 1)
+//            ->paquetes_destinos($destinations->id)
+////            ->latest('id')
+//            ->paginate(8);
+//
+//
+//        return $paquetes;
+//        $paquetes_api = TPaqueteDestino::
+//        with(['destinos' => function($query) {
+//            return $query->groupBy('destinos.idpais');
+//        }])
+//            ->get();
+
+        $paquetes_api = DB::table('tpaquetesdestinos')
+            ->join('tdestinos', 'tpaquetesdestinos.iddestinos', '=', 'tdestinos.id')
+//            ->select('idpais', DB::raw('count(*) as user_count'))
+////            ->count('idpais')
+/// ->join('tdestinos', 'tpaquetesdestinos.iddestinos', '=', 'tdestinos.id')
+            ->select('idpaquetes', 'idpais')
+                ->groupByRaw('idpaquetes, idpais')
+//                ->select('idpaquetes', 'idpais',DB::raw('count(idpaquetes) as user_count'))
+//            ->toArray();
+//            ->select('idpaquetes', 'user_count')
+//                ->groupByRaw('idpaquetes, user_count')
+            ->get();
+
+
+//        $paquetes_api = $paquetes_api
+//            ->select(DB::raw('count(idpaquetes) as user_count'))
+//            ->groupBy('idpaquetes')
+//            ->get()
+//        ;
+
+
+        $paquetes_api = ($paquetes_api->groupBy('idpaquetes'));
+
+        $paquete2 = TPaquete::where('is_p_t', '1')->orderBy('duracion')->get();
+
+//        $pa = TPaqueteDestino::withCount(['destino.idpais'])->get();
+
+
+//        $paq = TPaqueteDestino::whereRelation('destinos', 'group by', 'idpais')->get();
+//        $paquetes_api = TPaqueteDestino::with('destinos')->get();
+
+//        return $paquetes_api;
+
+        $destinations = TDestino::all();
+        $pais2 = TPais::all();
+//
+        return view('page.countries-packages', compact( 'paquetes_api', 'pais2', 'destinations', 'paquete2', 'number'));
     }
 
     public function about(){
         $teams = TTeam::all();
         $category = TCategoria::all();
-        return view('page.about', compact('teams','category'));
+        $pais2 = TPais::all();
+        return view('page.about', compact('teams','category', 'pais2'));
     }
     public function book(){
         $category = TCategoria::all();
-        return view('page.book',compact('category'));
+        $pais2 = TPais::all();
+        return view('page.book',compact('category', 'pais2'));
     }
     public function confidence(){
         $category = TCategoria::all();
-        return view('page.confidence', compact('category'));
+        $pais2 = TPais::all();
+        return view('page.confidence', compact('category', 'pais2'));
     }
     public function conditions(){
         $category = TCategoria::all();
-        return view('page.conditions', compact('category'));
+        $pais2 = TPais::all();
+        return view('page.conditions', compact('category', 'pais2'));
     }
     public function faq(){
         $faqs = Faq::all();
         $category = TCategoria::all();
-        return view('page.faq', compact('faqs', 'category'));
+        $pais2 = TPais::all();
+        return view('page.faq', compact('faqs', 'category', 'pais2'));
     }
 
 
@@ -247,39 +320,46 @@ class HomeController extends Controller
     public function hotels(){
         $hotels = THotel::all();
         $category = TCategoria::all();
-        return view('page.hotels', compact('hotels', 'category'));
+        $pais2 = TPais::all();
+        return view('page.hotels', compact('hotels', 'category', 'pais2'));
     }
 
     public function responsability(){
         $category = TCategoria::all();
-        return view('page.responsability', compact('category'));
+        $pais2 = TPais::all();
+        return view('page.responsability', compact('category', 'pais2'));
     }
 
     public function reviews(){
         $testinomials = TTestimonio::all();
         $category = TCategoria::all();
         $teams = TTeam::all();
-        return view('page.reviews', compact('testinomials', 'category', 'teams'));
+        $pais2 = TPais::all();
+        return view('page.reviews', compact('testinomials', 'category', 'teams', 'pais2'));
     }
 
     public function tours(){
         $paquetes = TPaquete::where('is_p_t', '0')->get();
         $category = TCategoria::all();
+        $pais2 = TPais::all();
 
         return view('page.tours',
             compact(
                 'paquetes',
-                'category'
+                'category',
+                'pais2'
             ));
     }
     public function blog(){
         $blogs = TPost::latest('id')->get();
         $blogs_first = TPost::latest('id')->first();
         $category = TCategoria::all();
-        return view('page.blog', compact('blogs_first','blogs', 'category'));
+        $pais2 = TPais::all();
+        return view('page.blog', compact('blogs_first','blogs', 'category', 'pais2'));
     }
     public function blog_show(TPost $post){
         $category = TCategoria::all();
-        return view('page.blog-show', compact('post', 'category'));
+        $pais2 = TPais::all();
+        return view('page.blog-show', compact('post', 'category', 'pais2'));
     }
 }

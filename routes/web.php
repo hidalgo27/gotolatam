@@ -32,6 +32,8 @@ Route::get('/'.__('message.url_2'), [HomeController::class, 'destinations'])->na
 Route::get('/'.__('message.url_2').'/{pais}', [HomeController::class, 'destinations_show'])->name('destinations.show');
 Route::get('/'.__('message.url_2').'/{pais}/{destino}', [HomeController::class, 'destinations_destino_show'])->name('destinations.destino.show');
 
+Route::get('/countries/{number}', [HomeController::class, 'country_show'])->name('country.show');
+
 Route::get('/category', [HomeController::class, 'category'])->name('category.all');
 Route::get('/category/{categories}', [HomeController::class, 'category_show'])->name('category.show');
 

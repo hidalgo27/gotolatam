@@ -121,6 +121,7 @@
 
     $nav_links = [
         [
+            'id' => '1',
             'name' => 'Home',
             'state' => '1',
             'route' => route('home'),
@@ -132,6 +133,7 @@
 
         ],
         [
+            'id' => '2',
             'name' => __('message.nav_item1'),
             'state' => '2',
             'route' => route('packages.all'),
@@ -144,6 +146,7 @@
         ],
 
         [
+            'id' => '3',
             'name' => __('message.nav_item3'),
             'state' => '2',
             'route' => route('destinations.all'),
@@ -155,6 +158,7 @@
                     'nav_sub_links' =>[]
         ],
         [
+            'id' => '4',
             'name' => __('message.nav_item4'),
             'state' => '3',
             'route' => route('hotels'),
@@ -165,6 +169,7 @@
                     'nav_sub_links' => []
         ],
         [
+            'id' => '5',
             'name' => __('message.nav_item5'),
             'state' => '3',
             'route' => route('about'),
@@ -235,6 +240,7 @@
 
         ],
         [
+            'id' => '6',
             'name' => __('message.nav_item6'),
             'state' => '3',
             'route' => route('reviews'),
@@ -319,11 +325,11 @@
         </div>
     </div>
 
-    <div class="fixed bottom-0 right-0 mb-16 w-9/12 mr-1 rounded-lg bg-gray-50 z-50" x-show="menu" x-transition x-on:click.away="menu = false" x-data="{menu2 : false}">
+    <div class="fixed bottom-0 right-0 mb-16 w-9/12 mr-1 rounded-lg bg-gray-50 z-50" x-show="menu" x-transition x-on:click.away="menu = false" x-data="{menu : false}">
         @foreach($nav_links as $nav_link)
             @if($nav_link['nav_sub_links'])
 
-                <span @click="menu2 = !menu2" class="w-full text-sm flex inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-gray-700 hover:text-secondary menu-pop  {{ $nav_link['active'] == 1 ? 'active' : '' }}">
+                <span @click="menu = !menu" class="w-full text-sm flex inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-gray-700 hover:text-secondary menu-pop  {{ $nav_link['active'] == 1 ? 'active' : '' }}">
                     <span class="mr-2">
                     {!! $nav_link['icon'] !!}
                 </span>
@@ -333,9 +339,9 @@
                                         </svg>
                                     </span>
 
-                <div class="bg-gray-200 absolute top-0 rounded-lg mt-16 w-72 z-50 shadow-lg" x-show="menu2" x-on:click.away="menu2 = false" x-transition>
+                <div class="bg-gray-200 absolute top-0 rounded-lg mt-16 w-72 z-50 shadow-lg" x-show="menu" x-on:click.away="menu = false" x-transition>
                     <div class="font-bold text-gray-500 flex justify-between text-xs px-5 py-3">INFORMATION
-                        <span class="ml-auto cursor-pointer" @click="menu2 = !menu2">X</span>
+                        <span class="ml-auto cursor-pointer" @click="menu = !menu">X</span>
                     </div>
 
 
@@ -405,11 +411,46 @@
         <div class="banner">
             <!-- This example requires Tailwind CSS v2.0+ -->
             <div class="bg-gray-50 opacity-90 shadow-lg dark:bg-gray-800 hidden md:inline-flex">
-                <div class="container flex items-center justify-center mx-auto text-gray-600 capitalize " x-data="{menu : false}">
-                    {{--                    <a href="#" class="text-gray-800 text-sm dark:text-gray-200 border-b border-transparent transition duration-500 hover:border-blue-500 mx-1.5 sm:mx-6">Peru Travel Packages</a>--}}
+                <div class="container flex items-center justify-center mx-auto text-gray-600 capitalize relative" x-data="{menu : false, menu2: false}">
+{{--                                        <a href="#" class="text-gray-800 text-sm dark:text-gray-200 border-b border-transparent transition duration-500 hover:border-blue-500 mx-1.5 sm:mx-6">Peru Travel Packages</a>--}}
+                    <span @click="menu2 = !menu2" class="dark:text-gray-400 flex items-center menu-list block cursor-pointer {{ $nav_link['active'] == 1 ? 'active' : '' }}">
+                                        1 country
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </span>
+                    <div class="bg-gray-50 absolute top-0 left-0 rounded-lg mt-16 w-72 z-50 shadow" x-show="menu2" x-on:click.away="menu2 = false" x-transition>
+                        <p class="font-bold text-gray-500 text-xs px-5 py-3">DESTINATIONS</p>
+
+
+
+                        @foreach($pais2 as $paises)
+                        <a href="{{ route('destinations.show', $paises) }}" class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 rounded hover:bg-gray-700 hover:text-secondary menu-pop">
+                            <div class="mr-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+                            <div class="">
+                                {{ucwords(strtolower($paises->nombre))}}
+                            </div>
+                        </a>
+                        @endforeach
+
+                    </div>
+                    <a href="{{route('country.show', 2)}}" class="dark:text-gray-400 menu-list block relative">
+                        2 Countries
+                    </a>
+                    <a href="{{route('country.show', 3)}}" class="dark:text-gray-400 menu-list block relative">
+                        3 Countries
+                    </a>
+{{--                    <a href="{{route('country.show', 4)}}" class="dark:text-gray-400 menu-list block relative">--}}
+{{--                        4 Countries--}}
+{{--                    </a>--}}
                     @foreach($nav_links as $nav_link)
                         @if($nav_link['state'] > 1)
-                            <div class="relative">
+                            <div class="relative" >
+
 
                              @if($nav_link['nav_sub_links'])
                                     <span @click="menu = !menu" class="dark:text-gray-400 flex items-center menu-list block cursor-pointer {{ $nav_link['active'] == 1 ? 'active' : '' }}">
@@ -444,8 +485,6 @@
                                     <a href="{{ $nav_link['route'] }}" class="dark:text-gray-400 menu-list block relative {{ $nav_link['active'] == 1 ? 'active' : '' }}">
 
                                         {{ $nav_link['name'] }}
-
-
                                     </a>
                                 @endif
                             </div>
