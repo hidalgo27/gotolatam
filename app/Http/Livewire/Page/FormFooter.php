@@ -28,12 +28,14 @@ class FormFooter extends Component
             [
                 'star'=>'3',
                 'category'=>__('message.form_footer_par17')
-            ],
-            [
-                'star'=>'2',
-                'category'=>__('message.form_footer_par18')
             ]
         ];
+
+
+//        [
+//            'star'=>'2',
+//            'category'=>__('message.form_footer_par18')
+//        ]
 
 
         return view('livewire.page.form-footer', compact('categories', 'number','trip_lengths','hotels'));
