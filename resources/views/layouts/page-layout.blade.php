@@ -157,17 +157,7 @@
                     </svg>',
                     'nav_sub_links' =>[]
         ],
-        [
-            'id' => '4',
-            'name' => __('message.nav_item4'),
-            'state' => '3',
-            'route' => route('hotels'),
-            'active' => request()->routeIs('hotels'),
-            'icon' => '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>',
-                    'nav_sub_links' => []
-        ],
+
         [
             'id' => '5',
             'name' => __('message.nav_item5'),
@@ -238,23 +228,33 @@
                     ]
                 ]
 
-        ],
-        [
-            'id' => '6',
-            'name' => __('message.nav_item6'),
-            'state' => '3',
-            'route' => route('reviews'),
-            'active' => request()->routeIs('reviews'),
-            'icon' => '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>',
-                    'nav_sub_links' => []
-        ],
-
+        ]
 
     ];
 
 @endphp
+{{--[--}}
+{{--'id' => '4',--}}
+{{--'name' => __('message.nav_item4'),--}}
+{{--'state' => '3',--}}
+{{--'route' => route('hotels'),--}}
+{{--'active' => request()->routeIs('hotels'),--}}
+{{--'icon' => '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />--}}
+{{--</svg>',--}}
+{{--'nav_sub_links' => []--}}
+{{--],--}}
+{{--[--}}
+{{--'id' => '6',--}}
+{{--'name' => __('message.nav_item6'),--}}
+{{--'state' => '3',--}}
+{{--'route' => route('reviews'),--}}
+{{--'active' => request()->routeIs('reviews'),--}}
+{{--'icon' => '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />--}}
+{{--</svg>',--}}
+{{--'nav_sub_links' => []--}}
+{{--],--}}
 {{--[--}}
 {{--'name' => __('message.nav_item7'),--}}
 {{--'state' => '3',--}}

@@ -8,7 +8,7 @@
                         <tbody>
                         <tr bgcolor="#ffffff">
                             <td valign="top" style="padding:10px 35px 0 35px;color:#ffffff">
-                                <img class="CToWUd" width="350" alt="logo gotoperu" src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" style="vertical-align:top;max-width:220px">
+                                <img class="CToWUd" width="350" alt="logo gotoperu" src="https://gotolatam.s3.us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" style="vertical-align:top;max-width:220px">
                             </td>
 
                         </tr>
@@ -27,10 +27,10 @@
                     <p>
                         {{__('message.msg_default')}}
                     </p>
-                    <p><a href="https://gotoperu.com" style="color:blue" target="_blank">GotoPeru</a></p>
+                    <p><a href="https://gotolatam.com" style="color:blue" target="_blank">GotoPeru</a></p>
                 </td>
                 <td>
-                    <img class="CToWUd" width="250" alt="logo gotoperu" src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" style="vertical-align:top;max-width:220px">
+                    <img class="CToWUd" width="250" alt="logo gotoperu" src="https://gotolatam.s3.us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" style="vertical-align:top;max-width:220px">
                 </td>
             </tr>
             </tbody>
