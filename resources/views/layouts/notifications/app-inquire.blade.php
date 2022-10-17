@@ -27,7 +27,7 @@
                     <p>
                         {{__('message.msg_default')}}
                     </p>
-                    <p><a href="https://gotolatam.com" style="color:blue" target="_blank">GotoPeru</a></p>
+                    <p><a href="https://gotolatam.com" style="color:blue" target="_blank">GOTOLATAM</a></p>
                 </td>
                 <td>
                     <img class="CToWUd" width="250" alt="logo gotoperu" src="https://gotolatam.s3.us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" style="vertical-align:top;max-width:220px">
