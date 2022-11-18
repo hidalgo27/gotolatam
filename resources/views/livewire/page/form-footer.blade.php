@@ -144,7 +144,7 @@
                 >
                     <input
                         x-ref="input"
-                        id="datepicker" wire:model.lazy="travel_day" type="text" class="bg-gray-50 dark:bg-gray-700 border border-gray-400 p-3 md:p-5 bg-gray-50 dark:bg-gray-700  w-full"  placeholder="{{__('message.form_footer_par7')}}">
+                        id="datepicker" autocomplete="off"  wire:model.lazy="travel_day" type="text" class="bg-gray-50 dark:bg-gray-700 border border-gray-400 p-3 md:p-5 bg-gray-50 dark:bg-gray-700  w-full"  placeholder="{{__('message.form_footer_par7')}}">
                 </div>
             </div>
 
