@@ -6,7 +6,7 @@
             {{--            <source src="{{asseDestinationst('media/intro.mp4')}}" type="video/mp4" />Your browser does not support the video tag.--}}
 
         <div class="vimeo-wrapper hidden sm:block">
-            <iframe src="https://player.vimeo.com/video/772201896?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1"  frameborder="0" allow="autoplay; fullscreen"></iframe>
+            <iframe src="https://player.vimeo.com/video/772468390?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1"  frameborder="0" allow="autoplay; fullscreen"></iframe>
             <div class="absolute inset-0 gradient-cicle-gray"></div>
 
         </div>
@@ -457,27 +457,27 @@
 
     </section>
 
-    <section class="grid md:grid-cols-5 sm:grid-cols-1">
-        @foreach($category_footer as $category_f)
-            <div class="overflow-hidden relative group">
-                <a href="{{ route('category.show', $category_f) }}">
-                    <div class="relative">
-                        <img src="{{$category_f->imagen}}" alt="" class="h-20r object-cover min-w-full  transition duration-500 ease-in-out transform group-hover:-translate-x-0 group-hover:scale-105">
-                        <div class="absolute inset-0 gradient-cicle-gray"></div>
-                    </div>
-                    <div class="absolute w-full bottom-0 inset-x-0 p-3">
-                        <div class="py-2 px-4 text-gray-100 shadow-lg rounded-lg">
-                            <h2 class="text-lg font-semibold">{{$category_f->nombre}}</h2>
-                            <div class="font-normal text-sm">
-                                {!! $category_f->resumen !!}
-                            </div>
-                            {{--                        <a href="" class="float-right font-bold">View self-drive tours</a>--}}
-                        </div>
-                    </div>
-                </a>
-            </div>
-        @endforeach
-    </section>
+{{--    <section class="grid md:grid-cols-5 sm:grid-cols-1">--}}
+{{--        @foreach($category_footer as $category_f)--}}
+{{--            <div class="overflow-hidden relative group">--}}
+{{--                <a href="{{ route('category.show', $category_f) }}">--}}
+{{--                    <div class="relative">--}}
+{{--                        <img src="{{$category_f->imagen}}" alt="" class="h-20r object-cover min-w-full  transition duration-500 ease-in-out transform group-hover:-translate-x-0 group-hover:scale-105">--}}
+{{--                        <div class="absolute inset-0 gradient-cicle-gray"></div>--}}
+{{--                    </div>--}}
+{{--                    <div class="absolute w-full bottom-0 inset-x-0 p-3">--}}
+{{--                        <div class="py-2 px-4 text-gray-100 shadow-lg rounded-lg">--}}
+{{--                            <h2 class="text-lg font-semibold">{{$category_f->nombre}}</h2>--}}
+{{--                            <div class="font-normal text-sm">--}}
+{{--                                {!! $category_f->resumen !!}--}}
+{{--                            </div>--}}
+{{--                            --}}{{--                        <a href="" class="float-right font-bold">View self-drive tours</a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--        @endforeach--}}
+{{--    </section>--}}
 
 
     <div class="bg-gray-100 pt-12  dark:bg-gray-800">
@@ -559,12 +559,12 @@
 {{--    </section>--}}
     <section class="px-6 container grid grid-cols-1 md:grid-cols-4 my-12">
         <div class="text-center w-full col-span-4 items-center text-2xl text-gray-700 dark:text-secondary font-bold gap-2">
-            Recomended Travel Packages
+            Reviews and Testimonials
             <div class="border-4 h-1 w-12 border-primary mx-auto mt-3"></div>
         </div>
-        <div class="col-span-4 text-center mt-4">
-            See and learn about our tours from our valued Nordic Visitor customers.
-        </div>
+{{--        <div class="col-span-4 text-center mt-4">--}}
+{{--            See and learn about our tours from our valued Nordic Visitor customers.--}}
+{{--        </div>--}}
     </section>
     <section class="container hidden md:block mt-6">
 
