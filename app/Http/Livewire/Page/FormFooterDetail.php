@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class FormFooterDetail extends Component
 {
-    public $values_categories = [], $values_number, $values_trip_length, $travel_day, $comment, $name, $email, $phone, $phonecountry, $values_number_input, $success, $paquete;
+    public $values_categories = [], $values_destinations = [], $values_number, $values_trip_length, $travel_day, $comment, $name, $email, $phone, $phonecountry, $values_number_input, $success, $paquete;
     public function render()
     {
         $destinations = TDestino::all();
@@ -32,6 +32,33 @@ class FormFooterDetail extends Component
             ]
         ];
 
+        $destino = [
+            [
+                'destino'=>'Perú',
+            ],
+            [
+                'destino'=>'Colombia',
+            ],
+            [
+                'destino'=>'México',
+            ],
+            [
+                'destino'=>'Chile',
+            ],
+            [
+                'destino'=>'Ecuador',
+            ],
+            [
+                'destino'=>'Bolivia',
+            ],
+            [
+                'destino'=>'Argentina',
+            ],
+            [
+                'destino'=>'Brasil',
+            ]
+        ];
+
 //        ,
 //        [
 //            'star'=>'2',
@@ -39,7 +66,7 @@ class FormFooterDetail extends Component
 //        ]
 
 
-        return view('livewire.page.form-footer-detail', compact('destinations','categories', 'number','trip_lengths','hotels'));
+        return view('livewire.page.form-footer-detail', compact('destinations','categories', 'number','trip_lengths','hotels','destino'));
     }
 
     public function store(){
@@ -62,6 +89,11 @@ class FormFooterDetail extends Component
             $hotels_s.=$item;
         }
 
+        $destino_s = '';
+        foreach ($this->values_destinations as $item) {
+            $destino_s.=$item;
+        }
+
         Mail::send(['html' => 'notifications.page.client-form-design'], ['name' => $this->name], function ($messaje) {
             $messaje->to($this->email, $this->name)
                 ->subject('GotoLatam')
@@ -71,6 +103,7 @@ class FormFooterDetail extends Component
         Mail::send(['html' => 'notifications.page.admin-form-footer-detail'], [
             'paquete' => $this->paquete,
             'category_all' => $hotels_s,
+            'destinations_all' => $destino_s,
             'travellers_all' => $travellers,
             'trip_length' => $this->values_trip_length,
             'travel_day_all' => $this->travel_day,
