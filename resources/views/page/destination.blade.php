@@ -11,8 +11,8 @@
 {{--    </div>--}}
     <section class="container py-12 text-gray-500 text-center">
 
-        <p>{{__('message.dest_para1')}}</p>
-
+        <p>GOTOLATAM's travelers get one-of-a-kind experiences in 13 Central and South American countries thanks to the customized tours we offer. Our award-winning staff is ready to help with local needs 24 hours a day, 7 days a week. With us, you can dream, book, and go to the most important LATAM places with confidence and local connections.</p>
+        <p>We have everything you need to plan the perfect trip to South America, whether you want to walk and trek in Patagonia and the Amazon Rainforest, ski in the Andes Mountains, cruise the Galapagos Islands, explore the Iguazu Falls, or see important historical sites like Easter Island, Machu Picchu, and the Nazca Lines.</p>
     </section>
 
     <section class="container grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
