@@ -220,7 +220,7 @@
         </div>
 
         @if ($success)
-            <div class="w-11/12 md:w-7/12 lg:w-1/2 xl:w-1/3 mx-auto mt-3 flex justify-between" x-data="{dataopen: true}" x-show="dataopen">
+            <div class="w-11/12  mx-auto mt-3 flex justify-between" x-data="{dataopen: true}" x-show="dataopen">
                 <div class="inline-flex w-full overflow-hidden bg-white shadow-sm">
                     <div class="flex items-center justify-center w-12 bg-green-500">
                     </div>
