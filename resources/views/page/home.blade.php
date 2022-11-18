@@ -581,7 +581,7 @@
 
     </section>
 
-    <section>
+    <section class="mt-6">
         <div class="container">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="bg-gray-100 dark:bg-gray-700 dark:border-gray-700 border p-4">
