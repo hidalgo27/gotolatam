@@ -121,6 +121,7 @@ class FormFooter extends Component
         });
 
         $this->reset('values_categories');
+        $this->reset('values_destinations');
         $this->reset('values_number');
         $this->reset('values_number_input');
         $this->reset('values_trip_length');
