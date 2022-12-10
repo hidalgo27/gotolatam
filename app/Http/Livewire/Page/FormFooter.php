@@ -39,9 +39,6 @@ class FormFooter extends Component
                 'destino'=>'Colombia',
             ],
             [
-                'destino'=>'México',
-            ],
-            [
                 'destino'=>'Chile',
             ],
             [
