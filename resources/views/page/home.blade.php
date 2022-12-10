@@ -99,7 +99,26 @@
 {{--    </section>--}}
 
 
+    <section class="swiper mySwiper3">
+        <div class="swiper-wrapper grid grid-cols-1 md:grid-cols-8 mb-12">
+            @foreach($pais2 as $pais3)
+                <article class="swiper-slide grid grid-cols-1 place-content-between  dark:border-gray-700">
+                    <div class="w-full">
+                        <figure class="overflow-hidden relative">
+                            <a href="{{ route('destinations.show', $pais3) }}">
+                                <img src="{{$pais3->imagen_s}}" alt="" class="bg-cover h-full w-full">
+                                <div class="absolute inset-0 gradient-cicle-gray"></div>
+                            </a>
+                            <div class="absolute left-0 bottom-0 text-gray-50 p-3">
+                                {{$pais3->nombre}}
+                            </div>
+                        </figure>
+                    </div>
+                </article>
 
+            @endforeach
+        </div>
+    </section>
     <section class="bg-gray-50 hidden sm:flex dark:bg-gray-700">
     <div class="container">
         <div class="w-full swiper-container slider-brands overflow-hidden relative">
@@ -479,26 +498,6 @@
 {{--        @endforeach--}}
 {{--    </section>--}}
 
-    <section class="swiper mySwiper3">
-        <div class="swiper-wrapper grid grid-cols-1 md:grid-cols-8 mb-12">
-            @foreach($pais2 as $pais3)
-                <article class="swiper-slide grid grid-cols-1 place-content-between mb-6  dark:border-gray-700">
-                    <div class="w-full">
-                        <figure class="overflow-hidden relative">
-                            <a href="{{ route('destinations.show', $pais3) }}">
-                                <img src="{{$pais3->imagen_s}}" alt="" class="bg-cover h-full w-full">
-                                <div class="absolute inset-0 gradient-cicle-gray"></div>
-                            </a>
-                            <div class="absolute left-0 bottom-0 text-gray-50 p-3">
-                                {{$pais3->nombre}}
-                            </div>
-                        </figure>
-                    </div>
-                </article>
-
-            @endforeach
-        </div>
-    </section>
 
     <div class="bg-gray-100 pt-12  dark:bg-gray-800">
     <section class="px-6 container grid grid-cols-1 md:grid-cols-4">
@@ -615,7 +614,7 @@
                         </div>
                     </div>
                     <div class="text-sm">
-                        <p>...I would recommend Gotoperu 100%. You will not regret it!!!</p>
+                        <p>...I would recommend GotoLatam 100%. You will not regret it!!!</p>
                     </div>
                 </div>
                 <div class="bg-gray-100 border p-4 dark:bg-gray-700 dark:border-gray-700">
@@ -748,7 +747,7 @@
         <div class="bg-gray-800 dark:bg-gray-800 text-white dark:bg-gray-700 dark:bg-opacity-90 p-6 dark:text-gray-50 flex items-center">
             <div class="py-12">
                 <h3 class="font-semibold text-2xl">
-                    ABOUT GOTOPERU
+                    ABOUT GOTOLATAM
                 </h3>
                 <p class="block my-12">
                     We are a travel operator with Headquarters in Cusco City and offices in the main destinations of LATAM catering to travelers who want an original, authentic and unforgettable experience at the land of the Incas.
@@ -766,7 +765,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                     </svg>
-                    GOTOPERU is certified by the Peruvian Government, by the Ministry of Foreign Trade and Tourism of Peru (MINCETUR) . In addition we are also highly rated on Tripadvisor, Trustpilot and diverse well known travel forums.
+                    GOTOLATAM is certified by the Peruvian Government, by the Ministry of Foreign Trade and Tourism of Peru (MINCETUR) . In addition we are also highly rated on Tripadvisor, Trustpilot and diverse well known travel forums.
                 </p>
             </div>
         </div>
