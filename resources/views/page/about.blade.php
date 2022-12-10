@@ -10,10 +10,10 @@
     {{--        @livewire('page.form-home')--}}
     {{--    </div>--}}
 
-    <section class="bg-gray-200 shadow">
+    <section class="bg-gray-200 shadow hidden md:block">
         <div class="grid grid-cols-2 items-center">
-            <div class="pl-96">
-                <h2 class="font-bold text-secondary text-6xl">YOUR LATAM TRAVEL EXPERTS</h2>
+            <div class="pl-64">
+                <h2 class="font-bold text-secondary text-4xl">YOUR LATAM TRAVEL EXPERTS</h2>
                 <p class="italic font-medium my-4">GOTOLATAM is a specialist travel agency catering to travellers who want an original, authentic and unforgettable experience at the land of the Incas. </p>
                 <p class="my-4 font-bold">From MachuPicchu all included tours, to off-the-beaten-path adventures at the Amazon and into Sacred Valley, Lake Titicaca, Lima, Arequipa and many more: we offer tailor-made Peru travel packages for all interests and needs. Since GOTOLATAM was established in 2009, we have had the pleasure of welcoming tens of thousands of happy travellers from over 50 countries. We hope to be able to welcome you and introduce you to the magical, biodiverse and historical Peru, our home.</p>
                 <p class="font-bold">Paul Catano</p>

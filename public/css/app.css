@@ -1299,8 +1299,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 0.25rem;
 }.pl-1{
   padding-left: 0.25rem;
-}.pl-96{
-  padding-left: 24rem;
+}.pl-64{
+  padding-left: 16rem;
 }.pt-32{
   padding-top: 8rem;
 }.pt-5{
@@ -1309,6 +1309,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 2.5rem;
 }.pb-5{
   padding-bottom: 1.25rem;
+}.pl-96{
+  padding-left: 24rem;
 }.pt-8{
   padding-top: 2rem;
 }.pt-6{
@@ -1356,12 +1358,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }.text-2xl{
   font-size: 1.5rem;
   line-height: 2rem;
-}.text-6xl{
-  font-size: 3.75rem;
-  line-height: 1;
 }.text-4xl{
   font-size: 2.25rem;
   line-height: 2.5rem;
+}.text-6xl{
+  font-size: 3.75rem;
+  line-height: 1;
 }.text-base{
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1608,7 +1610,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }.h-75vh{
     height: 75vh;
 }.h-83-5vh{
-    height: 82vh;
+    height: 83.5vh;
 }.h-30r{
     height: 30rem;
 }.h-20r{
