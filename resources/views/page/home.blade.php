@@ -99,26 +99,7 @@
 {{--    </section>--}}
 
 
-    <section class="swiper mySwiper3">
-        <div class="swiper-wrapper grid grid-cols-1 md:grid-cols-8 mb-12">
-            @foreach($pais2 as $pais3)
-                <article class="swiper-slide grid grid-cols-1 place-content-between  dark:border-gray-700">
-                    <div class="w-full">
-                        <figure class="overflow-hidden relative">
-                            <a href="{{ route('destinations.show', $pais3) }}">
-                                <img src="{{$pais3->imagen_s}}" alt="" class="bg-cover h-full w-full">
-                                <div class="absolute inset-0 gradient-cicle-gray"></div>
-                            </a>
-                            <div class="absolute left-0 bottom-0 text-gray-50 p-3">
-                                {{$pais3->nombre}}
-                            </div>
-                        </figure>
-                    </div>
-                </article>
 
-            @endforeach
-        </div>
-    </section>
     <section class="bg-gray-50 hidden sm:flex dark:bg-gray-700">
     <div class="container">
         <div class="w-full swiper-container slider-brands overflow-hidden relative">
@@ -231,7 +212,26 @@
         </div>
     </div>
     </section>
+    <section class="swiper mySwiper3">
+        <div class="swiper-wrapper grid grid-cols-1 md:grid-cols-8 mb-12">
+            @foreach($pais2 as $pais3)
+                <article class="swiper-slide grid grid-cols-1 place-content-between  dark:border-gray-700">
+                    <div class="w-full">
+                        <figure class="overflow-hidden relative">
+                            <a href="{{ route('destinations.show', $pais3) }}">
+                                <img src="{{$pais3->imagen_s}}" alt="" class="bg-cover h-full w-full">
+                                <div class="absolute inset-0 gradient-cicle-gray"></div>
+                            </a>
+                            <div class="absolute left-0 bottom-0 text-gray-50 p-3">
+                                {{$pais3->nombre}}
+                            </div>
+                        </figure>
+                    </div>
+                </article>
 
+            @endforeach
+        </div>
+    </section>
     <section class="px-6 container grid grid-cols-1 md:grid-cols-4 my-12">
         <div class="text-center w-full col-span-4 items-center text-3xl text-secondary dark:text-secondary font-bold gap-2">
             SOUTH AMERICA  TRAVEL PACKAGES
@@ -598,6 +598,24 @@
             <div class="elfsight-app-45e6b553-4db1-4009-9a37-a98b273413ec"></div>
         </div>
 
+    </section>
+
+
+    <section class="container my-6">
+        <div class="grid grid-cols-3 gap-6">
+            @foreach($videos->take(3) as $video)
+                <div class="overflow-hidden relative">
+                    <a class="venobox" data-gall="myGallery" data-autoplay="true" data-maxwidth="50%" data-vbtype="video" href="{{$video->codigo}}">
+                        <img src="{{$video->imagen}}" class="transform bg-blue-400 hover:bg-blue-600 transition duration-500 hover:scale-105"/>
+                        <div class="absolute bottom-0 left-0 bg-gray-800 p-2 rounded">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-6 h-6 text-white">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
+        </div>
     </section>
 
     <section class="mt-6">
@@ -1038,6 +1056,9 @@
     <script src="https://apps.elfsight.com/p/platform.js" defer></script>
 
     <script>
+        new VenoBox({
+            selector: '.venobox'
+        });
         var swiper = new Swiper(".mySwiper", {
             navigation: {
                 nextEl: ".swiper-button-next",
@@ -1076,7 +1097,7 @@
             },
         });
         var swiper = new Swiper(".mySwiper3", {
-            slidesPerView: 8,
+            slidesPerView: 7,
             spaceBetween: 0,
             freeMode: true,
             autoplay: {
@@ -1098,7 +1119,7 @@
                     slidesPerView: 6,
                 },
                 1024: {
-                    slidesPerView: 8,
+                    slidesPerView: 7,
                 },
             },
         });

@@ -50,6 +50,8 @@ class HomeController extends Controller
         $destination = TDestino::all();
         $pais2 = TPais::all();
 
+        $videos = TVideoTestimonio::all();
+
         return view('page.home',
             compact(
                 'paquete_recommended',
@@ -61,7 +63,8 @@ class HomeController extends Controller
                 'category_block',
                 'category_footer',
                 'destination',
-                'pais2'
+                'pais2',
+                'videos'
             ));
     }
 
