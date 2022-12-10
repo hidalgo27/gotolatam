@@ -479,6 +479,26 @@
 {{--        @endforeach--}}
 {{--    </section>--}}
 
+    <section class="swiper mySwiper3">
+        <div class="swiper-wrapper grid grid-cols-1 md:grid-cols-8 mb-12">
+            @foreach($pais2 as $pais3)
+                <article class="swiper-slide grid grid-cols-1 place-content-between mb-6  dark:border-gray-700">
+                    <div class="w-full">
+                        <figure class="overflow-hidden relative">
+                            <a href="{{ route('destinations.show', $pais3) }}">
+                                <img src="{{$pais3->imagen_s}}" alt="" class="bg-cover h-full w-full">
+                                <div class="absolute inset-0 gradient-cicle-gray"></div>
+                            </a>
+                            <div class="absolute left-0 bottom-0 text-gray-50 p-3">
+                                {{$pais3->nombre}}
+                            </div>
+                        </figure>
+                    </div>
+                </article>
+
+            @endforeach
+        </div>
+    </section>
 
     <div class="bg-gray-100 pt-12  dark:bg-gray-800">
     <section class="px-6 container grid grid-cols-1 md:grid-cols-4">
@@ -1053,6 +1073,33 @@
                 1024: {
                     slidesPerView: 4,
                     // spaceBetween: 50,
+                },
+            },
+        });
+        var swiper = new Swiper(".mySwiper3", {
+            slidesPerView: 8,
+            spaceBetween: 0,
+            freeMode: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 2,
+                },
+                640: {
+                    slidesPerView: 3,
+                },
+                768: {
+                    slidesPerView: 6,
+                },
+                1024: {
+                    slidesPerView: 8,
                 },
             },
         });
