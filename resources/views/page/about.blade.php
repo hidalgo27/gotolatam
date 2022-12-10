@@ -385,7 +385,7 @@
             });
 
             var swiper = new Swiper(".mySwiper3", {
-                slidesPerView: 8,
+                slidesPerView: 7,
                 spaceBetween: 0,
                 freeMode: true,
                 autoplay: {
@@ -407,7 +407,7 @@
                         slidesPerView: 6,
                     },
                     1024: {
-                        slidesPerView: 8,
+                        slidesPerView: 7,
                     },
                 },
             });
