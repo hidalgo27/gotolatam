@@ -26,6 +26,7 @@
     "dependencies": {
         "@tailwindcss/aspect-ratio": "^0.4.0",
         "intl-tel-input": "^17.0.15",
-        "pikaday": "^1.8.2"
+        "pikaday": "^1.8.2",
+        "venobox": "^2.0.4"
     }
 }

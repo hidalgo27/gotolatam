@@ -15,6 +15,7 @@ use App\Models\TPaqueteDestino;
 use App\Models\TPost;
 use App\Models\TTeam;
 use App\Models\TTestimonio;
+use App\Models\TVideoTestimonio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -291,7 +292,9 @@ class HomeController extends Controller
         $teams = TTeam::all();
         $category = TCategoria::all();
         $pais2 = TPais::all();
-        return view('page.about', compact('teams','category', 'pais2'));
+        $videos = TVideoTestimonio::all();
+        $testinomials = TTestimonio::all();
+        return view('page.about', compact('teams','category', 'pais2','videos','testinomials'));
     }
     public function book(){
         $category = TCategoria::all();
@@ -335,7 +338,8 @@ class HomeController extends Controller
         $category = TCategoria::all();
         $teams = TTeam::all();
         $pais2 = TPais::all();
-        return view('page.reviews', compact('testinomials', 'category', 'teams', 'pais2'));
+        $videos = TVideoTestimonio::all();
+        return view('page.reviews', compact('testinomials', 'category', 'teams', 'pais2','videos'));
     }
 
     public function tours(){

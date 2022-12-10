@@ -1,14 +1,49 @@
 @extends('layouts.page-layout')
 @section('content')
-    <section class="-mt-32 h-80vh -z-1 relative">
-        <img src="{{asset('images/banners/rainbow.jpg')}}" alt="" class="h-full w-full object-cover object-top">
-        <div class="absolute bottom-0 left-0 p-12">
-            <h1 class="text-5xl font-semibold text-gray-50">{{__('message.revi_title1')}}</h1>
-        </div>
-    </section>
+{{--    <section class="-mt-32 h-80vh -z-1 relative">--}}
+{{--        <img src="{{asset('images/banners/rainbow.jpg')}}" alt="" class="h-full w-full object-cover object-top">--}}
+{{--        <div class="absolute bottom-0 left-0 p-12">--}}
+{{--            <h1 class="text-5xl font-semibold text-gray-50">{{__('message.revi_title1')}}</h1>--}}
+{{--        </div>--}}
+{{--    </section>--}}
 {{--    <div class="hidden md:inline-block">--}}
 {{--        @livewire('page.form-home')--}}
 {{--    </div>--}}
+
+<section class="bg-gray-200 shadow">
+    <div class="grid grid-cols-2 items-center">
+        <div class="pl-96">
+            <h2 class="font-bold text-secondary text-6xl">YOUR LATAM TRAVEL EXPERTS</h2>
+            <p class="italic font-medium my-4">GOTOLATAM is a specialist travel agency catering to travellers who want an original, authentic and unforgettable experience at the land of the Incas. </p>
+            <p class="my-4 font-bold">From MachuPicchu all included tours, to off-the-beaten-path adventures at the Amazon and into Sacred Valley, Lake Titicaca, Lima, Arequipa and many more: we offer tailor-made Peru travel packages for all interests and needs. Since GOTOLATAM was established in 2009, we have had the pleasure of welcoming tens of thousands of happy travellers from over 50 countries. We hope to be able to welcome you and introduce you to the magical, biodiverse and historical Peru, our home.</p>
+            <p class="font-bold">Paul Catano</p>
+            <p class="text-xs">{{__('message.info_par4')}}</p>
+        </div>
+        <div class="">
+            <img src="https://gotoperu.com.mx/images/gotoperu-banner-rgba.png" alt="">
+        </div>
+    </div>
+</section>
+<section class="swiper mySwiper3">
+    <div class="swiper-wrapper grid grid-cols-1 md:grid-cols-8 mb-12">
+        @foreach($pais2 as $pais3)
+            <article class="swiper-slide grid grid-cols-1 place-content-between mb-6  dark:border-gray-700">
+                <div class="w-full">
+                    <figure class="overflow-hidden relative">
+                        <a href="{{ route('destinations.show', $pais3) }}">
+                            <img src="{{$pais3->imagen_s}}" alt="" class="bg-cover h-full w-full">
+                            <div class="absolute inset-0 gradient-cicle-gray"></div>
+                        </a>
+                        <div class="absolute left-0 bottom-0 text-gray-50 p-3">
+                            {{$pais3->nombre}}
+                        </div>
+                    </figure>
+                </div>
+            </article>
+
+        @endforeach
+    </div>
+</section>
 
     <section class="container py-12 text-gray-500 text-center">
         <p class="">{{__('message.revi_par1')}}</p>
@@ -45,8 +80,30 @@
         </section>
     </section>
 
+    <section class="container hidden md:block mt-12 py-6">
 
-    <section class="bg-gray-100 py-6">
+        <div class="flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">
+            <div class="border-4 h-1 w-12 border-secondary"></div> VIDEO TESTIMONIALS
+        </div>
+
+
+        <div class="grid grid-cols-3 gap-6">
+            @foreach($videos as $video)
+            <div class="overflow-hidden relative">
+                <a class="venobox" data-gall="myGallery" data-autoplay="true" data-maxwidth="50%" data-vbtype="video" href="{{$video->codigo}}">
+                    <img src="{{$video->imagen}}" class="transform bg-blue-400 hover:bg-blue-600 transition duration-500 hover:scale-105"/>
+                    <div class="absolute bottom-0 left-0 bg-gray-800 p-2 rounded">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-6 h-6 text-white">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+                        </svg>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+        </div>
+    </section>
+
+    <section class="bg-gray-100 my-6 py-6">
         <div class="container flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">
             <div class="border-4 h-1 w-12 border-secondary"></div> OUR TEAM
         </div>
@@ -282,8 +339,11 @@
         <script src="https://apps.elfsight.com/p/platform.js" defer></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <script src="https://apps.elfsight.com/p/platform.js" defer></script>
-
         <script>
+            new VenoBox({
+                selector: '.venobox'
+            });
+
             var swiper = new Swiper(".mySwiper", {
                 navigation: {
                     nextEl: ".swiper-button-next",
@@ -320,6 +380,34 @@
                     },
                     1024: {
                         slidesPerView: 3,
+                    },
+                },
+            });
+
+            var swiper = new Swiper(".mySwiper3", {
+                slidesPerView: 8,
+                spaceBetween: 0,
+                freeMode: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 2,
+                    },
+                    640: {
+                        slidesPerView: 3,
+                    },
+                    768: {
+                        slidesPerView: 6,
+                    },
+                    1024: {
+                        slidesPerView: 8,
                     },
                 },
             });
