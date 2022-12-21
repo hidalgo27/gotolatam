@@ -1048,6 +1048,8 @@
         @livewire('page.form-footer')
     </section>
 
+
+
 @push('css')
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 @endpush
