@@ -5,7 +5,7 @@ return [
     'msc_client_email' => 'Thank you for contacting us, a GOTOLATAM representative will contact you shortly.',
     'msg_default' => 'THE BEST VACATIONS IN PERU WITH THE BEST PERUVIAN OPERATOR',
 
-    'nav_item1' => '+4 Countries',
+    'nav_item1' => 'All Latam Packages',
     'nav_item2' => 'Only Tours',
     'nav_item3' => 'Destinations',
     'nav_item4' => 'Holels',
