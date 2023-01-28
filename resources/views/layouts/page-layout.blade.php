@@ -306,14 +306,14 @@
 {{--    </div>--}}
 
 
-<div class="fixed bottom-0 right-0 z-40 py-6 px-7 mb-12 sm:mb-20 sm:inline-flex">
+<div class="fixed bottom-0 right-0 z-40 py-6 px-7 sm:inline-flex">
     <a href="https://api.whatsapp.com/send?phone=51934991442" target="_blank">
             <span class="flex relative h-10 w-10">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gray-400 opacity-75"></span>
             </span>
     </a>
 </div>
-<div class="fixed bottom-0 right-0 z-40 py-5 px-4 mb-12 sm:mb-20 sm:inline-flex">
+<div class="fixed bottom-0 right-0 z-40 py-5 px-4 sm:inline-flex">
     <a href="https://api.whatsapp.com/send?phone=51934991442" target="_blank">
         <img src="{{asset('images/whatsapp-i.png')}}" alt="" class="w-16">
     </a>
@@ -870,18 +870,18 @@
 
 </script>
 <!-- begin olark code -->
-<script type="text/javascript">
-    ;(function(o,l,a,r,k,y){if(o.olark)return;
-        r="script";y=l.createElement(r);r=l.getElementsByTagName(r)[0];
-        y.async=1;y.src="//"+a;r.parentNode.insertBefore(y,r);
-        y=o.olark=function(){k.s.push(arguments);k.t.push(+new Date)};
-        y.extend=function(i,j){y("extend",i,j)};
-        y.identify=function(i){y("identify",k.i=i)};
-        y.configure=function(i,j){y("configure",i,j);k.c[i]=j};
-        k=y._={s:[],t:[+new Date],c:{},l:a};
-    })(window,document,"static.olark.com/jsclient/loader.js");
-    /* Add configuration calls below this comment */
-    olark.identify('3451-852-10-3654');</script>
+{{--<script type="text/javascript">--}}
+{{--    ;(function(o,l,a,r,k,y){if(o.olark)return;--}}
+{{--        r="script";y=l.createElement(r);r=l.getElementsByTagName(r)[0];--}}
+{{--        y.async=1;y.src="//"+a;r.parentNode.insertBefore(y,r);--}}
+{{--        y=o.olark=function(){k.s.push(arguments);k.t.push(+new Date)};--}}
+{{--        y.extend=function(i,j){y("extend",i,j)};--}}
+{{--        y.identify=function(i){y("identify",k.i=i)};--}}
+{{--        y.configure=function(i,j){y("configure",i,j);k.c[i]=j};--}}
+{{--        k=y._={s:[],t:[+new Date],c:{},l:a};--}}
+{{--    })(window,document,"static.olark.com/jsclient/loader.js");--}}
+{{--    /* Add configuration calls below this comment */--}}
+{{--    olark.identify('3451-852-10-3654');</script>--}}
 <!-- end olark code -->
 
 </body>
