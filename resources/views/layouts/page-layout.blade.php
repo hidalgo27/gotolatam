@@ -456,53 +456,62 @@
                     </div>
 
 
-{{--                    <div class="relative">--}}
-{{--                    <span @click="menu3 = !menu3" class="dark:text-gray-400 flex items-center menu-list block cursor-pointer {{ $nav_link['active'] == 1 ? 'active' : '' }}">--}}
-{{--                                        Multi Countries--}}
-{{--                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
-{{--                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />--}}
-{{--                                        </svg>--}}
-{{--                                    </span>--}}
-{{--                    <div class="bg-gray-50 absolute top-0 rounded-lg mt-16 w-72 z-50 shadow" x-show="menu3" x-on:click.away="menu3 = false" x-transition>--}}
-{{--                        <p class="font-bold text-gray-500 text-xs px-5 py-3">INCLUDED</p>--}}
+                    <div class="relative">
+                    <span @click="menu3 = !menu3" class="dark:text-gray-400 flex items-center menu-list block cursor-pointer {{ $nav_link['active'] == 1 ? 'active' : '' }}">
+                                        Multi Countries
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </span>
+                    <div class="bg-gray-50 absolute top-0 rounded-lg mt-16 w-72 z-50 shadow" x-show="menu3" x-on:click.away="menu3 = false" x-transition>
+                        <p class="font-bold text-gray-500 text-xs px-5 py-3">INCLUDED</p>
 
 
+                            <a href="{{route('country.show', 2)}}" class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 rounded hover:bg-gray-700 hover:text-secondary menu-pop">
+                                <div class="mr-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </div>
+                                <div class="">
+                                    2 Countries
+                                </div>
+                            </a>
+                        <a href="{{route('country.show', 3)}}" class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 rounded hover:bg-gray-700 hover:text-secondary menu-pop">
+                            <div class="mr-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+                            <div class="">
+                                3 Countries
+                            </div>
+                        </a>
 
+                        <a href="{{route('country.show', 4)}}" class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 rounded hover:bg-gray-700 hover:text-secondary menu-pop">
+                            <div class="mr-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+                            <div class="">
+                                4 Countries
+                            </div>
+                        </a>
 
-{{--                            <a href="{{route('country.show', 2)}}" class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 rounded hover:bg-gray-700 hover:text-secondary menu-pop">--}}
-{{--                                <div class="mr-1">--}}
-{{--                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
-{{--                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />--}}
-{{--                                    </svg>--}}
-{{--                                </div>--}}
-{{--                                <div class="">--}}
-{{--                                    2 Countries--}}
-{{--                                </div>--}}
-{{--                            </a>--}}
-{{--                        <a href="{{route('country.show', 3)}}" class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 rounded hover:bg-gray-700 hover:text-secondary menu-pop">--}}
-{{--                            <div class="mr-1">--}}
-{{--                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
-{{--                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />--}}
-{{--                                </svg>--}}
-{{--                            </div>--}}
-{{--                            <div class="">--}}
-{{--                                3 Countries--}}
-{{--                            </div>--}}
-{{--                        </a>--}}
+                        <a href="{{route('packages.all')}}" class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 rounded hover:bg-gray-700 hover:text-secondary menu-pop">
+                            <div class="mr-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </div>
+                            <div class="">
+                                All Packages
+                            </div>
+                        </a>
 
-{{--                        <a href="{{route('packages.all')}}" class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 rounded hover:bg-gray-700 hover:text-secondary menu-pop">--}}
-{{--                            <div class="mr-1">--}}
-{{--                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
-{{--                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />--}}
-{{--                                </svg>--}}
-{{--                            </div>--}}
-{{--                            <div class="">--}}
-{{--                                4 Countries--}}
-{{--                            </div>--}}
-{{--                        </a>--}}
-
-{{--                    </div>--}}
-{{--                    </div>--}}
+                    </div>
+                    </div>
 
 {{--                    <a href="{{route('country.show', 2)}}" class="dark:text-gray-400 menu-list block relative">--}}
 {{--                        2 Countries--}}
