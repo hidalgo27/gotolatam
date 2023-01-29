@@ -46,7 +46,7 @@
                 <div class="col-span-6 flex flex-col text-center">
                     <h2 class="text-lg font-bold">DESTINATIONS</h2>
                 </div>
-                <label class="md:col-span-1 hidden md:inline-flex bg-gray-50 dark:bg-gray-700 border border-gray-400 p-5 flex items-center justify-center bg-gray-100 dark:bg-gray-700 ">
+                <label class="md:col-span-1 hidden md:inline-flex bg-gray-50  border border-gray-400 p-5 flex items-center justify-center bg-gray-100 dark:bg-gray-700 ">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
@@ -55,7 +55,7 @@
                 </label>
                 <div class="col-span-6 md:col-span-5 grid grid-cols-4 gap-2">
                     @foreach($destino as $index => $destinos)
-                        <label class="cursor-pointer btn-check-form  flex justify-start items-start relative bg-gray-50 dark:bg-gray-700 border border-gray-400 py-3 flex flex-shrink-0 justify-center items-center hover:bg-white  hover:border-secondary transition duration-700">
+                        <label class="cursor-pointer btn-check-form  flex justify-start items-start relative bg-gray-50  border border-gray-400 py-3 flex flex-shrink-0 justify-center items-center hover:bg-white  hover:border-secondary transition duration-700">
                             <input wire:model="values_destinations.{{ $index }}" type="checkbox" value="{{$destinos['destino'].','}}" class="opacity-0 absolute">
                             <svg class="fill-current hidden absolute left-0 top-0 p-1  w-7 h-7 text-secondary pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
                             <span class="flex flex-col text-center">
