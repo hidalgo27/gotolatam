@@ -446,6 +446,8 @@
                         @endif
                     </div>
 
+                    <img src="{{$paquete['mapa']}}" alt="" class="w-full mt-2">
+
                     <div class="border my-3 bg-gray-600 text-white p-3 text-xs">
                         <p class="text-white">Contact our travel advisor to use this itinerary (or others) as a base to design together your perfect peruvian adventure!</p>
                         <p class="mt-2"><span class="text-secondary font-bold">For Example:</span> add one day / reduce the program lenght / upgrades hotels / add all meals / upgrade to private tours</p>
