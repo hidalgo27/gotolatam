@@ -69,7 +69,7 @@
 {{--            </article>--}}
 
 {{--        @endforeach--}}
-            @foreach($paquetes_de as $paquete)
+            @foreach($paquetes_de->unique('idpaquetes') as $paquete)
 
 
                 @if(isset($paquete->destinos))
