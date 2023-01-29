@@ -201,11 +201,13 @@ class HomeController extends Controller
 //            ->get();
 
 //        dd($pais);
+        $paquetes_de = TPaqueteDestino::with(['destinos'=>function($query) use ($pais) { $query->where('idpais', $pais->id);}])->get();
 
         $destinations = TDestino::where('idpais', $pais->id)->get();
         $pais2 = TPais::all();
+        $destino = TDestino::all();
 
-        return view('page.destination-show', compact('destinations', 'pais', 'pais2'));
+        return view('page.destination-show', compact('destinations', 'pais', 'pais2','paquetes_de','destino'));
     }
 
     public function destinations_destino_show(TPais $pais, TDestino $destino) {
@@ -219,19 +221,22 @@ class HomeController extends Controller
 //            ->paginate(8);
 //
 //
-//        return $paquetes;
+//        return $pais->id;
         $paquetes_api = TPaqueteDestino::
         with('paquetes.precio_paquetes','destinos', 'paquetes.paquetes_destinos.destinos')
             ->where('iddestinos', $destino->id)
             ->get();
 
-//        dd($pais);
+//        dd($pais->id);
+
+        $paquetes_de = TPaqueteDestino::with(['destinos'=>function($query) use ($pais) { $query->where('idpais', $pais->id);}])->get();
+//        return $paquetes_de;
         $pais2 = TPais::all();
 
         $destinations = TDestino::all();
 
 
-        return view('page.destinations-packages', compact('paquetes_api', 'pais', 'destinations', 'destino', 'pais2'));
+        return view('page.destinations-packages', compact('paquetes_api','paquetes_de', 'pais', 'destinations', 'destino', 'pais2'));
     }
 
     public function country_show($number) {

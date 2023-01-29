@@ -2,7 +2,7 @@
 @section('content')
     <section class="-mt-32 h-80vh -z-1 relative">
         {{--        @foreach($destinations->destino_imagen as $imagen)--}}
-        <img src="{{$pais->imagen}}" alt="" class="h-full w-full object-cover">
+        <img src="{{$destino->imagen}}" alt="" class="h-full w-full object-cover">
         {{--        @endforeach--}}
 
         <div class="absolute bottom-0 left-0 p-12">
@@ -48,11 +48,27 @@
 {{--    </section>--}}
 
 
-        <section class="container grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <section class="container grid grid-cols-5 mb-12">
 
 {{--            @foreach($paquetes as $paquete)--}}
 {{--                {{$paquete->titulo}}--}}
 {{--            @endforeach--}}
+            <div class="col-span-1">
+                <div class="grid space-y-4 ">
+                    @foreach($pais2 as $paises)
+                        <div>
+                            <h3 class="mb-2 font-semibold">{{$paises->nombre}}</h3>
+                            @foreach($destinations->where('idpais', $paises->id) as $destino)
+                                <a href="{{route('destinations.destino.show', [$paises, $destino]) }}" class="flex items-center mb-4 gap-3">
+                                    <img class="inline-block h-6 w-6 rounded-full" src="{{$destino->imagen}}" alt=""/>
+                                    {{$destino->nombre}}
+                                </a>
+                            @endforeach
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="col-span-4  grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         @foreach($paquetes_api as $paquete)
             <div class="group">
                 <div class="overflow-hidden relative">
@@ -91,6 +107,7 @@
                 </div>
             </div>
         @endforeach
+            </div>
         </section>
 
     <section class="mt-12">
