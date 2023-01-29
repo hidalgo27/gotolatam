@@ -387,6 +387,7 @@
                         @if($paquete['is_p_t'] == 1)
                             <div class="flex-1 border bg-white p-3 flex items-center">
                                 @foreach($paquete['precio_paquetes'] as $precio)
+                                    @if($precio['estrellas'] == 2)
 
                                             <div class="text-4xl font-semibold text-gray-600">
                                                 {{--                                                                            <span> {{__('message.pack_par5')}} </span>--}}
@@ -400,14 +401,13 @@
                                                     @endforeach
                                                 </div>
                                                 <p class="text-sm font-normal mt-2">Get a travel expert to plan your dream vacation</p>
-                                                @if($precio['estrellas'] == 2)
-                                                    @if($precio['precio_d'] > 0)
+                                                @if($precio['precio_d'] > 0)
                                                 <p class="text-xs font-light mt-2">Price p.p. from</p>
                                                 <span>${{$precio['precio_d']}}</span>
                                                 <span class="text-sm"> usd</span>
-                                                    @else
-                                                        <span class="text-red-500 font-bold">{{__('message.button_inquire')}}</span>
-                                                    @endif
+                                                @else
+                                                    <span class="text-red-500 text-sm font-bold">Price: {{__('message.button_inquire')}}</span>
+                                                @endif
                                                 <span class="block text-red-500 mt-3 text-xs font-normal">See book With Confidence terms</span>
                                             </div>
 
