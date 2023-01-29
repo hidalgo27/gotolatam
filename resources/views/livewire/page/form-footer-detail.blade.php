@@ -46,7 +46,7 @@
                 <div class="col-span-6 flex flex-col text-center">
                     <h2 class="text-lg font-bold">DESTINATIONS</h2>
                 </div>
-                <label class="md:col-span-1 hidden md:inline-flex bg-gray-50  border border-gray-400 p-5 flex items-center justify-center bg-gray-100 dark:bg-gray-700 ">
+                <label class="md:col-span-1 hidden md:inline-flex bg-gray-50  border border-gray-400 p-5 flex items-center justify-center bg-gray-100 ">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
