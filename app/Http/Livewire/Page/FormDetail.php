@@ -27,12 +27,12 @@ class FormDetail extends Component
         $from = 'info@gotolatam.com';
 
 
-        Mail::send(['html' => 'notifications.page.client-form-design'], ['name' => $this->name], function ($messaje) {
-            $messaje->to($this->email, $this->name)
-                ->subject('GotoLatam')
-                /*->attach('ruta')*/
-                ->from('info@gotolatam.com', 'GotoLatam');
-        });
+//        Mail::send(['html' => 'notifications.page.client-form-design'], ['name' => $this->name], function ($messaje) {
+//            $messaje->to($this->email, $this->name)
+//                ->subject('GotoLatam')
+//                /*->attach('ruta')*/
+//                ->from('info@gotolatam.com', 'GotoLatam');
+//        });
         Mail::send(['html' => 'notifications.page.admin-form-contact-detail'], [
             'paquete' => $this->paquete,
             'nombre' => $this->name,

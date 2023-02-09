@@ -90,12 +90,12 @@ class FormFooter extends Component
             $destino_s.=$item;
         }
 
-        Mail::send(['html' => 'notifications.page.client-form-design'], ['name' => $this->name], function ($messaje) {
-            $messaje->to($this->email, $this->name)
-                ->subject('GotoLatam')
-                /*->attach('ruta')*/
-                ->from('info@gotolatam.com', 'GotoLatam');
-        });
+//        Mail::send(['html' => 'notifications.page.client-form-design'], ['name' => $this->name], function ($messaje) {
+//            $messaje->to($this->email, $this->name)
+//                ->subject('GotoLatam')
+//                /*->attach('ruta')*/
+//                ->from('info@gotolatam.com', 'GotoLatam');
+//        });
         Mail::send(['html' => 'notifications.page.admin-form-footer'], [
 
             'category_all' => $hotels_s,

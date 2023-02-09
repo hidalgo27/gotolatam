@@ -40,12 +40,12 @@ class FormInquire extends Component
             $categories_s.=$item;
         }
 
-        Mail::send(['html' => 'notifications.page.client-form-design'], ['name' => $this->name], function ($messaje) {
-            $messaje->to($this->email, $this->name)
-                ->subject('GotoLatam')
-                /*->attach('ruta')*/
-                ->from('info@gotolatam.com', 'GotoLatam');
-        });
+//        Mail::send(['html' => 'notifications.page.client-form-design'], ['name' => $this->name], function ($messaje) {
+//            $messaje->to($this->email, $this->name)
+//                ->subject('GotoLatam')
+//                /*->attach('ruta')*/
+//                ->from('info@gotolatam.com', 'GotoLatam');
+//        });
         Mail::send(['html' => 'notifications.page.admin-form-contact'], [
             'nombre' => $this->name,
             'email' => $this->email,
