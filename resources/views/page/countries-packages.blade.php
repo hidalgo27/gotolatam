@@ -1,7 +1,7 @@
 @extends('layouts.page-layout')
 @section('content')
     <section class="-mt-20 h-75vh -z-1 relative">
-        <img src="{{asset('images/1327.jpg')}}" alt="" class="h-full w-full object-cover object-top">
+        <img src="{{asset('images/banners/country/'.$number.'.jpg')}}" alt="" class="h-full w-full object-cover object-top">
         <div class="absolute bottom-0 left-0 p-12">
             <h1 class="text-5xl font-semibold text-gray-50">{{__('message.pack_title1')}} | <span class="text-secondary"> {{$number}} Countries</span></h1>
         </div>
