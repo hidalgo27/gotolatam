@@ -20,7 +20,7 @@
                 <p class="text-xs">{{__('message.info_par4')}}</p>
             </div>
             <div class="">
-                <img src="https://gotoperu.com.mx/images/gotoperu-banner-rgba.png" alt="">
+                <img src="{{asset('images/gotoperu-banner-rgba.png')}}" alt="">
             </div>
         </div>
     </section>
@@ -44,6 +44,8 @@
             @endforeach
         </div>
     </section>
+
+
 
     <section class="container py-12 text-gray-500 text-center">
         <p class="">{{__('message.revi_par1')}}</p>
@@ -102,7 +104,21 @@
             @endforeach
         </div>
     </section>
+    <section class="container my-12md:block">
+        <div class="grid grid-cols-5  items-center gap-6">
+            <div class="col-span-2">
+                <img src="{{asset('images/team/about-us.jpg')}}" alt="">
+            </div>
+            <div class="col-span-3">
+                <h2 class="font-bold text-secondary text-center text-4xl mb-6">ABOUT US</h2>
+                <p>GOTOLATAM's knowledge is based on the advice and experience of OUR LOCAL TEAM, who have worked in the travel industry for over 14 years. Our staff members were born in the southern continent and or/have traveled extensively through both South and Central America, so they can offer a unique perspective on the diversity of attractions and destinations to be discovered, as well as provide handy suggestions for traveling. We have affiliated offices in Buenos Aires, Santiago, Rio, Quito, La Paz, and Bogota in addition to our headquarters in the capital of the Incas : Cusco, Peru.</p>
+                <p>Depending on your needs and preferences, we provide a vast selection of hotels and tours from which to choose. If there is something absent from the brochure or website, please contact our team so we can explore whether we can arrange it for you.</p>
+                <p>As travel professionals, we work with a variety of hand-picked local operators, including the top guides and local reps at each stage of your itinerary who will serve as your trusted connections on the ground, always with an smile =) because at GOTOLATAM make dream vacations come true is a our daily goal.</p>
+                <p>Our origins can be traced back to GOTOPERU Group, one of the most well-known tour operators in Peru with thousands of satisfied travelers; GOTOLATAM is now the foundation of our expansion, offering our clients more opportunities to continue exploring the best of our continent under one umbrella #GOTOLATAM </p>
+            </div>
 
+        </div>
+    </section>
     <section class="bg-gray-100 my-6 py-6">
         <div class="container flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">
             <div class="border-4 h-1 w-12 border-secondary"></div> OUR TEAM

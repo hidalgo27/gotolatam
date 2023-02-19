@@ -42,4 +42,3 @@
         @livewire('page.form-footer')
     </section>
 @endsection
-

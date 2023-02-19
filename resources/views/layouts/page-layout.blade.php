@@ -159,10 +159,10 @@
 
         [
             'id' => '5',
-            'name' => 'FAQ',
+            'name' => 'About us',
             'state' => '3',
-            'route' => route('faq'),
-            'active' => request()->routeIs('faq'),
+            'route' => route('about'),
+            'active' => request()->routeIs('about'),
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>',
@@ -170,6 +170,15 @@
                 [
                     $sub_data =
                     [
+                        [
+                            'name' =>'About Us',
+                            'state' => '1',
+                            'route' => route('about'),
+                            'active' => request()->routeIs('about'),
+                            'icon' => '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>'
+                        ],
                         [
                             'name' =>__('message.nav_sub_item1'),
                             'state' => '1',
@@ -205,15 +214,6 @@
                             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                             </svg>'
-                        ],
-                        [
-                            'name' => __('message.nav_sub_item6'),
-                            'state' => '3',
-                            'route' => route('faq'),
-                            'active' => request()->routeIs('faq'),
-                            'icon' => '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                            </svg>'
                         ]
                     ]
                 ]
@@ -222,10 +222,10 @@
 
         [
             'id' => '3',
-            'name' => 'About Us',
+            'name' => 'FAQ',
             'state' => '2',
-            'route' => route('about'),
-            'active' => request()->routeIs('about'),
+            'route' => route('faq'),
+            'active' => request()->routeIs('faq'),
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
