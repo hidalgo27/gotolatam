@@ -70,7 +70,7 @@ return [
     'serv_item2' =>  'Assistances',
     'serv_item3' =>  'Breakfast',
     'serv_item4' =>  'Entrances',
-    'serv_item5' =>  'Flight',
+    'serv_item5' =>  'Flights',
     'serv_item6' =>  'Hotels',
     'serv_item7' =>  'Tours',
     'serv_item8' =>  'Trains',

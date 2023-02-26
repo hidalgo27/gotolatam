@@ -797,10 +797,7 @@
                         <img src="{{asset('images/include/entrances.png')}}" alt="{{__('message.serv_item4')}}" class="object-contain px-4 text-center">
                         <p class="text-xs">{{__('message.serv_item4')}}</p>
                     </div>
-                    <div class="">
-                        <img src="{{asset('images/include/flight.png')}}" alt="{{__('message.serv_item5')}}" class="object-contain px-4 text-center">
-                        <p class="text-xs">{{__('message.serv_item5')}}</p>
-                    </div>
+
                     <div class="">
                         <img src="{{asset('images/include/hotels.png')}}" alt="{{__('message.serv_item6')}}" class="object-contain px-4 text-center">
                         <p class="text-xs">{{__('message.serv_item6')}}</p>
@@ -816,6 +813,11 @@
                     <div class="">
                         <img src="{{asset('images/include/transfers.png')}}" alt="{{__('message.serv_item9')}}" class="object-contain px-4 text-center">
                         <p class="text-xs">{{__('message.serv_item9')}}</p>
+                    </div>
+
+                    <div class="">
+                        <img src="{{asset('images/include/flight.png')}}" alt="{{__('message.serv_item5')}}" class="object-contain px-4 grayscale text-center">
+                        <p class="text-xs">{{__('message.serv_item5')}}</p>
                     </div>
                 </div>
             </div>
