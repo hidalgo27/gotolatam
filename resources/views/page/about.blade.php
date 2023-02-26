@@ -11,13 +11,14 @@
     {{--    </div>--}}
 
     <section class="bg-gray-200 shadow hidden md:block">
-        <div class="grid grid-cols-2 items-center">
-            <div class="pl-64">
+        <div class="grid grid-cols-2 items-end">
+            <div class="pl-64 my-6 text-sm">
                 <h2 class="font-bold text-secondary text-4xl">YOUR LATAM TRAVEL EXPERTS</h2>
-                <p class="italic font-medium my-4">GOTOLATAM is a specialist travel agency catering to travellers who want an original, authentic and unforgettable experience at the land of the Incas. </p>
-                <p class="my-4 font-bold">From MachuPicchu all included tours, to off-the-beaten-path adventures at the Amazon and into Sacred Valley, Lake Titicaca, Lima, Arequipa and many more: we offer tailor-made Peru travel packages for all interests and needs. Since GOTOLATAM was established in 2009, we have had the pleasure of welcoming tens of thousands of happy travellers from over 50 countries. We hope to be able to welcome you and introduce you to the magical, biodiverse and historical Peru, our home.</p>
-                <p class="font-bold">Paul Catano</p>
-                <p class="text-xs">{{__('message.info_par4')}}</p>
+                <p class="italic font-medium my-4">GOTOLATAM's knowledge is based on the advice and experience of OUR LOCAL TEAM, who have worked in the travel industry for over 14 years. Our staff members were born in the southern continent and have traveled extensively through both South and Central America, so they can offer a unique perspective on the diversity of attractions and destinations to be discovered, as well as provide handy suggestions for traveling. We have affiliated offices in Buenos Aires, Santiago, Rio, Quito, La Paz, and Bogota in addition to our headquarters in the capital of the Incas : Cusco, Peru.</p>
+                <p class="my-4 font-bold">Depending on your needs and preferences, we provide a vast selection of hotels and tours from which to choose. If there is something absent from our website, please contact our team so we can explore whether we can arrange it for you.We work with a variety of hand-picked local operators, including the top guides and local reps at each stage of your itinerary who will serve as your trusted connections on the ground.</p>
+                <p>Our origins can be traced back to GOTOPERU Group, one of the most well-known tour operators in Peru with thousands of satisfied travelers; GOTOLATAM is now the foundation of our expansion, offering our clients more opportunities to continue exploring the best of our continent under one umbrella #GOTOLATAM</p>
+{{--                <p class="font-bold">Paul Catano</p>--}}
+{{--                <p class="text-xs">{{__('message.info_par4')}}</p>--}}
             </div>
             <div class="">
                 <img src="{{asset('images/gotoperu-banner-rgba.png')}}" alt="">

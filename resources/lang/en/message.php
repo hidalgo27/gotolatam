@@ -171,7 +171,7 @@ return [
     'abou_par4' => 'GOTOLATAM representatives',
 
     'faq_title1' => 'Frequently asked questions',
-    'faq_par1' => 'A trip to Peru is an exciting adventure! There are a number of common questions first-time travelers to Peru frequently ask.',
+    'faq_par1' => 'A trip to South America is an exciting adventure! There are a number of common questions first-time travelers to South America frequently ask.',
     'faq_subtitle1' => ' When is the best time to travel to peru?',
     'faq_par2' => 'If your travel dates are flexible, the majority of travelers prefer to go to Peru in the dry season, from May to October. If you plan on hiking, the best months to visit are April, May, September, and October—though the rainy season can sometimes end later or begin earlier than normal. Early in the dry season is ideal for visiting the Amazon too, and taking advantage of more Peru travel packages across the various regions.',
     'faq_par3' => 'Plenty of people visit in the rainy season between November and March, when visitor numbers are fewer and you might find cheaper flights (with Christmastime as the exception). The mornings are generally clear and warm, but the days gradually become cloudy leading to possible rain in the afternoon.',

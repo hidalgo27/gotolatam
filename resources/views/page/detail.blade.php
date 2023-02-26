@@ -781,6 +781,47 @@
     </section>
 
 
+    <section class="container my-12 ">
+        <div class="grid grid-cols-6 gap-4">
+            <div class="col-start-2 col-span-4">
+                <div class="grid grid-cols-3 md:grid-cols-8 content-center text-center">
+                    <div class="">
+                        <img src="{{asset('images/include/assistances.png')}}" alt="{{__('message.serv_item2')}}" class="object-contain px-4 text-center">
+                        <p class="text-xs">{{__('message.serv_item2')}}</p>
+                    </div>
+                    <div class="">
+                        <img src="{{asset('images/include/breakfast.png')}}" alt="{{__('message.serv_item3')}}" class="object-contain px-4 text-center">
+                        <p class="text-xs">{{__('message.serv_item3')}}</p>
+                    </div>
+                    <div class="">
+                        <img src="{{asset('images/include/entrances.png')}}" alt="{{__('message.serv_item4')}}" class="object-contain px-4 text-center">
+                        <p class="text-xs">{{__('message.serv_item4')}}</p>
+                    </div>
+                    <div class="">
+                        <img src="{{asset('images/include/flight.png')}}" alt="{{__('message.serv_item5')}}" class="object-contain px-4 text-center">
+                        <p class="text-xs">{{__('message.serv_item5')}}</p>
+                    </div>
+                    <div class="">
+                        <img src="{{asset('images/include/hotels.png')}}" alt="{{__('message.serv_item6')}}" class="object-contain px-4 text-center">
+                        <p class="text-xs">{{__('message.serv_item6')}}</p>
+                    </div>
+                    <div class="">
+                        <img src="{{asset('images/include/tours.png')}}" alt="{{__('message.serv_item7')}}" class="object-contain px-4 text-center">
+                        <p class="text-xs">{{__('message.serv_item7')}}</p>
+                    </div>
+                    <div class="">
+                        <img src="{{asset('images/include/trains.png')}}" alt="{{__('message.serv_item8')}}" class="object-contain px-4 text-center">
+                        <p class="text-xs">{{__('message.serv_item8')}}</p>
+                    </div>
+                    <div class="">
+                        <img src="{{asset('images/include/transfers.png')}}" alt="{{__('message.serv_item9')}}" class="object-contain px-4 text-center">
+                        <p class="text-xs">{{__('message.serv_item9')}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="bg-secondary bg-opacity-60 mt-12 py-12">
         <div class="container text-center grid  grid-cols-1 md:grid-cols-2 gap-6">
             <div class="text-center">

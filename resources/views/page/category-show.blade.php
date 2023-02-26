@@ -13,7 +13,8 @@
 
     <section class="container py-12 text-gray-500 text-center mx-auto">
 {{--        <p>{{__('message.dest_deta_par1')}}</p>--}}
-        <p>The following travel Peru packages could be a reference and inspiration for your ideal peruvian vacation. No matter the type of adventure you are seeking, GOTOPERU has a trip for you. Hoping to see Llamas? Check! .Want an active Inca Trail hiking trip? Check! How about a Ceviche in Lima? Check! .How about a trip for you, your kiddos, and Grandma and Grandpa? Contact us today with a short description of your ideal Peru trip and we will make it happen.</p>
+        <p>At GOTOLATAM, we design customized 3, 4, and 5-star tours of the stunning South American continent. Browse through hundreds of diverse tour ideas ranging from luxury to soft adventure. Choose your preferred destinations and countries, or ask our expert Travel Consultants for suggestions.</p>
+        <p>Every member of GOTOLATAM's team has first-hand experience exploring South America, making us the go-to resource for anything and everything you need to know about this region.</p>
     </section>
 
 

@@ -306,14 +306,14 @@
 {{--    </div>--}}
 
 
-<div class="fixed bottom-0 right-0 z-40 py-6 px-7 sm:inline-flex">
+<div class="fixed bottom-0 right-0 z-40 py-6 px-7 sm:inline-flex mb-24 md:mb-0">
     <a href="https://api.whatsapp.com/send?phone=51936241194" target="_blank">
             <span class="flex relative h-10 w-10">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gray-400 opacity-75"></span>
             </span>
     </a>
 </div>
-<div class="fixed bottom-0 right-0 z-40 py-5 px-4 sm:inline-flex">
+<div class="fixed bottom-0 right-0 z-40 py-5 px-4 sm:inline-flex mb-24 md:mb-0">
     <a href="https://api.whatsapp.com/send?phone=51936241194" target="_blank">
         <img src="{{asset('images/whatsapp-i.png')}}" alt="" class="w-16">
     </a>
@@ -342,11 +342,11 @@
         </div>
     </div>
 
-    <div class="fixed bottom-0 right-0 mb-16 w-9/12 mr-1 rounded-lg bg-gray-50 z-50" x-show="menu" x-transition x-on:click.away="menu = false" x-data="{menu : false}">
+    <div class="fixed bottom-0 right-0 mb-16 w-9/12 mr-1 rounded-lg bg-gray-50 z-50" x-show="menu" x-transition x-on:click.away="menu = false" x-data="{menu2 : false}">
         @foreach($nav_links as $nav_link)
             @if($nav_link['nav_sub_links'])
 
-                <span @click="menu = !menu" class="w-full text-sm flex inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-gray-700 hover:text-secondary menu-pop  {{ $nav_link['active'] == 1 ? 'active' : '' }}">
+                <span @click="menu2 = !menu2" class="w-full text-sm flex inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-gray-700 hover:text-secondary menu-pop  {{ $nav_link['active'] == 1 ? 'active' : '' }}">
                     <span class="mr-2">
                     {!! $nav_link['icon'] !!}
                 </span>
@@ -356,9 +356,9 @@
                                         </svg>
                                     </span>
 
-                <div class="bg-gray-200 absolute top-0 rounded-lg mt-16 w-72 z-50 shadow-lg" x-show="menu" x-on:click.away="menu = false" x-transition>
+                <div class="bg-gray-200 absolute top-0 rounded-lg mt-16 w-72 z-50 shadow-lg" x-show="menu2" x-on:click.away="menu2 = false" x-transition>
                     <div class="font-bold text-gray-500 flex justify-between text-xs px-5 py-3">INFORMATION
-                        <span class="ml-auto cursor-pointer" @click="menu = !menu">X</span>
+                        <span class="ml-auto cursor-pointer" @click="menu2 = !menu2">X</span>
                     </div>
 
 
@@ -615,13 +615,13 @@
         {{--            <path fill="currentColor" d="M0 22L120 16.7C240 11 480 1.00001 720 0.700012C960 1.00001 1200 11 1320 16.7L1440 22V54H1320C1200 54 960 54 720 54C480 54 240 54 120 54H0V22Z"></path>--}}
         {{--        </svg>--}}
         <div class="container pt-12">
-            <div class="text-center mb-20 bg-gray-400 bg-opacity-50 rounded shadow p-6">
+            <div class="text-center mb-20  p-6">
                 <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
-                    <img src="https://gotolatam.s3.us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" alt="" class="mx-auto">
+                    <img src="{{asset('images/logos/logo-gotolatam-white.png')}}" alt="" class="mx-auto">
                 </a>
                 <span class="text-white px-3">part of</span>
                 <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
-                    <img src="https://gotoperu-com.s3-us-west-1.amazonaws.com/logos/logo-gotoperu-black.png" alt="" class="mx-auto">
+                    <img src="{{asset('images/logos/logo-gotoperu-white.png')}}" alt="" class="mx-auto">
                 </a>
                 <p class="mt-4 font-semibold text-secondary">CONTACT US ALSO VIA EMAIL: travel@gotolatam.com</p>
             </div>
@@ -632,10 +632,16 @@
                     </p>
                     <ul class="mt-2 space-y-2">
                         <li>
-                            <a href="{{route('packages.all')}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">{{__('message.foorer_li1')}}</a>
+                            <a href="{{route('country.show', 2)}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">2 Countries</a>
                         </li>
                         <li>
-                            <a href="{{route('tours')}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">{{__('message.foorer_li2')}}</a>
+                            <a href="{{route('country.show', 3)}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">3 Countries</a>
+                        </li>
+                        <li>
+                            <a href="{{route('country.show', 4)}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">4 Countries</a>
+                        </li>
+                        <li>
+                            <a href="{{route('packages.all')}}" class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">All Packages</a>
                         </li>
                         <li>
 {{--                            @livewire('page.form-inquire')--}}
@@ -712,16 +718,15 @@
                     </ul>
                 </div>
                 <div>
-                    <p class="font-semibold tracking-wide text-secondary mb-6">
 
-                    </p>
                     <div class="bg-gray-900 p-4 rounded-lg shadow-inner">
-                        <p class="mb-2 text-gray-300">
+{{--                        <p class="mb-2 text-gray-300">--}}
 {{--                            {{__('message.footer_par1')}}--}}
-                            Contact a South America travel expert
-                            We always aim to reply within 24 hours.
-                        </p>
-                        <a href="#form-dream-adventure" class="btn-primary lg:px-4 block text-center mt-4">Send us a  Enquiry</a>
+{{--                            Contact a South America travel expert--}}
+{{--                            We always aim to reply within 24 hours.--}}
+{{--                        </p>--}}
+                        <img src="{{asset('images/fiorella.jpg')}}" alt="">
+                        <a href="#form-dream-adventure" class="btn-primary lg:px-4 block text-center ">Contact Us</a>
 {{--                                                    @livewire('page.form-inquire')--}}
                     </div>
                 </div>
