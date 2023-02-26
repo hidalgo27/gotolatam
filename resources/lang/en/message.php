@@ -275,6 +275,7 @@ return [
     'url_9' => 'social-responsability',
     'url_10' => 'reviews',
     'url_11' => 'peru-tours',
+    'url_12' => 'careers',
 ];
 
 

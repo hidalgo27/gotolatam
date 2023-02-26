@@ -319,6 +319,11 @@ class HomeController extends Controller
         $pais2 = TPais::all();
         return view('page.conditions', compact('category', 'pais2'));
     }
+    public function careers(){
+        $category = TCategoria::all();
+        $pais2 = TPais::all();
+        return view('page.careers', compact('category', 'pais2'));
+    }
     public function faq(){
         $faqs = Faq::all();
         $category = TCategoria::all();

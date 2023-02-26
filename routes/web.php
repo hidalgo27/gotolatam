@@ -47,6 +47,7 @@ Route::get('/' . __('message.url_8'), [HomeController::class, 'hotels'])->name('
 Route::get('/' . __('message.url_9'), [HomeController::class, 'responsability'])->name('responsability');
 Route::get('/' . __('message.url_10'), [HomeController::class, 'reviews'])->name('reviews');
 Route::get('/' . __('message.url_11'), [HomeController::class, 'tours'])->name('tours');
+Route::get('/' . __('message.url_12'), [HomeController::class, 'careers'])->name('careers');
 
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/blog/{post}', [HomeController::class, 'blog_show'])->name('blog.show');
