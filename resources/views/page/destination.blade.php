@@ -28,7 +28,7 @@
                         <div class="">
                             {{--                        <h2 class="">{{ Str::limit($destination->nombre, 40) }}</h2>--}}
                             <h2 class="text-xl font-bold mb-4 text-center text-gray-600 dark:text-gray-300">{{$pais3->nombre}}</h2>
-                            <p class="text-sm text-gray-500 dark:text-gray-200">{{$pais3->resumen}}</p>
+{{--                            <p class="text-sm text-gray-500 dark:text-gray-200">{{$pais3->resumen}}</p>--}}
                         </div>
                         {{--                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea fuga repellat reprehenderit sint vero. Eum maxime minima, nobis numquam optio quasi quidem quo ratione sunt totam vel velit voluptatem voluptatum?--}}
                     </div>
