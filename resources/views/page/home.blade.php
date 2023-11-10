@@ -590,12 +590,13 @@
 {{--        <div class="flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">--}}
 {{--            <div class="border-4 h-1 w-12 border-secondary"></div> {{__('message.subtitle5')}}--}}
 {{--        </div>--}}
-        <div class="dark:bg-primary">
-        <div class="elfsight-app-d1e14e4b-52d0-4ad9-9068-f94e0de6bf50"></div>
-        </div>
+{{--        <div class="dark:bg-primary">--}}
+{{--        <div class="elfsight-app-d1e14e4b-52d0-4ad9-9068-f94e0de6bf50"></div>--}}
+{{--        </div>--}}
 
         <div class="mt-6 dark:bg-primary text-white">
-            <div class="elfsight-app-45e6b553-4db1-4009-9a37-a98b273413ec"></div>
+{{--            <div class="elfsight-app-45e6b553-4db1-4009-9a37-a98b273413ec"></div>--}}
+            <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>
         </div>
 
     </section>
@@ -793,7 +794,7 @@
                     GET SOCIAL WITH US
                 </h3>
                 <p class="block my-12">
-                    Follow our Nordic adventures and share your own with us.
+                    Follow our Peruvian adventures and share your own with us.
                 </p>
                 <div class="w-full md:w-1/2 mx-auto mt-12 bg-gray-100 bg-opacity-50 p-6 rounded">
                     <div class="flex inline-flex items-center text-2xl text-gray-700 font-bold gap-3">
