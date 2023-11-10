@@ -451,7 +451,7 @@
     </section>
     </div>
 
-    <section class="grid md:grid-cols-2 sm:grid-cols-1 mx-auto gap-0">
+    <section class="grid md:grid-cols-2 sm:grid-cols-1 container gap-0">
 
         @foreach($category_block as $category_b)
 
@@ -576,15 +576,15 @@
 {{--            </div>--}}
 {{--        </div>--}}
 {{--    </section>--}}
-    <section class="px-6 container grid grid-cols-1 md:grid-cols-4 my-12">
-        <div class="text-center w-full col-span-4 items-center text-2xl text-gray-700 dark:text-secondary font-bold gap-2">
-            Reviews and Testimonials
-            <div class="border-4 h-1 w-12 border-primary mx-auto mt-3"></div>
-        </div>
+{{--    <section class="px-6 container grid grid-cols-1 md:grid-cols-4 my-12">--}}
+{{--        <div class="text-center w-full col-span-4 items-center text-2xl text-gray-700 dark:text-secondary font-bold gap-2">--}}
+{{--            Reviews and Testimonials--}}
+{{--            <div class="border-4 h-1 w-12 border-primary mx-auto mt-3"></div>--}}
+{{--        </div>--}}
 {{--        <div class="col-span-4 text-center mt-4">--}}
 {{--            See and learn about our tours from our valued Nordic Visitor customers.--}}
 {{--        </div>--}}
-    </section>
+{{--    </section>--}}
     <section class="container hidden md:block mt-6">
 
 {{--        <div class="flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">--}}
