@@ -1025,25 +1025,25 @@
         </div>
     </section>
 
-    <section class="mt-4">
-        <div class="container grid grid-cols-1 md:grid-cols-3 flex items-center">
-            <div class="bg-gray-100 dark:bg-gray-700 dark:text-gray-100 h-full col-span-1  justify-between p-6 text-gray-500 order-2 md:order-1">
-                <span class="text-sm font-light">{{$blogs_first->created_at}}</span>
-                _____
-                <span class="text-sm font-light">{{$blogs_first->categoria->nombre}}</span>
+{{--    <section class="mt-4">--}}
+{{--        <div class="container grid grid-cols-1 md:grid-cols-3 flex items-center">--}}
+{{--            <div class="bg-gray-100 dark:bg-gray-700 dark:text-gray-100 h-full col-span-1  justify-between p-6 text-gray-500 order-2 md:order-1">--}}
+{{--                <span class="text-sm font-light">{{$blogs_first->created_at}}</span>--}}
+{{--                _____--}}
+{{--                <span class="text-sm font-light">{{$blogs_first->categoria->nombre}}</span>--}}
 
-                <h2 class="my-6 font-semibold text-gray-600 dark:text-gray-100 text-3xl"><a href="{{route('blog.show', $blogs_first)}}">{{$blogs_first->titulo}}</a></h2>
-                <span class="text-sm mb-6">{!! Str::limit($blogs_first->detalle, 300) !!}</span>
+{{--                <h2 class="my-6 font-semibold text-gray-600 dark:text-gray-100 text-3xl"><a href="{{route('blog.show', $blogs_first)}}">{{$blogs_first->titulo}}</a></h2>--}}
+{{--                <span class="text-sm mb-6">{!! Str::limit($blogs_first->detalle, 300) !!}</span>--}}
 
-                <a href="{{route('blog.show', $blogs_first)}}" class="text-secondary mt-4 flex">{{__('message.button_read')}} <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg></a>
-            </div>
-            <div class="col-span-2 order-1 md:order-2 h-30r">
-                <img src="{{$blogs_first->imagen_miniatura}}" alt="" class="h-full w-full object-cover object-center">
-            </div>
-        </div>
-    </section>
+{{--                <a href="{{route('blog.show', $blogs_first)}}" class="text-secondary mt-4 flex">{{__('message.button_read')}} <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />--}}
+{{--                    </svg></a>--}}
+{{--            </div>--}}
+{{--            <div class="col-span-2 order-1 md:order-2 h-30r">--}}
+{{--                <img src="{{$blogs_first->imagen_miniatura}}" alt="" class="h-full w-full object-cover object-center">--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
 
 {{--    <div x-data="{ open: false, init() { setTimeout(() => this.open = true, 3000) } }" x-init="init()">--}}
 {{--        --}}{{--        <button @click="open =!open" class="flex items-center justify-center px-3 py-2 space-x-2 text-sm tracking-wide  capitalize transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">--}}
