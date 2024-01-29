@@ -233,6 +233,11 @@
                     {{--                        </div>--}}
 
 
+{{--                    <img src="{{$paquete['mapa']}}" alt="" class="w-full mt-2 mb-12">--}}
+                    <div class="">
+                        <a class="venobox" data-gall="myGallery" href="{{$paquete['mapa']}}"><img src="{{$paquete['mapa']}}" /></a>
+                    </div>
+
                     <div x-transition:enter="transition  duration-500 transform ease-in" x-transition:enter-start="opacity-0">
 
                         <div class="flex mb-3 items-center text-lg text-gray-700 font-bold gap-2 dark:text-gray-400">
@@ -445,8 +450,6 @@
                             <button class="wtrvl-checkout_button btn-primary w-full" id="wetravel_button_widget" data-env="https://www.wetravel.com" data-version="v0.2" data-uid="239346" data-uuid="{{$paquete['codigo_f']}}" href="https://www.wetravel.com/checkout_embed?uuid={{$paquete['codigo_f']}}" >Book</button>
                         @endif
                     </div>
-
-                    <img src="{{$paquete['mapa']}}" alt="" class="w-full mt-2">
 
                     <div class="border my-3 bg-gray-600 text-white p-3 text-xs">
                         <p class="text-white">Contact our travel advisor to use this itinerary (or others) as a base to design together your perfect peruvian adventure!</p>
@@ -1190,6 +1193,9 @@
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
         <script src="https://cdn.wetravel.com/master/core-app/assets/embed_checkout.js"></script>
         <script>
+            new VenoBox({
+                selector: '.venobox'
+            });
             var swiper = new Swiper(".mySwiper", {
                 navigation: {
                     nextEl: ".swiper-button-next",
