@@ -1,50 +1,14 @@
 @extends('layouts.page-layout')
 @section('content')
-{{--    <section class="-mt-32 h-80vh -z-1 relative">--}}
-{{--        <img src="{{asset('images/banners/rainbow.jpg')}}" alt="" class="h-full w-full object-cover object-top">--}}
-{{--        <div class="absolute bottom-0 left-0 p-12">--}}
-{{--            <h1 class="text-5xl font-semibold text-gray-50">{{__('message.revi_title1')}}</h1>--}}
-{{--        </div>--}}
-{{--    </section>--}}
-{{--    <div class="hidden md:inline-block">--}}
-{{--        @livewire('page.form-home')--}}
-{{--    </div>--}}
-
-<section class="bg-gray-200 shadow">
-    <div class="grid grid-cols-2 items-center">
-        <div class="pl-96">
-            <h2 class="font-bold text-secondary text-6xl">YOUR LATAM TRAVEL EXPERTS</h2>
-            <p class="italic font-medium my-4">GOTOLATAM is a specialist travel agency catering to travellers who want an original, authentic and unforgettable experience at the land of the Incas. </p>
-            <p class="my-4 font-bold">From MachuPicchu all included tours, to off-the-beaten-path adventures at the Amazon and into Sacred Valley, Lake Titicaca, Lima, Arequipa and many more: we offer tailor-made Peru travel packages for all interests and needs. Since GOTOLATAM was established in 2009, we have had the pleasure of welcoming tens of thousands of happy travellers from over 50 countries. We hope to be able to welcome you and introduce you to the magical, biodiverse and historical Peru, our home.</p>
-            <p class="font-bold">Paul Catano</p>
-            <p class="text-xs">{{__('message.info_par4')}}</p>
+    <section class="-mt-32 h-80vh -z-1 relative">
+        <img src="{{asset('images/banners/mapi.jpg')}}" alt="" class="h-full w-full object-cover object-top">
+        <div class="absolute bottom-0 left-0 p-12">
+            <h1 class="text-5xl font-semibold text-gray-50">{{__('message.revi_title1')}}</h1>
         </div>
-        <div class="">
-            <img src="https://gotoperu.com.mx/images/gotoperu-banner-rgba.png" alt="">
-        </div>
-    </div>
-</section>
-<section class="swiper mySwiper3">
-    <div class="swiper-wrapper grid grid-cols-1 md:grid-cols-8 mb-12">
-        @foreach($pais2 as $pais3)
-            <article class="swiper-slide grid grid-cols-1 place-content-between mb-6  dark:border-gray-700">
-                <div class="w-full">
-                    <figure class="overflow-hidden relative">
-                        <a href="{{ route('destinations.show', $pais3) }}">
-                            <img src="{{$pais3->imagen_s}}" alt="" class="bg-cover h-full w-full">
-                            <div class="absolute inset-0 gradient-cicle-gray"></div>
-                        </a>
-                        <div class="absolute left-0 bottom-0 text-gray-50 p-3">
-                            {{$pais3->nombre}}
-                        </div>
-                    </figure>
-                </div>
-            </article>
-
-        @endforeach
-    </div>
-</section>
-
+    </section>
+    {{--    <div class="hidden md:inline-block">--}}
+    {{--        @livewire('page.form-home')--}}
+    {{--    </div>--}}
     <section class="container py-12 text-gray-500 text-center">
         <p class="">{{__('message.revi_par1')}}</p>
         {{--        <p class="my-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus amet beatae commodi doloremque est eveniet expedita id ipsam labore magnam maxime, minima nemo nihil porro quaerat rem ullam. A, earum?</p>--}}
@@ -53,106 +17,28 @@
         </div>
     </section>
 
-    <section class="container grid grid-cols-1 mb-12">
-        <img src="{{asset('images/banners/fiorella.jpg')}}" alt="">
-        <section class="grid grid-cols-1 -mt-6 md:grid-cols-2">
-            <div class="bg-secondary p-12">
-                <h2 class="font-bold text-white text-2xl">{{__('message.info_subtitle1')}}: </h2>
-                <p class="text-sm italic text-yellow-700 font-medium my-4">{{__('message.info_par1')}} </p>
-                <p class="my-4 text-sm font-bold text-yellow-900">{{__('message.info_par2')}}</p>
-                <p class="font-bold text-white">{{__('message.info_par3')}}</p>
-                <p class="text-xs">{{__('message.info_par4')}}</p>
-            </div>
-            <div class="bg-primary grid grid-cols-1 md:grid-cols-2 gap-6 p-12">
-                <div class="">
-                    <h3 class="font-bold text-white mb-2">{{__('message.info_subtitle2')}}</h3>
-                    <p class="text-sm text-gray-800">{{__('message.info_par5')}}</p>
-                </div>
-                <div class="">
-                    <h3 class="font-bold text-white mb-2">{{__('message.info_subtitle3')}}</h3>
-                    <p class="text-sm text-gray-800">{{__('message.info_par6')}}</p>
-                </div>
-                <div class="md:col-span-2">
-                    <h3 class="font-bold text-white mb-2">{{__('message.info_subtitle4')}}</h3>
-                    <p class="text-sm text-gray-800">{{__('message.info_par7')}}</p>
-                </div>
-            </div>
-        </section>
+    <section class="container hidden md:block mt-6">
+
+        {{--        <div class="flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">--}}
+        {{--            <div class="border-4 h-1 w-12 border-secondary"></div> {{__('message.subtitle5')}}--}}
+        {{--        </div>--}}
+        <div class="dark:bg-primary">
+            <div class="elfsight-app-d1e14e4b-52d0-4ad9-9068-f94e0de6bf50"></div>
+        </div>
+
+        <div class="mt-6 dark:bg-primary text-white">
+            <div class="elfsight-app-45e6b553-4db1-4009-9a37-a98b273413ec"></div>
+        </div>
+
     </section>
 
-    <section class="container hidden md:block mt-12 py-6">
 
-        <div class="flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">
-            <div class="border-4 h-1 w-12 border-secondary"></div> VIDEO TESTIMONIALS
-        </div>
-
-
-        <div class="grid grid-cols-3 gap-6">
-            @foreach($videos as $video)
-            <div class="overflow-hidden relative">
-                <a class="venobox" data-gall="myGallery" data-autoplay="true" data-maxwidth="50%" data-vbtype="video" href="{{$video->codigo}}">
-                    <img src="{{$video->imagen}}" class="transform bg-blue-400 hover:bg-blue-600 transition duration-500 hover:scale-105"/>
-                    <div class="absolute bottom-0 left-0 bg-gray-800 p-2 rounded">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-6 h-6 text-white">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
-                        </svg>
-                    </div>
-                </a>
-            </div>
-            @endforeach
-        </div>
-    </section>
-
-    <section class="bg-gray-100 my-6 py-6">
-        <div class="container flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">
-            <div class="border-4 h-1 w-12 border-secondary"></div> OUR TEAM
-        </div>
-        <div class="container">
-            <div class="swiper mySwiper2 relative">
-                <div class="swiper-wrapper">
-                    @foreach($teams as $team)
-                        <div class="swiper-slide my-6 text-center">
-                            @if($team->imagen_perfil)
-                                <img class="w-48 h-48 rounded-full shadow mx-auto -mb-24" src="{{$team->imagen_perfil}}" alt="{{$team->nombre}}"/>
-                            @else
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-48 h-48 rounded-full mx-auto bg-white -mb-24" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                                </svg>
-                            @endif
-                            <div class="bg-white shadow-lg rounded-lg px-8 pt-32 pb-2 text-gray-400">
-                                <h3 class="font-title font-bold text-gray-600 text-lg mb-2">
-                                    {{$team->nombre}}
-                                </h3>
-                                <p class="font-body mb-2">
-                                    {{$team->cargo}}
-                                </p>
-                                {{--                    <p class="font-body text-sm mb-4">--}}
-                                {{--                        {{$team->actividad}}--}}
-                                {{--                    </p>--}}
-                                {{--                    <a class="font-body text-blue-500 hover:text-gray-800" href="#">--}}
-                                {{--                        {{$team->email}}--}}
-                                {{--                    </a>--}}
-                            </div>
-                        </div>
-                    @endforeach
-
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <section class="container hidden md:block mt-12">
+    <section class="container hidden md:block">
 
         <div class="flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">
             <div class="border-4 h-1 w-12 border-secondary"></div> {{__('message.subtitle5')}}
         </div>
-        <div class="elfsight-app-d1e14e4b-52d0-4ad9-9068-f94e0de6bf50"></div>
-
-        <div class="mt-6">
-            <div class="elfsight-app-45e6b553-4db1-4009-9a37-a98b273413ec"></div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mt-6">
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
             <div class="col-span-2 flex gap-4 flex-wrap content-between overflow-hidden">
                 <div class="w-full">
                     <div class="grid grid-cols-2 w-full items-center text-center text-gray-700 dark:text-gray-300 gap-2">
@@ -269,6 +155,32 @@
         </div>
 
     </section>
+
+    <section class="container hidden md:block mt-12 py-6">
+
+        <div class="flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">
+            <div class="border-4 h-1 w-12 border-secondary"></div> VIDEO TESTIMONIALS
+        </div>
+
+
+        <div class="grid grid-cols-3 gap-6">
+            @foreach($videos as $video)
+                <div class="overflow-hidden relative">
+                    <a class="venobox" data-gall="myGallery" data-autoplay="true" data-maxwidth="50%" data-vbtype="video" href="{{$video->codigo}}">
+                        <img src="{{$video->imagen}}" class="transform bg-blue-400 hover:bg-blue-600 transition duration-500 hover:scale-105"/>
+                        <div class="absolute bottom-0 left-0 bg-gray-800 p-2 rounded">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-6 h-6 text-white">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </section>
+
+
+
     <section class="container mt-6 mb-12 ">
         {{--        <div class="flex mb-3 items-center text-2xl text-gray-700 dark:text-primary font-bold gap-2">--}}
         {{--            <div class="">--}}
@@ -327,23 +239,22 @@
             </div>
         </div>
 
+
+
+
     </section>
 
     <section class="mt-12">
         @livewire('page.form-footer')
     </section>
-@push('css')
+    @push('css')
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     @endpush
     @push('scripts')
         <script src="https://apps.elfsight.com/p/platform.js" defer></script>
         <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-        <script src="https://apps.elfsight.com/p/platform.js" defer></script>
-        <script>
-            new VenoBox({
-                selector: '.venobox'
-            });
 
+        <script>
             var swiper = new Swiper(".mySwiper", {
                 navigation: {
                     nextEl: ".swiper-button-next",
@@ -354,61 +265,6 @@
                 navigation: {
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev",
-                },
-            });
-            var swiper = new Swiper(".mySwiper2", {
-                slidesPerView: 3,
-                spaceBetween: 30,
-                freeMode: true,
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false,
-                },
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                },
-                breakpoints: {
-                    320: {
-                        slidesPerView: 1,
-                    },
-                    640: {
-                        slidesPerView: 1,
-                    },
-                    768: {
-                        slidesPerView: 2,
-                    },
-                    1024: {
-                        slidesPerView: 3,
-                    },
-                },
-            });
-
-            var swiper = new Swiper(".mySwiper3", {
-                slidesPerView: 8,
-                spaceBetween: 0,
-                freeMode: true,
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false,
-                },
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                },
-                breakpoints: {
-                    320: {
-                        slidesPerView: 2,
-                    },
-                    640: {
-                        slidesPerView: 3,
-                    },
-                    768: {
-                        slidesPerView: 6,
-                    },
-                    1024: {
-                        slidesPerView: 8,
-                    },
                 },
             });
         </script>
