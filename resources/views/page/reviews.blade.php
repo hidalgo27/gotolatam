@@ -9,13 +9,13 @@
     {{--    <div class="hidden md:inline-block">--}}
     {{--        @livewire('page.form-home')--}}
     {{--    </div>--}}
-    <section class="container py-12 text-gray-500 text-center">
-        <p class="">{{__('message.revi_par1')}}</p>
-        {{--        <p class="my-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus amet beatae commodi doloremque est eveniet expedita id ipsam labore magnam maxime, minima nemo nihil porro quaerat rem ullam. A, earum?</p>--}}
-        <div class="text-gray-600 text-xl font-medium">
-            {{__('message.revi_par2')}}
-        </div>
-    </section>
+{{--    <section class="container py-12 text-gray-500 text-center">--}}
+{{--        <p class="">{{__('message.revi_par1')}}</p>--}}
+{{--        --}}{{--        <p class="my-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus amet beatae commodi doloremque est eveniet expedita id ipsam labore magnam maxime, minima nemo nihil porro quaerat rem ullam. A, earum?</p>--}}
+{{--        <div class="text-gray-600 text-xl font-medium">--}}
+{{--            {{__('message.revi_par2')}}--}}
+{{--        </div>--}}
+{{--    </section>--}}
 
     <section class="container hidden md:block mt-6">
 
