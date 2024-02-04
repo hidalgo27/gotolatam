@@ -34,9 +34,7 @@
             <div class="elfsight-app-cfbb45fe-6aae-4647-bd41-811d26479335" data-elfsight-app-lazy></div>
         </div>
 
-        <div class="mt-6 dark:bg-primary text-white">
-            <div class="elfsight-app-c498a4fd-fc7b-4351-9853-204c13347838" data-elfsight-app-lazy></div>
-        </div>
+
 
     </section>
 
@@ -167,27 +165,31 @@
 
     </section>
 
-    <section class="container hidden mt-12 py-6">
+    <section class="container  mt-12 py-6">
 
         <div class="flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">
             <div class="border-4 h-1 w-12 border-secondary"></div> VIDEO TESTIMONIALS
         </div>
 
 
-        <div class="grid grid-cols-3 gap-6">
-            @foreach($videos as $video)
-                <div class="overflow-hidden relative">
-                    <a class="venobox" data-gall="myGallery" data-autoplay="true" data-maxwidth="50%" data-vbtype="video" href="{{$video->codigo}}">
-                        <img src="{{$video->imagen}}" class="transform bg-blue-400 hover:bg-blue-600 transition duration-500 hover:scale-105"/>
-                        <div class="absolute bottom-0 left-0 bg-gray-800 p-2 rounded">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-6 h-6 text-white">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
-                            </svg>
-                        </div>
-                    </a>
-                </div>
-            @endforeach
+        <div class="mt-6 dark:bg-primary text-white">
+            <div class="elfsight-app-c498a4fd-fc7b-4351-9853-204c13347838" data-elfsight-app-lazy></div>
         </div>
+
+{{--        <div class="grid grid-cols-3 gap-6">--}}
+{{--            @foreach($videos as $video)--}}
+{{--                <div class="overflow-hidden relative">--}}
+{{--                    <a class="venobox" data-gall="myGallery" data-autoplay="true" data-maxwidth="50%" data-vbtype="video" href="{{$video->codigo}}">--}}
+{{--                        <img src="{{$video->imagen}}" class="transform bg-blue-400 hover:bg-blue-600 transition duration-500 hover:scale-105"/>--}}
+{{--                        <div class="absolute bottom-0 left-0 bg-gray-800 p-2 rounded">--}}
+{{--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" class="w-6 h-6 text-white">--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />--}}
+{{--                            </svg>--}}
+{{--                        </div>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--            @endforeach--}}
+{{--        </div>--}}
     </section>
 
 
