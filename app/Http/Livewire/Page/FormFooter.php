@@ -15,7 +15,7 @@ class FormFooter extends Component
         $categories = TCategoria::all();
 
         $number = ['1','2','3','4','5'];
-        $trip_lengths = ['3-5','6-8','9-11','12-16','16+'];
+        $trip_lengths = ['7-11','12-15','16-21','22-28','29+'];
         $hotels = [
             [
                 'star'=>'5',
