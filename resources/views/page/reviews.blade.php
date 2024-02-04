@@ -34,13 +34,17 @@
             <div class="elfsight-app-cfbb45fe-6aae-4647-bd41-811d26479335" data-elfsight-app-lazy></div>
         </div>
 
+        <div class="mt-6 dark:bg-primary text-white">
+            <div class="elfsight-app-c498a4fd-fc7b-4351-9853-204c13347838" data-elfsight-app-lazy></div>
+        </div>
+
     </section>
 
 {{--    <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>--}}
 
 
 
-    <section class="container hidden md:block">
+    <section class="container hidden ">
 
         <div class="flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">
             <div class="border-4 h-1 w-12 border-secondary"></div> {{__('message.subtitle5')}}
@@ -163,7 +167,7 @@
 
     </section>
 
-    <section class="container hidden md:block mt-12 py-6">
+    <section class="container hidden mt-12 py-6">
 
         <div class="flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">
             <div class="border-4 h-1 w-12 border-secondary"></div> VIDEO TESTIMONIALS
