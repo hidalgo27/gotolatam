@@ -11,7 +11,7 @@
     </section>
 
     <div class="container">
-        <div class="flex md:justify-center w-full gap-3 my-10 overflow-x-scroll focus:touch-pan-x">
+        <div class="flex w-full gap-3 my-10 overflow-x-scroll focus:touch-pan-x">
             @foreach($destinations->where('idpais', $pais->id) as $des)
 
                 <a href="{{route('destinations.destino.show', [$pais, $des]) }}" class="inline text-center mb-4 gap-3">
