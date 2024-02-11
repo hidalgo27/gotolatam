@@ -81,7 +81,7 @@
             @endforeach
 
 
-        
+
         <h2 class="text-center font-semibold text-4xl">{{$destino->nombre}} Highlights</h2>
         <p class="text-center my-6">{!! $destino->descripcion !!}</p>
 
