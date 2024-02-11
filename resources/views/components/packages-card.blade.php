@@ -5,9 +5,9 @@
             <img src="{{$paquete->imagen}}" alt="{{ $paquete['titulo'] }}" class="object-cover h-96 w-full transition duration-500 ease-in-out transform group-hover:-translate-x-0 group-hover:scale-105"/>
             <div class="absolute inset-0 gradient-cicle-gray"></div>
         </div>
-        <div class="absolute inset-x-0 bottom-0 w-full p-6">
-            <div class="bg-primary bg-opacity-95 p-4 text-gray-50 group-hover:bg-opacity-100 transition duration-500 rounded-lg shadow-xl">
-                <h2 class="text-xl font-bold">{{ $paquete['titulo'] }}</h2>
+        <div class="absolute inset-x-0 bottom-0 w-full p-2">
+            <div class="bg-primary bg-opacity-90 p-2 text-gray-50 group-hover:bg-opacity-100 transition duration-500 rounded-lg shadow-xl">
+                <h2 class="text-sm font-semibold">{{ $paquete['titulo'] }}</h2>
                 <p class="text-xs my-2">
                     @foreach($paquete['paquetes_destinos'] as $paquete_destino)
                         {{$paquete_destino['destinos']['nombre']}}

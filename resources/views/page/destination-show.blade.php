@@ -15,23 +15,23 @@
 {{--        @livewire('page.form-home')--}}
 {{--    </div>--}}
 
-    <section class="container py-12 text-gray-500 text-center mx-auto">
+    <section class="container pt-12 text-gray-500 text-center mx-auto">
 {{--        <p>{{__('message.dest_deta_par1')}}</p>--}}
         {!! $pais->descripcion !!}
     </section>
 
 
-    <section class="container grid grid-cols md:grid-cols-5 gap-6 mb-12">
-        <div class="md:col-span-1">
-            <div class="grid space-y-4 ">
+    <section class="container  my-12">
+        <div class="">
+            <div class="flex md:justify-center items-center w-full gap-3 my-6 overflow-x-scroll focus:touch-pan-x">
                 @foreach($pais2 as $paises)
                     <div>
 
 
                         <a href="{{ route('destinations.show', $paises) }}" class="pais-link mb-2 flex items-center font-semibold h3 @if($paises->id == $pais->id) active @endif">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                            </svg>
+{{--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">--}}
+{{--                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />--}}
+{{--                            </svg>--}}
                             {{$paises->nombre}}
                         </a>
 {{--                        @foreach($destino->where('idpais', $paises->id) as $destinos)--}}
@@ -77,12 +77,12 @@
                     <div class="group">
                         <div class="overflow-hidden relative">
                             <div class="relative">
-                                <img src="{{$paquete['paquetes']['imagen']}}" alt="sds" class="object-cover transition duration-500 ease-in-out transform group-hover:-translate-x-0 group-hover:scale-105"/>
+                                <img src="{{$paquete['paquetes']['imagen']}}" alt="" class="object-cover w-full h-96 transition duration-500 ease-in-out transform group-hover:-translate-x-0 group-hover:scale-105"/>
                                 <div class="absolute inset-0 gradient-cicle-gray"></div>
                             </div>
-                            <div class="absolute inset-x-0 bottom-0 w-full p-6">
-                                <div class="bg-primary bg-opacity-95 p-4 text-gray-50 group-hover:bg-opacity-100 transition duration-500 rounded-lg shadow-xl">
-                                    <h2 class="text-xl font-bold">{{ $paquete['paquetes']['titulo'] }}</h2>
+                            <div class="absolute inset-x-0 bottom-0 w-full p-2">
+                                <div class="bg-primary bg-opacity-90 p-2 text-gray-50 group-hover:bg-opacity-100 transition duration-500 rounded-lg shadow-xl">
+                                    <h2 class="font-semibold text-sm">{{ $paquete['paquetes']['titulo'] }}</h2>
                                     <p class="text-xs my-2">
                                         @foreach($paquete['paquetes']['paquetes_destinos'] as $paquete_destino)
                                             {{$paquete_destino['destinos']['nombre']}}
@@ -115,6 +115,192 @@
         </div>
     </section>
 
+    <section class="container grid mt-12">
+        <h2 class="text-center font-semibold text-4xl">Peru Highlights</h2>
+        <p class="text-center my-6">{!! $pais->descripcion !!}</p>
+
+        <div class="flex md:justify-center w-full gap-3 my-10 overflow-x-scroll focus:touch-pan-x">
+        @foreach($pais2 as $paises)
+
+
+
+{{--                <a href="{{ route('destinations.show', $paises) }}" class="pais-link mb-2 flex items-center font-semibold h3 @if($paises->id == $pais->id) active @endif">--}}
+{{--                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">--}}
+{{--                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />--}}
+{{--                    </svg>--}}
+{{--                    {{$paises->nombre}}--}}
+{{--                </a>--}}
+
+
+                                        @foreach($destino->where('idpais', $pais->id) as $destinos)
+                                            <a href="{{route('destinations.destino.show', [$pais, $destinos]) }}" class="inline text-center mb-4 gap-3">
+                                                <img class="inline-block h-20 w-20 rounded-full mx-auto" src="{{$destinos->imagen}}" alt=""/>
+                                                <span class="block w-24 text-xs">{{$destinos->nombre}}</span>
+                                            </a>
+                                        @endforeach
+
+
+        @endforeach
+        </div>
+
+{{--        <img src="{{$pais->imagen}}" alt="">--}}
+{{--        <div x-data="{--}}
+{{--            activeTab:1,--}}
+{{--            activeClass: 'inline-block px-4 py-2 bg-red-500',--}}
+{{--            inactiveClass : 'inline-block px-4 py-2 bg-purple-500'--}}
+{{--         }" class="container mx-auto mt-20">--}}
+{{--            <ul class="flex justify-center space-x-2 ">--}}
+{{--                <li>--}}
+{{--                    <button type="button" x-on:click="activeTab = 1" :class="activeTab === 1 ? activeClass : inactiveClass">Tab 1</button>--}}
+{{--                </li>--}}
+{{--                <li>--}}
+{{--                    <button type="button" x-on:click="activeTab = 2" :class="activeTab === 2 ? activeClass : inactiveClass">Tab 2</button>--}}
+{{--                </li>--}}
+{{--                <li>--}}
+{{--                    <button type="button" x-on:click="activeTab = 3" :class="activeTab === 3 ? activeClass : inactiveClass">Tab 3</button>--}}
+{{--                </li>--}}
+{{--            </ul>--}}
+{{--            <div class="mt-6 bg-white border p-3">--}}
+{{--                <div x-show="activeTab === 1"> Tab 1 Content show...  </div>--}}
+{{--                <div x-show="activeTab === 2">Tab 2 Content show ...</div>--}}
+{{--                <div x-show="activeTab === 3">Tab 3 Content show ...</div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+    </section>
+    <section class="container hidden md:block">
+        <div class="grid grid-cols-12 gap-12" x-data="{
+            activeTab:1,
+            activeClass: 'font-semibold bg-secondary bg-opacity-5 text-secondary border-r-4',
+            inactiveClass : 'font-medium bg-gray-100 text-gray-500 border-r'
+        }">
+            <div class="col-span-3">
+                <ul class="divide-y">
+                    <li>
+                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 1" :class="activeTab === 1 ? activeClass : inactiveClass">Best time to visit</button>
+                    </li>
+                    <li>
+                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 2" :class="activeTab === 2 ? activeClass : inactiveClass">Top tours</button>
+                    </li>
+                    <li>
+                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 3" :class="activeTab === 3 ? activeClass : inactiveClass">Things to do</button>
+                    </li>
+                    <li>
+                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 4" :class="activeTab === 4 ? activeClass : inactiveClass">Weather</button>
+                    </li>
+                    <li>
+                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 5" :class="activeTab === 5 ? activeClass : inactiveClass">Airports</button>
+                    </li>
+                    <li>
+                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 6" :class="activeTab === 6 ? activeClass : inactiveClass">Hotels</button>
+                    </li>
+                    <li>
+                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 7" :class="activeTab === 7 ? activeClass : inactiveClass">Restaurants</button>
+                    </li>
+                    <li>
+                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 8" :class="activeTab === 8 ? activeClass : inactiveClass">Best way of payment</button>
+                    </li>
+                    <li>
+                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 9" :class="activeTab === 9 ? activeClass : inactiveClass">Festivities</button>
+                    </li>
+                    <li>
+                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 10" :class="activeTab === 10 ? activeClass : inactiveClass">Other useful information</button>
+                    </li>
+                    <li>
+                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 11" :class="activeTab === 11 ? activeClass : inactiveClass">Best places to visit</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-span-9">
+                <div x-show="activeTab === 1">
+                    {!! $pais->best_time !!}
+                </div>
+                <div x-show="activeTab === 2">
+                    {!! $pais->top_tours !!}
+                </div>
+                <div x-show="activeTab === 3">
+                    {!! $pais->things !!}
+                </div>
+                <div x-show="activeTab === 4">
+                    {!! $pais->weather !!}
+                </div>
+                <div x-show="activeTab === 5">
+                    {!! $pais->airports !!}
+                </div>
+                <div x-show="activeTab === 6">
+                    {!! $pais->hotels !!}
+                </div>
+                <div x-show="activeTab === 7">
+                    {!! $pais->restaurants !!}
+                </div>
+                <div x-show="activeTab === 8">
+                    {!! $pais->payment !!}
+                </div>
+                <div x-show="activeTab === 9">
+                    {!! $pais->festivities !!}
+                </div>
+                <div x-show="activeTab === 10">
+                    {!! $pais->information !!}
+                </div>
+                <div x-show="activeTab === 11">
+                    {!! $pais->places !!}
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container md:hidden">
+        <div class="grid ">
+
+
+            <div>
+                <h2 class="text-2xl my-4 font-semibold">Best time to visit</h2>
+                {!! $pais->best_time !!}
+            </div>
+            <div>
+                <h2 class="text-2xl my-4 font-semibold">Top tours</h2>
+                {!! $pais->top_tours !!}
+            </div>
+            <div>
+                <h2 class="text-2xl my-4 font-semibold">Things to do</h2>
+                {!! $pais->things !!}
+            </div>
+            <div>
+                <h2 class="text-2xl my-4 font-semibold">Weather</h2>
+                {!! $pais->weather !!}
+            </div>
+            <div>
+                <h2 class="text-2xl my-4 font-semibold">Airports</h2>
+                {!! $pais->airports !!}
+            </div>
+            <div>
+                <h2 class="text-2xl my-4 font-semibold">Hotels</h2>
+                {!! $pais->hotels !!}
+            </div>
+            <div>
+                <h2 class="text-2xl my-4 font-semibold">Restaurants</h2>
+                {!! $pais->restaurants !!}
+            </div>
+            <div>
+                <h2 class="text-2xl my-4 font-semibold">Best way of payment</h2>
+                {!! $pais->payment !!}
+            </div>
+            <div>
+                <h2 class="text-2xl my-4 font-semibold">Festivities</h2>
+                {!! $pais->festivities !!}
+            </div>
+            <div>
+                <h2 class="text-2xl my-4 font-semibold">Other useful information</h2>
+                {!! $pais->information !!}
+            </div>
+            <div>
+                <h2 class="text-2xl my-4 font-semibold">Best places to visit</h2>
+                {!! $pais->places !!}
+            </div>
+
+
+        </div>
+    </section>
 
 {{--    <section class="container grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">--}}
 
