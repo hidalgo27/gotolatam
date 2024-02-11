@@ -120,7 +120,7 @@
         <p class="text-center my-6">{!! $pais->descripcion !!}</p>
 
         <div class="flex md:justify-center w-full gap-3 my-10 overflow-x-scroll focus:touch-pan-x">
-        @foreach($pais2 as $paises)
+{{--        @foreach($pais2 as $paises)--}}
 
 
 
@@ -132,7 +132,10 @@
 {{--                </a>--}}
 
 
+
+
                                         @foreach($destino->where('idpais', $pais->id) as $destinos)
+
                                             <a href="{{route('destinations.destino.show', [$pais, $destinos]) }}" class="inline text-center mb-4 gap-3">
                                                 <img class="inline-block h-20 w-20 rounded-full mx-auto" src="{{$destinos->imagen}}" alt=""/>
                                                 <span class="block w-24 text-xs">{{$destinos->nombre}}</span>
@@ -140,7 +143,7 @@
                                         @endforeach
 
 
-        @endforeach
+{{--        @endforeach--}}
         </div>
 
 {{--        <img src="{{$pais->imagen}}" alt="">--}}
