@@ -194,7 +194,7 @@
 
 
 
-    <section class="container mt-6 mb-12 ">
+    <section class="container hidden mt-6 mb-12 ">
         {{--        <div class="flex mb-3 items-center text-2xl text-gray-700 dark:text-primary font-bold gap-2">--}}
         {{--            <div class="">--}}
         {{--                <span class="inline-block w-1 h-2.5 bg-secondary ml-1"></span>--}}
@@ -235,7 +235,7 @@
                 </div>
                 <div class="grid grid-cols-4 items-center text-2xl text-gray-700 font-bold gap-3">
                     <div class="border">
-                        <a href="https://www.instagram.com/go.to.peru/" target="_blank"><img src="{{asset('images/logos/instagram.png')}}" alt="" class="p-6"></a>
+                        <a href="https://www.instagram.com/goto.peru/" target="_blank"><img src="{{asset('images/logos/instagram.png')}}" alt="" class="p-6"></a>
                     </div>
                     <div class="border">
                         <a href="https://www.facebook.com/GOTOPERUcom/" target="_blank"><img src="{{asset('images/logos/facebook.png')}}" alt="" class="p-6"></a>

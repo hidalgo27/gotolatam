@@ -327,7 +327,7 @@
                 </div>
                 <div class="grid grid-cols-4 items-center text-2xl text-gray-700 font-bold gap-3">
                     <div class="border">
-                        <a href="https://www.instagram.com/go.to.peru/" target="_blank"><img src="{{asset('images/logos/instagram.png')}}" alt="" class="p-6"></a>
+                        <a href="https://www.instagram.com/goto.peru/" target="_blank"><img src="{{asset('images/logos/instagram.png')}}" alt="" class="p-6"></a>
                     </div>
                     <div class="border">
                         <a href="https://www.facebook.com/GOTOPERUcom/" target="_blank"><img src="{{asset('images/logos/facebook.png')}}" alt="" class="p-6"></a>

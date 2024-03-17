@@ -220,7 +220,7 @@ return [
     'revi_par1' => 'Experience Peru with an award-winning team on a completely customized, private or small group tour for an authentic trip of a lifetime. With our 97% satisfaction rate, round-the-clock local support and 100% financial protection, explore 20+ enchanting destinations around the land of the Incas safely and seamlessly. Our 9,000+ enchanted guests will vouch for us.',
     'revi_par2' => 'We will work according to your agenda and travel interests to build together the most exclusive travel plans.',
     'revi_subtitle1' => 'PHOTOS FROM OUR TRAVELERS',
-    'revi_par3' => ' Get inspired by photos and videos from fellow travelers in Peru, or share your favorite @go.to.peru experiences with us.',
+    'revi_par3' => ' Get inspired by photos and videos from fellow travelers in Peru, or share your favorite @goto.peru experiences with us.',
 
     'resp_title1' => 'Social Responsability',
     'resp_part1' => 'Experience Peru with an award-winning team on a completely customized, private or small group tour for an authentic trip of a lifetime. With our 97% satisfaction rate, round-the-clock local support and 100% financial protection, explore 20+ enchanting destinations around the land of the Incas safely and seamlessly. Our 9,000+ enchanted guests will vouch for us.',

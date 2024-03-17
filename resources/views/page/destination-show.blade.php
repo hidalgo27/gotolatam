@@ -116,7 +116,7 @@
     </section>
 
     <section class="container grid mt-12">
-        <h2 class="text-center font-semibold text-4xl">Peru Highlights</h2>
+        <h2 class="text-center font-semibold text-4xl">{{$pais->nombre}} Highlights</h2>
         <p class="text-center my-6">{!! $pais->descripcion !!}</p>
 
         <div class="flex  w-full gap-3 my-10 overflow-x-scroll focus:touch-pan-x">

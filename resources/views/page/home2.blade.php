@@ -511,7 +511,7 @@
         <div class="container mt-12 hidden sm:flex">
             <div class="flex inline-flex items-center text-2xl text-gray-700 font-bold gap-3">
                 <div class="border dark:border-gray-700">
-                    <a href="https://www.instagram.com/go.to.peru/" target="_blank">
+                    <a href="https://www.instagram.com/goto.peru/" target="_blank">
                         <img src="{{asset('images/logos/instagram2.png')}}" alt="" class="px-6 py-4">
                     </a>
                 </div>
@@ -815,7 +815,7 @@
                 <div class="w-full md:w-1/2 mx-auto mt-12 bg-gray-100 bg-opacity-50 p-6 rounded">
                     <div class="flex inline-flex items-center text-2xl text-gray-700 font-bold gap-3">
                         <div class="">
-                            <a href="https://www.instagram.com/go.to.peru/" target="_blank">
+                            <a href="https://www.instagram.com/goto.peru/" target="_blank">
                                 <img src="{{asset('images/logos/instagram2.png')}}" alt="" class="px-2">
                             </a>
                         </div>
