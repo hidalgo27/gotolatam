@@ -17,7 +17,9 @@
 
     <section class="container pt-12 text-gray-500 text-center mx-auto">
 {{--        <p>{{__('message.dest_deta_par1')}}</p>--}}
-        {!! $pais->descripcion !!}
+{{--        {!! $pais->descripcion !!}--}}
+        <h2 class="text-center font-semibold text-4xl">{{$pais->nombre}} Highlights</h2>
+        <p class="text-center my-6">{!! $pais->descripcion !!}</p>
     </section>
 
 
@@ -116,8 +118,7 @@
     </section>
 
     <section class="container grid mt-12">
-        <h2 class="text-center font-semibold text-4xl">{{$pais->nombre}} Highlights</h2>
-        <p class="text-center my-6">{!! $pais->descripcion !!}</p>
+
 
         <div class="flex  w-full gap-3 my-10 overflow-x-scroll focus:touch-pan-x">
 {{--        @foreach($pais2 as $paises)--}}
@@ -178,39 +179,55 @@
         }">
             <div class="col-span-3">
                 <ul class="divide-y">
-                    <li>
-                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 1" :class="activeTab === 1 ? activeClass : inactiveClass">Best time to visit</button>
-                    </li>
-                    <li>
-                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 2" :class="activeTab === 2 ? activeClass : inactiveClass">Top tours</button>
-                    </li>
-                    <li>
-                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 3" :class="activeTab === 3 ? activeClass : inactiveClass">Things to do</button>
-                    </li>
-                    <li>
-                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 4" :class="activeTab === 4 ? activeClass : inactiveClass">Weather</button>
-                    </li>
-                    <li>
-                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 5" :class="activeTab === 5 ? activeClass : inactiveClass">Airports</button>
-                    </li>
-                    <li>
-                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 6" :class="activeTab === 6 ? activeClass : inactiveClass">Hotels</button>
-                    </li>
-                    <li>
-                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 7" :class="activeTab === 7 ? activeClass : inactiveClass">Restaurants</button>
-                    </li>
-                    <li>
-                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 8" :class="activeTab === 8 ? activeClass : inactiveClass">Best way of payment</button>
-                    </li>
-                    <li>
-                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 9" :class="activeTab === 9 ? activeClass : inactiveClass">Festivities</button>
-                    </li>
-                    <li>
-                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 10" :class="activeTab === 10 ? activeClass : inactiveClass">Other useful information</button>
-                    </li>
-                    <li>
-                        <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 11" :class="activeTab === 11 ? activeClass : inactiveClass">Best places to visit</button>
-                    </li>
+
+                    @if($pais->best_time)
+                        <li>
+                            <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 1" :class="activeTab === 1 ? activeClass : inactiveClass">Best time to visit</button>
+                        </li>
+                    @endif
+                    @if($pais->top_tours)
+                        <li>
+                            <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 2" :class="activeTab === 2 ? activeClass : inactiveClass">Top tours</button>
+                        </li>
+                        @endif
+
+                    @if($pais->things)
+                        <li>
+                            <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 3" :class="activeTab === 3 ? activeClass : inactiveClass">Things to do</button>
+                        </li>
+                        @endif
+                    @if($pais->weather)
+                        <li>
+                            <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 4" :class="activeTab === 4 ? activeClass : inactiveClass">Weather</button>
+                        </li>@endif
+                    @if($pais->airports)
+                        <li>
+                            <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 5" :class="activeTab === 5 ? activeClass : inactiveClass">Airports</button>
+                        </li>@endif
+                    @if($pais->hotels)
+                        <li>
+                            <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 6" :class="activeTab === 6 ? activeClass : inactiveClass">Hotels</button>
+                        </li>@endif
+                    @if($pais->restaurants)
+                        <li>
+                            <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 7" :class="activeTab === 7 ? activeClass : inactiveClass">Restaurants</button>
+                        </li>@endif
+                    @if($pais->payment)
+                        <li>
+                            <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 8" :class="activeTab === 8 ? activeClass : inactiveClass">Best way of payment</button>
+                        </li>@endif
+                    @if($pais->festivities)
+                        <li>
+                            <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 9" :class="activeTab === 9 ? activeClass : inactiveClass">Festivities</button>
+                        </li>@endif
+                    @if($pais->information)
+                        <li>
+                            <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 10" :class="activeTab === 10 ? activeClass : inactiveClass">Other useful information</button>
+                        </li>@endif
+                    @if($pais->places)
+                        <li>
+                            <button type="button" class="px-5 text-left py-4 w-full border-secondary" x-on:click="activeTab = 11" :class="activeTab === 11 ? activeClass : inactiveClass">Best places to visit</button>
+                        </li>@endif
                 </ul>
             </div>
             <div class="col-span-9">
