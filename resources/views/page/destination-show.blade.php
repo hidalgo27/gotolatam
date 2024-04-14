@@ -15,6 +15,7 @@
 {{--        @livewire('page.form-home')--}}
 {{--    </div>--}}
 
+
     <section class="container pt-12 text-gray-500 text-center mx-auto">
 {{--        <p>{{__('message.dest_deta_par1')}}</p>--}}
 {{--        {!! $pais->descripcion !!}--}}
@@ -24,28 +25,6 @@
 
 
     <section class="container  my-12">
-        <div class="">
-            <div class="flex md:justify-center items-center w-full gap-3 my-6 overflow-x-scroll focus:touch-pan-x">
-                @foreach($pais2 as $paises)
-                    <div>
-
-
-                        <a href="{{ route('destinations.show', $paises) }}" class="pais-link mb-2 flex items-center font-semibold h3 @if($paises->id == $pais->id) active @endif">
-{{--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">--}}
-{{--                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />--}}
-{{--                            </svg>--}}
-                            {{$paises->nombre}}
-                        </a>
-{{--                        @foreach($destino->where('idpais', $paises->id) as $destinos)--}}
-{{--                            <a href="{{route('destinations.destino.show', [$paises, $destinos]) }}" class="flex items-center mb-4 gap-3">--}}
-{{--                                <img class="inline-block h-6 w-6 rounded-full" src="{{$destinos->imagen}}" alt=""/>--}}
-{{--                                {{$destinos->nombre}}--}}
-{{--                            </a>--}}
-{{--                        @endforeach--}}
-                    </div>
-                @endforeach
-            </div>
-        </div>
         <div class="col-span-4  grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
 {{--        @foreach($destinations as $destination)--}}
 {{--            <article class="grid grid-cols-1 place-content-between mb-6 border-r border-l dark:border-gray-700">--}}
@@ -322,6 +301,45 @@
         </div>
     </section>
 
+    <div class="container">
+    <section class="swiper mySwiper3">
+        <div class="swiper-wrapper grid grid-cols-1 md:grid-cols-8 mb-12">
+            {{--            <div class="flex md:justify-center items-center w-full gap-3 my-6 overflow-x-scroll focus:touch-pan-x">--}}
+            @foreach($pais2 as $paises)
+                {{--                    <div>--}}
+
+
+                {{--                        <a href="{{ route('destinations.show', $paises) }}" class="pais-link mb-2 flex items-center font-semibold h3 @if($paises->id == $pais->id) active @endif">--}}
+                {{--                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">--}}
+                {{--                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />--}}
+                {{--                            </svg>--}}
+                {{--                            <img src="{{$paises->imagen}}" alt="">--}}
+                {{--                            {{$paises->nombre}}--}}
+                {{--                        </a>--}}
+                {{--                        @foreach($destino->where('idpais', $paises->id) as $destinos)--}}
+                {{--                            <a href="{{route('destinations.destino.show', [$paises, $destinos]) }}" class="flex items-center mb-4 gap-3">--}}
+                {{--                                <img class="inline-block h-6 w-6 rounded-full" src="{{$destinos->imagen}}" alt=""/>--}}
+                {{--                                {{$destinos->nombre}}--}}
+                {{--                            </a>--}}
+                {{--                        @endforeach--}}
+                {{--                    </div>--}}
+                <article class="swiper-slide grid grid-cols-1 place-content-between  dark:border-gray-700">
+                    <div class="w-full">
+                        <figure class="overflow-hidden relative">
+                            <a href="{{ route('destinations.show', $paises) }}" @if($paises->id == $pais->id) active @endif>
+                                <img src="{{$paises->imagen_s}}" alt="" class="bg-cover h-full w-full">
+                                <div class="absolute inset-0 gradient-cicle-gray"></div>
+                            </a>
+                            <div class="absolute left-0 bottom-0 text-gray-50 p-3">
+                                {{$paises->nombre}}
+                            </div>
+                        </figure>
+                    </div>
+                </article>
+            @endforeach
+        </div>
+    </section>
+    </div>
 {{--    <section class="container grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">--}}
 
 {{--        @foreach($paquetes as $paquete)--}}
@@ -371,4 +389,82 @@
         @livewire('page.form-footer')
     </section>
 @endsection
+@push('css')
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+@endpush
+@push('scripts')
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
+    <script>
+        new VenoBox({
+            selector: '.venobox'
+        });
+        var swiper = new Swiper(".mySwiper", {
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+        var swiper = new Swiper(".slider-featured", {
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+        var swiper = new Swiper(".slider-brands", {
+            slidesPerView: 4,
+            // navigation: {
+            //     nextEl: ".swiper-button-next",
+            //     prevEl: ".swiper-button-prev",
+            // },
+            breakpoints: {
+                320: {
+                    slidesPerView: 2,
+                    // spaceBetween: 20,
+                },
+                640: {
+                    slidesPerView: 1,
+                    // spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 4,
+                    // spaceBetween: 40,
+                },
+                1024: {
+                    slidesPerView: 4,
+                    // spaceBetween: 50,
+                },
+            },
+        });
+        var swiper = new Swiper(".mySwiper3", {
+            slidesPerView: 7,
+            spaceBetween: 0,
+            freeMode: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 2,
+                },
+                640: {
+                    slidesPerView: 3,
+                },
+                768: {
+                    slidesPerView: 6,
+                },
+                1024: {
+                    slidesPerView: 7,
+                },
+            },
+        });
+    </script>
+
+@endpush
 
