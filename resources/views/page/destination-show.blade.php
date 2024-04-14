@@ -301,7 +301,7 @@
         </div>
     </section>
 
-    <div class="container">
+    <div class="container mt-12">
     <section class="swiper mySwiper3">
         <div class="swiper-wrapper grid grid-cols-1 md:grid-cols-8 mb-12">
             {{--            <div class="flex md:justify-center items-center w-full gap-3 my-6 overflow-x-scroll focus:touch-pan-x">--}}
@@ -460,7 +460,7 @@
                     slidesPerView: 6,
                 },
                 1024: {
-                    slidesPerView: 7,
+                    slidesPerView: 6,
                 },
             },
         });
