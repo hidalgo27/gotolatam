@@ -466,7 +466,7 @@
                                     Departures Available
                                 </div>
                                 <div class="text-right font-medium">
-                                    Until December 2023
+                                    Until December 2024
                                 </div>
                             </div>
 
