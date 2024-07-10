@@ -603,8 +603,7 @@
 {{--        </div>--}}
 
 {{--    </section>--}}
-
-    sdsd
+    
 
     <section class="container my-6">
         <div class="grid grid-cols-3 gap-6">
