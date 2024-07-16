@@ -286,58 +286,58 @@
 {{--        </div>--}}
 {{--    </section>--}}
 
-    <div class="hidden sm:inline-flex ">
-    <section class="grid grid-cols-1 md:grid-cols-6  ">
-        <div class="md:col-span-4 relative bg-gray-700">
-            <div class="inset-0 flex items-center text-white w-full">
-                <div class="w-full grid grid-cols-1 md:grid-cols-6 items-center">
-                    <div class="p-6 col-span-4">
-                        <h3 class="font-semibold block text-xl">Your LATAM Travel Operator</h3>
-                        <p class="block my-6">
-                            Trust our team of local travel experts to plan an unforgettable trip full of must-see attractions and our favorite hidden gems of the land of the Incas. Our peruvian experts have all traveled down the same roads, trains and treks and know what you’re about to experience.
-                            Every Peru tour offered is regularly inspected to ensure our travelers have an amazing experience.
-                        </p>
+    <div class="bg-gray-700 hidden md:block">
 
-                        <div class="block mt-6">
-                            <a href="{{route('packages.all')}}" class="btn-secondary">View Tours</a>
+        <section class="container grid grid-cols-1 md:grid-cols-6  items-end">
+            <div class="md:col-span-4 relative bg-gray-700">
+                <div class="inset-0 flex items-center text-white w-full">
+                    <div class="w-full grid grid-cols-1 md:grid-cols-6 items-center">
+                        <div class="p-6 col-span-3">
+                            <h3 class="font-semibold block text-xl">Your LATAM Travel Operator</h3>
+                            <p class="block font-light text-sm leading-6 my-6">
+                                Trust our team of local travel experts to plan an unforgettable trip full of must-see attractions and our favorite hidden gems of the diverse South American continent. Our experts have all traveled down the same roads, trains, and treks and know what you’re about to experience. Every tour offered is regularly inspected to ensure our travelers have an amazing experience.
+                            </p>
+
+                            <div class="block mt-6">
+                                <a href="{{route('packages.all')}}" class="btn-secondary">View Tours</a>
+                            </div>
+                        </div>
+                        <div class="col-span-3 pt-12">
+                            <img src="{{asset('images/team/pabel.png')}}" alt="">
                         </div>
                     </div>
-                    <div class="col-span-2">
-                        <img src="{{asset('images/banners/joana.png')}}" alt="">
+                </div>
+            </div>
+            <div class="md:col-span-2 bg-gray-800 p-9 font-light shadow-lg text-white dark:bg-gray-700 dark:bg-opacity-90 dark:text-gray-50 flex items-center">
+                <div class="">
+                    <h3 class="font-semibold block text-xl">WHY BOOK WITH US</h3>
+                    <p class="flex my-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Experts in tailor-made LATAM travel</p>
+                    <p class="flex my-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Headquarters in Cusco, offices in Lima, Arequipa and Tampa,FL.</p>
+                    <p class="flex my-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Local staff with first-hand South America travel experience</p>
+                    <p class="flex my-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                        Dedicated to providing personalized, quality service</p>
+                    {{--                <a href="#" class="btn-primary">{{__('message.button_all')}}</a>--}}
+                    <div class="block mt-6">
+                        <a href="{{route('book')}}" class="btn-primary">View More</a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="md:col-span-2 bg-gray-800 text-white dark:bg-gray-700 dark:bg-opacity-90 p-6 dark:text-gray-50 flex items-center">
-            <div class="">
-                <h3 class="font-semibold block text-xl">WHY BOOK WITH US</h3>
-                <p class="flex my-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    Experts in tailor-made South America travel</p>
-                <p class="flex my-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    Main Office : Cusco. Partner Offices: Buenos Aires, Rio de Janeiro, Quito, Santiago de Chile, Bogota, La Paz.</p>
-                <p class="flex my-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    Local staff with first-hand South America travel experience</p>
-                <p class="flex my-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    Dedicated to providing personalized, quality service</p>
-                {{--                <a href="#" class="btn-primary">{{__('message.button_all')}}</a>--}}
-                <div class="block mt-6">
-                    <a href="{{route('book')}}" class="btn-primary">View More</a>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
     </div>
 
 
@@ -440,6 +440,47 @@
             <div class="border-4 h-1 w-12 border-primary mx-auto mt-3"></div>
         </div>
     </section>
+
+        <section class="container mb-12 ">
+            <div class="grid grid-cols-6 gap-4">
+                <div class="col-start-2 col-span-4">
+                    <div class="grid grid-cols-3 md:grid-cols-8 content-center text-center">
+                        <div class="">
+                            <img src="{{asset('images/include/assistances.png')}}" alt="{{__('message.serv_item2')}}" class="object-contain px-4 text-center">
+                            <p class="text-xs">{{__('message.serv_item2')}}</p>
+                        </div>
+                        <div class="">
+                            <img src="{{asset('images/include/breakfast.png')}}" alt="{{__('message.serv_item3')}}" class="object-contain px-4 text-center">
+                            <p class="text-xs">{{__('message.serv_item3')}}</p>
+                        </div>
+                        <div class="">
+                            <img src="{{asset('images/include/entrances.png')}}" alt="{{__('message.serv_item4')}}" class="object-contain px-4 text-center">
+                            <p class="text-xs">{{__('message.serv_item4')}}</p>
+                        </div>
+                        <div class="">
+                            <img src="{{asset('images/include/flight.png')}}" alt="{{__('message.serv_item5')}}" class="object-contain px-4 text-center">
+                            <p class="text-xs">{{__('message.serv_item5')}}</p>
+                        </div>
+                        <div class="">
+                            <img src="{{asset('images/include/hotels.png')}}" alt="{{__('message.serv_item6')}}" class="object-contain px-4 text-center">
+                            <p class="text-xs">{{__('message.serv_item6')}}</p>
+                        </div>
+                        <div class="">
+                            <img src="{{asset('images/include/tours.png')}}" alt="{{__('message.serv_item7')}}" class="object-contain px-4 text-center">
+                            <p class="text-xs">{{__('message.serv_item7')}}</p>
+                        </div>
+                        <div class="">
+                            <img src="{{asset('images/include/trains.png')}}" alt="{{__('message.serv_item8')}}" class="object-contain px-4 text-center">
+                            <p class="text-xs">{{__('message.serv_item8')}}</p>
+                        </div>
+                        <div class="">
+                            <img src="{{asset('images/include/transfers.png')}}" alt="{{__('message.serv_item9')}}" class="object-contain px-4 text-center">
+                            <p class="text-xs">{{__('message.serv_item9')}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     <section class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
 
@@ -585,7 +626,7 @@
 {{--            See and learn about our tours from our valued Nordic Visitor customers.--}}
 {{--        </div>--}}
 {{--    </section>--}}
-    <section class="container hidden md:block mt-6">
+{{--    <section class="container hidden md:block mt-6">--}}
 
 {{--        <div class="flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">--}}
 {{--            <div class="border-4 h-1 w-12 border-secondary"></div> {{__('message.subtitle5')}}--}}
@@ -594,12 +635,12 @@
 {{--        <div class="elfsight-app-d1e14e4b-52d0-4ad9-9068-f94e0de6bf50"></div>--}}
 {{--        </div>--}}
 
-        <div class="mt-6 dark:bg-primary text-white">
+{{--        <div class="mt-6 dark:bg-primary text-white">--}}
 {{--            <div class="elfsight-app-45e6b553-4db1-4009-9a37-a98b273413ec"></div>--}}
-            <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>
-        </div>
+{{--            <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>--}}
+{{--        </div>--}}
 
-    </section>
+{{--    </section>--}}
 
 
     <section class="container my-6">
@@ -675,50 +716,165 @@
             </div>
         </section>
 
-        <div class="container hidden sm:flex">
-            <div class="inline-flex items-center text-2xl text-gray-700 font-bold gap-3">
-                <div class="border dark:border-gray-700">
-                    <a href="https://www.instagram.com/goto.peru/" target="_blank">
-                        <img src="{{asset('images/logos/instagram2.png')}}" alt="" class="px-6 py-4">
-                    </a>
-                </div>
-                <div class="border dark:border-gray-700">
-                    <a href="https://www.facebook.com/GOTOPERUcom/" target="_blank">
-                        <img src="{{asset('images/logos/facebook2.png')}}" alt="" class="px-6 py-4">
-                    </a>
-                </div>
-                <div class="border dark:border-gray-700">
-                    <a href="https://www.youtube.com/channel/UCWjJ10j-_BfNTDnmjBug8Ng" target="_blank">
-                        <img src="{{asset('images/logos/youtube2.png')}}" alt="" class="px-6 py-4">
-                    </a>
-                </div>
-                <div class="border dark:border-gray-700">
-                    <a href="https://www.tiktok.com/@gotoperu" target="_blank">
-                        <img src="{{asset('images/logos/tiktok2.png')}}" alt="" class="px-6 py-4">
-                    </a>
-                </div>
-                <div class="border dark:border-gray-700">
-                    <a href="https://www.tripadvisor.com.pe/Attraction_Review-g294314-d15202262-Reviews-Gotoperu-Cusco_Cusco_Region.html" target="_blank">
-                        <img src="{{asset('images/logos/tripadvisor2.png')}}" alt="" class="px-6 py-4 dark:filter dark:grayscale dark:invert">
-                    </a>
-                </div>
-                <div class="border dark:border-gray-700">
-                    <a href="https://www.yelp.com/biz/gotoperu-washington?osq=gotoperu.com" target="_blank">
-                        <img src="{{asset('images/logos/yelp2.png')}}" alt="" class="px-6 py-4 dark:filter dark:grayscale dark:invert">
-                    </a>
-                </div>
-                <div class="border dark:border-gray-700">
-                    <a href="https://www.trustpilot.com/review/gotoperu.com">
-                        <img src="{{asset('images/logos/trust2.png')}}" alt="" class="px-6 py-4 dark:filter dark:grayscale dark:invert">
-                    </a>
-                </div>
-            </div>
-        </div>
+{{--        <div class="container hidden sm:flex">--}}
+{{--            <div class="inline-flex items-center text-2xl text-gray-700 font-bold gap-3">--}}
+{{--                <div class="border dark:border-gray-700">--}}
+{{--                    <a href="https://www.instagram.com/goto.peru/" target="_blank">--}}
+{{--                        <img src="{{asset('images/logos/instagram2.png')}}" alt="" class="px-6 py-4">--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--                <div class="border dark:border-gray-700">--}}
+{{--                    <a href="https://www.facebook.com/GOTOPERUcom/" target="_blank">--}}
+{{--                        <img src="{{asset('images/logos/facebook2.png')}}" alt="" class="px-6 py-4">--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--                <div class="border dark:border-gray-700">--}}
+{{--                    <a href="https://www.youtube.com/channel/UCWjJ10j-_BfNTDnmjBug8Ng" target="_blank">--}}
+{{--                        <img src="{{asset('images/logos/youtube2.png')}}" alt="" class="px-6 py-4">--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--                <div class="border dark:border-gray-700">--}}
+{{--                    <a href="https://www.tiktok.com/@gotoperu" target="_blank">--}}
+{{--                        <img src="{{asset('images/logos/tiktok2.png')}}" alt="" class="px-6 py-4">--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--                <div class="border dark:border-gray-700">--}}
+{{--                    <a href="https://www.tripadvisor.com.pe/Attraction_Review-g294314-d15202262-Reviews-Gotoperu-Cusco_Cusco_Region.html" target="_blank">--}}
+{{--                        <img src="{{asset('images/logos/tripadvisor2.png')}}" alt="" class="px-6 py-4 dark:filter dark:grayscale dark:invert">--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--                <div class="border dark:border-gray-700">--}}
+{{--                    <a href="https://www.yelp.com/biz/gotoperu-washington?osq=gotoperu.com" target="_blank">--}}
+{{--                        <img src="{{asset('images/logos/yelp2.png')}}" alt="" class="px-6 py-4 dark:filter dark:grayscale dark:invert">--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--                <div class="border dark:border-gray-700">--}}
+{{--                    <a href="https://www.trustpilot.com/review/gotoperu.com">--}}
+{{--                        <img src="{{asset('images/logos/trust2.png')}}" alt="" class="px-6 py-4 dark:filter dark:grayscale dark:invert">--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
     </section>
 
+    <section class="container">
+        <div class="flex mb-3 sm:mt-0 items-center text-2xl text-gray-700 dark:text-secondary mt-12 font-bold gap-2  md:flex">
 
-{{--    <section class="grid grid-cols-1 md:grid-cols-6 my-12">--}}
+            {{--            <span class="inline-block w-1 h-2.5 bg-secondary dark:bg-primary ml-1"></span>--}}
+            {{--            <span class="hidden md:inline-flex inline-block w-3 h-2.5 bg-secondary dark:bg-primary ml-1"></span>--}}
+            <span class="md:inline-flex inline-block w-5 h-2.5 bg-secondary dark:bg-primary"></span> GET SOCIAL WITH US
+
+        </div>
+        <p class="font-light text-lg mt-2">Follow our Peruvian adventures and share your own with us.</p>
+    </section>
+
+    <div class="container  my-6">
+        <div class="grid grid-cols-7 items-center text-2xl text-gray-700 font-bold gap-3">
+            <div class="border dark:border-gray-700">
+                <a href="https://www.instagram.com/goto.peru/" target="_blank">
+                    <img src="{{asset('images/logos/instagram2.png')}}" alt="" class="md:px-6 md:py-4 p-2 w-full">
+                </a>
+            </div>
+            <div class="border dark:border-gray-700">
+                <a href="https://www.facebook.com/GOTOPERUcom/" target="_blank">
+                    <img src="{{asset('images/logos/facebook2.png')}}" alt="" class="md:px-6 md:py-4 p-2 w-full">
+                </a>
+            </div>
+            <div class="border dark:border-gray-700">
+                <a href="https://www.youtube.com/channel/UCWjJ10j-_BfNTDnmjBug8Ng" target="_blank">
+                    <img src="{{asset('images/logos/youtube2.png')}}" alt="" class="md:px-6 md:py-4 p-2 w-full">
+                </a>
+            </div>
+            <div class="border dark:border-gray-700">
+                <a href="https://www.tiktok.com/@gotoperu" target="_blank">
+                    <img src="{{asset('images/logos/tiktok2.png')}}" alt="" class="md:px-6 md:py-4 p-2 w-full">
+                </a>
+            </div>
+            <div class="border dark:border-gray-700">
+                <a href="https://www.tripadvisor.com.pe/Attraction_Review-g294314-d15202262-Reviews-Gotoperu-Cusco_Cusco_Region.html" target="_blank">
+                    <img src="{{asset('images/logos/tripadvisor2.png')}}" alt="" class="md:px-6 md:py-4 p-2 w-full dark:filter dark:grayscale dark:invert">
+                </a>
+            </div>
+            <div class="border dark:border-gray-700">
+                <a href="https://www.yelp.com/biz/gotoperu-washington?osq=gotoperu.com" target="_blank">
+                    <img src="{{asset('images/logos/yelp2.png')}}" alt="" class="md:px-6 md:py-4 p-2 w-full dark:filter dark:grayscale dark:invert">
+                </a>
+            </div>
+            <div class="border dark:border-gray-700">
+                <a href="https://www.trustpilot.com/review/gotoperu.com">
+                    <img src="{{asset('images/logos/trust2.png')}}" alt="" class="md:px-6 md:py-4 p-2 w-full dark:filter dark:grayscale dark:invert">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <section class="container grid grid-cols-1 md:grid-cols-2 md:mb-12">
+        <div class="bg-gray-800 dark:bg-gray-800 text-white dark:bg-opacity-90 p-6 dark:text-gray-50  items-center  md:block">
+            <div class="py-12 text-sm">
+                <h3 class="font-semibold text-2xl">
+                    ABOUT GOTOLATAM
+                </h3>
+                <p class="block my-12">
+                    We are a travel operator with Headquarters in Cusco City and offices in the main destinations of Peru catering to travelers who want an original, authentic and unforgettable experience at the land of the Incas.
+                </p>
+
+                <h3 class="font-medium">Personalized Service</h3>
+                <p class="flex my-4 items-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    First name basis always, since your own custom-made itinerary our dedicated local team, including representatives, guides, drivers will be always there for you on each day of your vacation. Plus a truly local assistance 24/7 on each destination.
+                </p>
+                <h3 class="font-medium">Confidence</h3>
+                <p class="flex my-4 items-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    GOTOLATAM is certified by the Peruvian Government, by the Ministry of Foreign Trade and Tourism of Peru (MINCETUR) . In addition we are also highly rated on Tripadvisor, Trustpilot and diverse well known travel forums.
+                </p>
+            </div>
+        </div>
+        <div class="bg-primary text-white dark:bg-gray-800 dark:bg-opacity-90  dark:text-gray-50 flex items-end">
+            <img src="{{asset('images/team/fiore.png')}}" alt="" class="mx-auto">
+            <div class="text-center">
+                {{--                <h3 class="font-semibold text-2xl">--}}
+                {{--                    GET SOCIAL WITH US--}}
+                {{--                </h3>--}}
+                {{--                <p class="block my-12">--}}
+                {{--                    Follow our Peruvian adventures and share your own with us.--}}
+                {{--                </p>--}}
+                {{--                <div class="w-full md:w-1/2 mx-auto mt-12 bg-gray-100 bg-opacity-50 p-6 rounded">--}}
+                {{--                    <div class="flex inline-flex items-center text-2xl text-gray-700 font-bold gap-3">--}}
+                {{--                        <div class="">--}}
+                {{--                            <a href="https://www.instagram.com/goto.peru/" target="_blank">--}}
+                {{--                                <img src="{{asset('images/logos/instagram2.png')}}" alt="" class="px-2">--}}
+                {{--                            </a>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="">--}}
+                {{--                            <a href="https://www.facebook.com/GOTOPERUcom/" target="_blank">--}}
+                {{--                                <img src="{{asset('images/logos/facebook2.png')}}" alt="" class="px-2">--}}
+                {{--                            </a>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="">--}}
+                {{--                            <a href="https://www.youtube.com/channel/UCWjJ10j-_BfNTDnmjBug8Ng" target="_blank">--}}
+                {{--                                <img src="{{asset('images/logos/youtube2.png')}}" alt="" class="px-2">--}}
+                {{--                            </a>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="">--}}
+                {{--                            <a href="https://www.tiktok.com/@gotoperu" target="_blank">--}}
+                {{--                                <img src="{{asset('images/logos/tiktok2.png')}}" alt="" class="px-2">--}}
+                {{--                            </a>--}}
+                {{--                        </div>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
+                {{--                <a href="#" class="btn-primary">{{__('message.button_all')}}</a>--}}
+            </div>
+        </div>
+    </section>
+
+
+    {{--    <section class="grid grid-cols-1 md:grid-cols-6 my-12">--}}
 {{--        <div class="md:col-span-4 relative bg-gray-700">--}}
 {{--            <div class="inset-0 flex items-center text-white w-full">--}}
 {{--                <div class="w-full grid grid-cols-1 md:grid-cols-6 items-center">--}}
@@ -770,113 +926,12 @@
 {{--        </div>--}}
 {{--    </section>--}}
 
-    <section class="grid grid-cols-1 md:grid-cols-2 my-12">
-        <div class="bg-gray-800 dark:bg-gray-800 text-white dark:bg-gray-700 dark:bg-opacity-90 p-6 dark:text-gray-50 flex items-center">
-            <div class="py-12">
-                <h3 class="font-semibold text-2xl">
-                    ABOUT GOTOLATAM
-                </h3>
-                <p class="block my-12">
-                    We are a travel operator with Headquarters in Cusco City and offices in the main destinations of LATAM catering to travelers who want an original, authentic and unforgettable experience at the land of the Incas.
-                </p>
 
-                <h3 class="font-medium">Personalized Service</h3>
-                <p class="flex my-4 items-start">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    First name basis always, since your own custom-made itinerary our dedicated local team, including representatives, guides, drivers will be always there for you on each day of your vacation. Plus a truly local assistance 24/7 on each destination.
-                </p>
-                <h3 class="font-medium">Confidence</h3>
-                <p class="flex my-4 items-start">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                    </svg>
-                    GOTOLATAM is certified by the Peruvian Government, by the Ministry of Foreign Trade and Tourism of Peru (MINCETUR) . In addition we are also highly rated on Tripadvisor, Trustpilot and diverse well known travel forums.
-                </p>
-            </div>
-        </div>
-
-        <div class="bg-secondary text-white dark:bg-gray-800 dark:bg-opacity-90 p-6 dark:text-gray-50 flex items-center">
-            <div class="text-center">
-                <h3 class="font-semibold text-2xl">
-                    GET SOCIAL WITH US
-                </h3>
-                <p class="block my-12">
-                    Follow our Peruvian adventures and share your own with us.
-                </p>
-                <div class="w-full md:w-1/2 mx-auto mt-12 bg-gray-100 bg-opacity-50 p-6 rounded">
-                    <div class="flex inline-flex items-center text-2xl text-gray-700 font-bold gap-3">
-                        <div class="">
-                            <a href="https://www.instagram.com/goto.peru/" target="_blank">
-                                <img src="{{asset('images/logos/instagram2.png')}}" alt="" class="px-2">
-                            </a>
-                        </div>
-                        <div class="">
-                            <a href="https://www.facebook.com/GOTOPERUcom/" target="_blank">
-                                <img src="{{asset('images/logos/facebook2.png')}}" alt="" class="px-2">
-                            </a>
-                        </div>
-                        <div class="">
-                            <a href="https://www.youtube.com/channel/UCWjJ10j-_BfNTDnmjBug8Ng" target="_blank">
-                                <img src="{{asset('images/logos/youtube2.png')}}" alt="" class="px-2">
-                            </a>
-                        </div>
-                        <div class="">
-                            <a href="https://www.tiktok.com/@gotoperu" target="_blank">
-                                <img src="{{asset('images/logos/tiktok2.png')}}" alt="" class="px-2">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                {{--                <a href="#" class="btn-primary">{{__('message.button_all')}}</a>--}}
-            </div>
-        </div>
-    </section>
 
 
 
     <div class="dark:bg-gray-700 pt-1">
-    <section class="container mb-12 ">
-        <div class="grid grid-cols-6 gap-4">
-            <div class="col-start-2 col-span-4">
-                <div class="grid grid-cols-3 md:grid-cols-8 content-center text-center">
-                    <div class="">
-                        <img src="{{asset('images/include/assistances.png')}}" alt="{{__('message.serv_item2')}}" class="object-contain px-4 text-center">
-                        <p class="text-xs">{{__('message.serv_item2')}}</p>
-                    </div>
-                    <div class="">
-                        <img src="{{asset('images/include/breakfast.png')}}" alt="{{__('message.serv_item3')}}" class="object-contain px-4 text-center">
-                        <p class="text-xs">{{__('message.serv_item3')}}</p>
-                    </div>
-                    <div class="">
-                        <img src="{{asset('images/include/entrances.png')}}" alt="{{__('message.serv_item4')}}" class="object-contain px-4 text-center">
-                        <p class="text-xs">{{__('message.serv_item4')}}</p>
-                    </div>
-                    <div class="">
-                        <img src="{{asset('images/include/flight.png')}}" alt="{{__('message.serv_item5')}}" class="object-contain px-4 text-center">
-                        <p class="text-xs">{{__('message.serv_item5')}}</p>
-                    </div>
-                    <div class="">
-                        <img src="{{asset('images/include/hotels.png')}}" alt="{{__('message.serv_item6')}}" class="object-contain px-4 text-center">
-                        <p class="text-xs">{{__('message.serv_item6')}}</p>
-                    </div>
-                    <div class="">
-                        <img src="{{asset('images/include/tours.png')}}" alt="{{__('message.serv_item7')}}" class="object-contain px-4 text-center">
-                        <p class="text-xs">{{__('message.serv_item7')}}</p>
-                    </div>
-                    <div class="">
-                        <img src="{{asset('images/include/trains.png')}}" alt="{{__('message.serv_item8')}}" class="object-contain px-4 text-center">
-                        <p class="text-xs">{{__('message.serv_item8')}}</p>
-                    </div>
-                    <div class="">
-                        <img src="{{asset('images/include/transfers.png')}}" alt="{{__('message.serv_item9')}}" class="object-contain px-4 text-center">
-                        <p class="text-xs">{{__('message.serv_item9')}}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
 
 {{--    <section class="container hidden md:block">--}}
@@ -948,7 +1003,7 @@
 {{--    </section>--}}
 
 
-    <div class="flex mb-3 container block md:mt-12 sm:mt-0 items-center text-2xl text-gray-700 dark:text-secondary font-bold gap-2">
+    <div class="flex mb-3 container  sm:mt-0 items-center text-2xl text-gray-700 dark:text-secondary font-bold gap-2">
         <div class="">
 {{--            <span class="inline-block w-1 h-2.5 bg-secondary dark:bg-primary ml-1"></span>--}}
 {{--            <span class="hidden md:inline-flex inline-block w-3 h-2.5 bg-secondary dark:bg-primary ml-1"></span>--}}
