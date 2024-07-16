@@ -22,13 +22,13 @@
         {{--        <div class="flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">--}}
         {{--            <div class="border-4 h-1 w-12 border-secondary"></div> {{__('message.subtitle5')}}--}}
         {{--        </div>--}}
-        <div class="dark:bg-primary">
-            <div class="elfsight-app-d1e14e4b-52d0-4ad9-9068-f94e0de6bf50"></div>
-        </div>
+{{--        <div class="dark:bg-primary">--}}
+{{--            <div class="elfsight-app-d1e14e4b-52d0-4ad9-9068-f94e0de6bf50"></div>--}}
+{{--        </div>--}}
 
-        <div class="mt-6 dark:bg-primary text-white">
-            <div class="elfsight-app-45e6b553-4db1-4009-9a37-a98b273413ec"></div>
-        </div>
+{{--        <div class="mt-6 dark:bg-primary text-white">--}}
+{{--            <div class="elfsight-app-45e6b553-4db1-4009-9a37-a98b273413ec"></div>--}}
+{{--        </div>--}}
 
         <div class="mt-6 dark:bg-primary text-white">
             <div class="elfsight-app-cfbb45fe-6aae-4647-bd41-811d26479335" data-elfsight-app-lazy></div>

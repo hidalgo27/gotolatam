@@ -626,6 +626,7 @@
 {{--            See and learn about our tours from our valued Nordic Visitor customers.--}}
 {{--        </div>--}}
 {{--    </section>--}}
+
 {{--    <section class="container hidden md:block mt-6">--}}
 
 {{--        <div class="flex items-center text-2xl text-gray-700 mb-4 dark:text-secondary font-bold gap-2">--}}
@@ -639,6 +640,7 @@
 {{--            <div class="elfsight-app-45e6b553-4db1-4009-9a37-a98b273413ec"></div>--}}
 {{--            <div class="elfsight-app-de637865-6596-4396-8bba-ef0f7b50bc9e"></div>--}}
 {{--        </div>--}}
+
 
 {{--    </section>--}}
 
