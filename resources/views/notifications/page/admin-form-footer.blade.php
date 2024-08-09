@@ -15,6 +15,7 @@
                             <p><strong>Travellers: {{$travellers_all}}</strong></p>
                             <p><strong>Trip Length: {{$trip_length}}</strong></p>
                             <p><strong>Travel date: {{$travel_day_all}}</strong></p>
+                            <p><strong>Device: {{$device}}</strong></p>
                         </td>
                         <td style="text-align:left">
 
@@ -22,6 +23,7 @@
                             <p><strong>Code: {{$code}}</strong></p>
                             <p><strong>Phone: {{$telefono}}</strong></p>
                             <p><strong>Comment: {{$comentario}}</strong></p>
+                            <p><strong>Browser: {{$browser}}</strong></p>
                         </td>
 
                     </tr>

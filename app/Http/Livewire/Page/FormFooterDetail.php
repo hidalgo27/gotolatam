@@ -5,11 +5,27 @@ namespace App\Http\Livewire\Page;
 use App\Models\TCategoria;
 use App\Models\TDestino;
 use Illuminate\Support\Facades\Mail;
+use Jenssegers\Agent\Agent;
 use Livewire\Component;
 
 class FormFooterDetail extends Component
 {
-    public $values_categories = [], $values_destinations = [], $values_number, $values_trip_length, $travel_day, $comment, $name, $email, $phone, $phonecountry, $values_number_input, $success, $paquete;
+    public $values_categories = [], $values_destinations = [], $values_number, $values_trip_length, $travel_day, $comment, $name, $email, $phone, $phonecountry, $values_number_input, $success, $paquete, $device, $browser;
+
+    public function mount()
+    {
+        $agent = new Agent();
+
+        if ($agent->isMobile()) {
+            $this->device = 'Móvil';
+        } elseif ($agent->isTablet()) {
+            $this->device = 'Tablet';
+        } else {
+            $this->device = 'Desktop';
+        }
+
+        $this->browser = $agent->browser();
+    }
     public function render()
     {
         $destinations = TDestino::all();
@@ -109,6 +125,8 @@ class FormFooterDetail extends Component
             'email' => $this->email,
             'telefono' => $this->phone,
             'code' => $this->phonecountry,
+            'device' => $this->device,
+            'browser' => $this->browser
 
         ], function ($messaje) use ($from) {
             $messaje->to($from, 'GotoLatam')

@@ -9,6 +9,16 @@
         </div>
     </div>
     <form wire:submit.prevent="store" class="grid grid-cols-1 gap-12 w-11/12 md:w-7/12 lg:w-1/2 xl:w-2/5 items-center mx-auto">
+        <div class="hidden">
+            @if ($device == 'Móvil')
+                <input type="hidden" wire:model="device" value="Móvil" readonly>
+            @elseif ($device == 'Tablet')
+                <input type="hidden" wire:model="device" value="Tablet" readonly>
+            @else
+                <input type="hidden" wire:model="device" value="Computadora de escritorio" readonly>
+            @endif
+            <input type="hidden" wire:model="browser" value="{{ $browser }}" readonly>
+        </div>
         <div>
             <div class="mx-auto grid grid-cols-6 gap-2">
                 <div class="col-span-6 flex flex-col text-center">
