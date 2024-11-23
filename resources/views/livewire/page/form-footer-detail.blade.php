@@ -35,7 +35,7 @@
                     @foreach($hotels as $index => $hotel)
 
                         <label class="cursor-pointer btn-check-form text-gray-500 flex justify-start items-start relative bg-gray-50 border border-gray-400 py-3 flex flex-shrink-0 justify-center items-center hover:bg-white  hover:border-secondary transition duration-700">
-                            <input wire:model="values_categories.{{ $index }}" type="checkbox" value="{{$hotel['star'].','}}" class="opacity-0 absolute">
+                            <input wire:model="values_categories.{{ $index }}" type="checkbox" value="{{$hotel['star']}}" class="opacity-0 absolute">
                             <svg class="fill-current hidden absolute left-0 top-0 p-1  w-7 h-7 text-secondary pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
                             <span class="flex flex-col text-center">
                                 <div class="select-none block text-xs md:text-base">{{ $hotel['category'] }}</div>
@@ -66,7 +66,7 @@
                 <div class="col-span-6 md:col-span-5 grid grid-cols-4 gap-2">
                     @foreach($destino as $index => $destinos)
                         <label class="cursor-pointer btn-check-form  flex justify-start items-start relative bg-gray-50  border border-gray-400 py-3 flex flex-shrink-0 justify-center items-center hover:bg-white  hover:border-secondary transition duration-700">
-                            <input wire:model="values_destinations.{{ $index }}" type="checkbox" value="{{$destinos['destino'].','}}" class="opacity-0 absolute">
+                            <input wire:model="values_destinations.{{ $index }}" type="checkbox" value="{{$destinos['destino']}}" class="opacity-0 absolute">
                             <svg class="fill-current hidden absolute left-0 top-0 p-1  w-7 h-7 text-secondary pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
                             <span class="flex flex-col text-center">
                                 <div class="select-none block text-xs md:text-base">{{ $destinos['destino'] }}</div>
@@ -127,7 +127,7 @@
                 <div class="col-span-6 md:col-span-5 grid grid-cols-6 gap-2">
                     @foreach($trip_lengths as $index => $trip_length)
                         <label class="cursor-pointer btn-check-form text-gray-500 flex justify-start items-start relative bg-gray-50 border border-gray-400 px-2 py-3 flex flex-shrink-0 justify-center items-center hover:bg-white  hover:border-secondary transition duration-500">
-                            <input wire:model="values_trip_length" type="radio" value="{{$trip_length}}" class="hidden absolute">
+                            <input wire:model="values_trip_length.{{ $index }}" type="checkbox" value="{{$trip_length}}" class="hidden absolute">
                             <svg class="fill-current hidden absolute left-0 top-0 p-1  w-7 h-7 text-secondary pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
                             <span class="flex flex-col text-center">
                                 <div class="select-none block text-xs md:text-base">{{ $trip_length }}</div>
@@ -136,7 +136,7 @@
                         </label>
                     @endforeach
                     <label class="cursor-pointer btn-check-form text-gray-500 flex justify-start items-start relative bg-gray-50 border border-gray-400 px-4 py-3 flex flex-shrink-0 justify-center items-center hover:bg-white  hover:border-secondary transition duration-500">
-                        <input wire:model="values_trip_length" type="radio" value="Undecided" class="hidden absolute">
+                        <input wire:model="values_trip_length.5" type="checkbox" value="Undecided" class="hidden absolute">
                         <svg class="fill-current hidden absolute left-0 top-0 p-1  w-7 h-7 text-secondary pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
                         <span class="flex flex-col text-center">
                                 <div class="select-none block text-xss tracking-tighter">{{__('message.form_footer_par6')}}</div>

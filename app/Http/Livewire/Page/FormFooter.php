@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Page;
 
 use App\Models\TCategoria;
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 use Jenssegers\Agent\Agent;
 use Livewire\Component;
@@ -112,12 +114,57 @@ class FormFooter extends Component
 //                /*->attach('ruta')*/
 //                ->from('info@gotolatam.com', 'GotoLatam');
 //        });
+
+        $travelDay = Carbon::parse($this->travel_day);
+
+        // Formatear la fecha a ISO 8601 ("Y-m-d\TH:i:s.v\Z"), que es el formato deseado
+//        $formattedDate = $travelDay->format('Y-m-d\TH:i:s.v\Z');
+        $formattedDate = $travelDay->format('Y-m-d H:i:s');
+
+
+
+//        $trip_length = '';
+//        foreach ($this->values_trip_length as $item) {
+//            $trip_length.=$item;
+//        }
+
+//        $formattedDate = Carbon::parse($this->travel_date)->format('Y-m-d H:i:s');
+
+        $inquireDate = Carbon::now('America/Lima')->format('Y-m-d H:i:s');
+
+        // Preparar los datos que se enviarán al servicio
+        $data = [
+            "category_d" => $this->values_categories,
+            "destino_d" => $this->values_destinations, // Aquí puedes agregar los destinos si los tienes
+            "pasajeros_d" => $travellers,
+            "duracion_d" => $this->values_trip_length,
+            "el_nombre" => $this->name,
+            "el_email" => $this->email,
+            "el_fecha" => $formattedDate, // O puedes usar $this->travel_day si es relevante
+            "el_telefono" => $this->phone,
+            "el_textarea" => $this->comment,
+            'codigo_pais' => $this->phonecountry,
+            'device' => $this->device,
+            'browser' => $this->browser,
+            'origen' => "Web",
+            'producto' => "gotolatam.com",
+            'inquire_date' => $inquireDate
+        ];
+
+//        dd($data);
+
+        // Enviar los datos al servicio mediante una solicitud HTTP POST
+        $response = Http::post('https://api.gotoecuador.com/api/store/inquire', $data);
+
+
+
+        if ($response->successful()) {
         Mail::send(['html' => 'notifications.page.admin-form-footer'], [
 
-            'category_all' => $hotels_s,
-            'destinations_all' => $destino_s,
+            'category_all' => implode(', ', $this->values_categories),
+            'destinations_all' => implode(', ', $this->values_destinations),
             'travellers_all' => $travellers,
-            'trip_length' => $this->values_trip_length,
+            'trip_length' => implode(', ', $this->values_trip_length),
             'travel_day_all' => $this->travel_day,
             'comentario' => $this->comment,
             'nombre' => $this->name,
@@ -148,7 +195,10 @@ class FormFooter extends Component
         $this->reset('phonecountry');
 
         $this->success = __('message.msg_email');
-
+        } else {
+            // Manejo de errores
+            $this->addError('error', 'Hubo un problema enviando la información al servicio.');
+        }
     }
 
     public function load_submit(){
