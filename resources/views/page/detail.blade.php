@@ -392,7 +392,7 @@
                         @if($paquete['is_p_t'] == 1)
                             <div class="flex-1 border bg-white p-3 flex items-center">
                                 @foreach($paquete['precio_paquetes'] as $precio)
-                                    @if($precio['estrellas'] == 2)
+                                    @if($precio['estrellas'] == 3)
 
                                             <div class="text-4xl font-semibold text-gray-600">
                                                 {{--                                                                            <span> {{__('message.pack_par5')}} </span>--}}
@@ -507,7 +507,7 @@
 
                                 <div class="text-right font-medium">
                                     @foreach($paquete['precio_paquetes'] as $precio)
-                                        @if($precio['estrellas'] == 2)
+                                        @if($precio['estrellas'] == 3)
                                             @if($precio['precio_s'] > 0)
                                                 <div class="text-4xl font-semibold text-gray-600">
                                                     {{--                                                                            <span> {{__('message.pack_par5')}} </span>--}}

@@ -68,7 +68,7 @@
                         <div class="font-semibold text-gray-600 dark:text-gray-300 text-3xl mt-auto">
                             <div class="text-xs text-gray-400">Price p.p. from</div>
                             @foreach($paquete['precio_paquetes'] as $precio)
-                                @if($precio['estrellas'] == 2)
+                                @if($precio['estrellas'] == 3)
                                     @if($precio['precio_d'] > 0)
                                         ${{$precio['precio_d']}} <span class="text-sm text-secondary">usd</span>
                                     @else
