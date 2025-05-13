@@ -169,7 +169,7 @@
                     </svg>
                 </label>
                 <div class="col-span-6 md:col-span-5">
-                    <input wire:model="name" type="text" class="bg-gray-50 border border-gray-400 p-3 md:p-5 bg-gray-50 text-gray-500 w-full focus:outline-none" placeholder="{{__('message.form_footer_par10')}}">
+                    <input autocomplete="new-password" wire:model="name" type="text" class="bg-gray-50 border border-gray-400 p-3 md:p-5 bg-gray-50 text-gray-500 w-full focus:outline-none" placeholder="{{__('message.form_footer_par10')}}">
                     @error('name')
                     <span class="text-xs text-red-500">{{$message}}</span>
                     @enderror
@@ -183,7 +183,7 @@
                     </svg>
                 </label>
                 <div class="col-span-6 md:col-span-5">
-                    <input wire:model="email" type="text" class="bg-gray-50 border border-gray-400 p-3 md:p-5 bg-gray-50 text-gray-500 w-full focus:outline-none" placeholder="{{__('message.form_footer_par11')}}">
+                    <input autocomplete="new-password" wire:model="email" type="text" class="bg-gray-50 border border-gray-400 p-3 md:p-5 bg-gray-50 text-gray-500 w-full focus:outline-none" placeholder="{{__('message.form_footer_par11')}}">
                     @error('email')
                     <span class="text-xs text-red-500">{{$message}}</span>
                     @enderror
@@ -197,7 +197,8 @@
                     </svg>
                 </label>
                 <div class="col-span-6 md:col-span-5" wire:ignore>
-                    <input wire:model="phone" id="phone" type="text" class="phone_number bg-gray-50 border border-gray-400 p-3 md:p-5 bg-gray-50 text-gray-500 w-full focus:outline-none" placeholder="{{__('message.form_footer_par12')}}">
+                    <input autocomplete="new-password" wire:model="phone" id="phone" type="text" class="phone_number bg-gray-50 border border-gray-400 p-3 md:p-5 bg-gray-50 text-gray-500 w-full focus:outline-none" placeholder="{{__('message.form_footer_par12')}}" data-intl-tel-input>
+                    <input autocomplete="new-password" type="" wire:model="country" id="country" />
                 </div>
             </div>
 
@@ -254,27 +255,64 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
 
-        let input = document.querySelector(".phone_number");
+        document.addEventListener("DOMContentLoaded", function () {
+            let input = document.querySelector('[data-intl-tel-input]');
+            let countryInput = document.getElementById('country');
 
-        window.intlTelInput(input, {
-            initialCountry: "auto",
-            separateDialCode: true,
-            autoHideDialCode:false,
-            nationalMode: false,
-            geoIpLookup: function (callback) {
-                $.get('https://ipinfo.io', function () {
-                }, "jsonp").always(function (resp) {
-                    var countryCode = (resp && resp.country) ? resp.country : "us";
-                    callback(countryCode);
-                    // alert(countryCode);
-                @this.set('phonecountry', countryCode);
-                });
-            },
-            utilsScript: "../../build/js/utils.js?1613236686837", // just for formatting/placeholders etc
-        });
+            const iti = window.intlTelInput(input, {
+                initialCountry: "auto",
+                separateDialCode: true,
+                autoHideDialCode: false,
+                nationalMode: false,
+                geoIpLookup: function (callback) {
+                    fetch('https://ipinfo.io/json')
+                        .then(response => response.json())
+                        .then(data => {
+                            const countryCode = data.country ? data.country : "US";
+                            callback(countryCode);
 
-        input.addEventListener('blur', function () {
-        @this.set('phone', this.value);
+                            // Forzar la actualización del país y código telefónico
+                            setTimeout(() => {
+                                let countryData = iti.getSelectedCountryData();
+                                let countryDialCode = countryData.dialCode ? `+${countryData.dialCode}` : '';
+                                let phoneCountry = `${countryCode} ${countryDialCode}`;
+                                let countryName = extractCountryName(countryData.name);
+
+                                // Actualizar los valores
+                            @this.set('phonecountry', phoneCountry);
+                            @this.set('country', countryName);
+                                countryInput.value = countryName;
+                            }, 500); // Esperar medio segundo para asegurarnos de que `intlTelInput` haya actualizado los datos
+                        })
+                        .catch(() => {
+                            callback("US");
+                        });
+                },
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js?1613236686837",
+            });
+
+            // Evento `blur` para actualizar los datos cuando el input pierde el foco
+            input.addEventListener('blur', function () {
+                let countryData = iti.getSelectedCountryData();
+                let countryName = extractCountryName(countryData.name);
+                let countryDialCode = countryData.dialCode ? `+${countryData.dialCode}` : '';
+                let phoneCountry = `${countryData.iso2.toUpperCase()} ${countryDialCode}`;
+
+                // Actualizar los valores
+            @this.set('phone', this.value);
+            @this.set('phonecountry', phoneCountry);
+            @this.set('country', countryName);
+                countryInput.value = countryName;
+            });
+
+            /**
+             * Extrae solo el nombre del país en inglés (sin el nombre local en paréntesis).
+             * @param {string} fullCountryName - Nombre completo del país (ej. "Peru (Perú)").
+             * @returns {string}
+             */
+            function extractCountryName(fullCountryName) {
+                return fullCountryName.replace(/\s?\(.*?\)/, '');
+            }
         });
 
         var picker = new Pikaday({ field: document.getElementById('datepicker') });

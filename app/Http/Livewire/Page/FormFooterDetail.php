@@ -12,7 +12,7 @@ use Livewire\Component;
 
 class FormFooterDetail extends Component
 {
-    public $values_categories = [], $values_destinations = [], $values_number, $values_trip_length, $travel_day, $comment, $name, $email, $phone, $phonecountry, $values_number_input, $success, $paquete, $device, $browser;
+    public $values_categories = [], $values_destinations = [], $values_number, $values_trip_length, $travel_day, $comment, $name, $email, $phone, $country, $phonecountry, $values_number_input, $success, $paquete, $device, $browser;
 
     public function mount()
     {
@@ -154,10 +154,35 @@ class FormFooterDetail extends Component
             'inquire_date' => $inquireDate
         ];
 
+        $data2 = [
+            "product_id" => 2,
+            "package"=>$this->paquete,
+            "hotel_category" => array_values($this->values_categories),
+            "destinations" => [],
+            "passengers" => $travellers,
+            "duration" => array_values($this->values_trip_length),
+            "travel_date"=>$formattedDate,
+            "country"=>$this->country,
+            "country_code"=>$this->phonecountry,
+            "device"=>$this->device,
+            "origin"=>"Web",
+            "browser"=>$this->browser,
+            "name"=>$this->name,
+            "email"=>$this->email,
+            "phone"=>$this->phone,
+            "comment"=>$this->comment,
+            "initial_price"=>0,
+            "inquiry_date"=>$inquireDate,
+            "dialCode"=>'',
+
+        ];
+
+        $response2 = Http::post('https://app.g1.agency/api/v1/leads/', $data2);
+
 
         // Enviar los datos al servicio mediante una solicitud HTTP POST
         $response = Http::post('https://api.gotoecuador.com/api/store/inquire', $data);
-        if ($response->successful()) {
+        if ($response2->successful() AND $response->successful()) {
         Mail::send(['html' => 'notifications.page.admin-form-footer-detail'], [
             'paquete' => $this->paquete,
             'category_all' => implode(', ', $this->values_categories),

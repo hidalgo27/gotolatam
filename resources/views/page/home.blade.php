@@ -6,15 +6,13 @@
             {{--            <source src="{{asseDestinationst('media/intro.mp4')}}" type="video/mp4" />Your browser does not support the video tag.--}}
 
         <div class="vimeo-wrapper hidden sm:block">
-            <iframe src="https://player.vimeo.com/video/772468390?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1"  frameborder="0" allow="autoplay; fullscreen"></iframe>
+            <iframe src="https://player.vimeo.com/video/772468390?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1"  frameborder="0" allow="autoplay"></iframe>
             <div class="absolute inset-0 gradient-cicle-gray"></div>
 
         </div>
 
         <img src="{{asset('images/p-cusco-1.jpg')}}" alt="" class="object-cover w-full h-full sm:hidden">
 
-
-{{--        </video>--}}
     </div>
     <div class="flex h-83-5vh relative overflow-hidden">
 {{--        <div class="relative items-start grid grid-cols-3 justify-between ">--}}
