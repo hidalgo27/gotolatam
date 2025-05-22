@@ -198,7 +198,7 @@
                 </label>
                 <div class="col-span-6 md:col-span-5" wire:ignore>
                     <input autocomplete="new-password" wire:model="phone" id="phone" type="text" class="phone_number bg-gray-50 border border-gray-400 p-3 md:p-5 bg-gray-50 text-gray-500 w-full focus:outline-none" placeholder="{{__('message.form_footer_par12')}}" data-intl-tel-input>
-                    <input autocomplete="new-password" type="" wire:model="country" id="country" />
+                    <input autocomplete="new-password" type="hidden" wire:model="country" id="country" />
                 </div>
             </div>
 
