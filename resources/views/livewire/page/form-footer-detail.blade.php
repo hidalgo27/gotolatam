@@ -52,29 +52,29 @@
                 </div>
             </div>
 
-            <div class="mx-auto mt-3 grid grid-cols-6 gap-2">
-                <div class="col-span-6 flex flex-col text-center">
-                    <h2 class="text-lg font-bold">DESTINATIONS</h2>
-                </div>
-                <label class="md:col-span-1 hidden md:inline-flex bg-gray-50  border border-gray-400 p-5 flex items-center justify-center bg-gray-100 ">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                    </svg>
+{{--            <div class="mx-auto mt-3 grid grid-cols-6 gap-2">--}}
+{{--                <div class="col-span-6 flex flex-col text-center">--}}
+{{--                    <h2 class="text-lg font-bold">DESTINATIONS</h2>--}}
+{{--                </div>--}}
+{{--                <label class="md:col-span-1 hidden md:inline-flex bg-gray-50  border border-gray-400 p-5 flex items-center justify-center bg-gray-100 ">--}}
+{{--                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">--}}
+{{--                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />--}}
+{{--                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />--}}
+{{--                    </svg>--}}
 
-                </label>
-                <div class="col-span-6 md:col-span-5 grid grid-cols-4 gap-2">
-                    @foreach($destino as $index => $destinos)
-                        <label class="cursor-pointer btn-check-form  flex justify-start items-start relative bg-gray-50  border border-gray-400 py-3 flex flex-shrink-0 justify-center items-center hover:bg-white  hover:border-secondary transition duration-700">
-                            <input wire:model="values_destinations.{{ $index }}" type="checkbox" value="{{$destinos['destino']}}" class="opacity-0 absolute">
-                            <svg class="fill-current hidden absolute left-0 top-0 p-1  w-7 h-7 text-secondary pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
-                            <span class="flex flex-col text-center">
-                                <div class="select-none block text-xs md:text-base">{{ $destinos['destino'] }}</div>
-                            </span>
-                        </label>
-                    @endforeach
-                </div>
-            </div>
+{{--                </label>--}}
+{{--                <div class="col-span-6 md:col-span-5 grid grid-cols-4 gap-2">--}}
+{{--                    @foreach($destino as $index => $destinos)--}}
+{{--                        <label class="cursor-pointer btn-check-form  flex justify-start items-start relative bg-gray-50  border border-gray-400 py-3 flex flex-shrink-0 justify-center items-center hover:bg-white  hover:border-secondary transition duration-700">--}}
+{{--                            <input wire:model="values_destinations.{{ $index }}" type="checkbox" value="{{$destinos['destino']}}" class="opacity-0 absolute">--}}
+{{--                            <svg class="fill-current hidden absolute left-0 top-0 p-1  w-7 h-7 text-secondary pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>--}}
+{{--                            <span class="flex flex-col text-center">--}}
+{{--                                <div class="select-none block text-xs md:text-base">{{ $destinos['destino'] }}</div>--}}
+{{--                            </span>--}}
+{{--                        </label>--}}
+{{--                    @endforeach--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             <div class="mx-auto mt-3 grid grid-cols-6 mt-4 gap-2">
                 <div class="col-span-6 flex flex-col text-center">
@@ -115,35 +115,35 @@
                 </div>
             </div>
 
-            <div class="mx-auto mt-3 grid grid-cols-6 mt-4 gap-2">
-                <div class="col-span-6 flex flex-col text-center">
-                    <h2 class="text-lg font-bold text-gray-500">{{__('message.form_footer_subtitle3')}}</h2>
-                </div>
-                <label class="md:col-span-1 hidden md:inline-flex bg-gray-50 border border-gray-400 p-5 flex items-center justify-center bg-gray-100 text-gray-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                </label>
-                <div class="col-span-6 md:col-span-5 grid grid-cols-6 gap-2">
-                    @foreach($trip_lengths as $index => $trip_length)
-                        <label class="cursor-pointer btn-check-form text-gray-500 flex justify-start items-start relative bg-gray-50 border border-gray-400 px-2 py-3 flex flex-shrink-0 justify-center items-center hover:bg-white  hover:border-secondary transition duration-500">
-                            <input wire:model="values_trip_length.{{ $index }}" type="checkbox" value="{{$trip_length}}" class="hidden absolute">
-                            <svg class="fill-current hidden absolute left-0 top-0 p-1  w-7 h-7 text-secondary pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
-                            <span class="flex flex-col text-center">
-                                <div class="select-none block text-xs md:text-base">{{ $trip_length }}</div>
-                                <div class="text-xs">{{__('message.form_footer_par5')}}</div>
-                            </span>
-                        </label>
-                    @endforeach
-                    <label class="cursor-pointer btn-check-form text-gray-500 flex justify-start items-start relative bg-gray-50 border border-gray-400 px-4 py-3 flex flex-shrink-0 justify-center items-center hover:bg-white  hover:border-secondary transition duration-500">
-                        <input wire:model="values_trip_length.5" type="checkbox" value="Undecided" class="hidden absolute">
-                        <svg class="fill-current hidden absolute left-0 top-0 p-1  w-7 h-7 text-secondary pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>
-                        <span class="flex flex-col text-center">
-                                <div class="select-none block text-xss tracking-tighter">{{__('message.form_footer_par6')}}</div>
-                            </span>
-                    </label>
-                </div>
-            </div>
+{{--            <div class="mx-auto mt-3 grid grid-cols-6 mt-4 gap-2">--}}
+{{--                <div class="col-span-6 flex flex-col text-center">--}}
+{{--                    <h2 class="text-lg font-bold text-gray-500">{{__('message.form_footer_subtitle3')}}</h2>--}}
+{{--                </div>--}}
+{{--                <label class="md:col-span-1 hidden md:inline-flex bg-gray-50 border border-gray-400 p-5 flex items-center justify-center bg-gray-100 text-gray-500">--}}
+{{--                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
+{{--                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />--}}
+{{--                    </svg>--}}
+{{--                </label>--}}
+{{--                <div class="col-span-6 md:col-span-5 grid grid-cols-6 gap-2">--}}
+{{--                    @foreach($trip_lengths as $index => $trip_length)--}}
+{{--                        <label class="cursor-pointer btn-check-form text-gray-500 flex justify-start items-start relative bg-gray-50 border border-gray-400 px-2 py-3 flex flex-shrink-0 justify-center items-center hover:bg-white  hover:border-secondary transition duration-500">--}}
+{{--                            <input wire:model="values_trip_length.{{ $index }}" type="checkbox" value="{{$trip_length}}" class="hidden absolute">--}}
+{{--                            <svg class="fill-current hidden absolute left-0 top-0 p-1  w-7 h-7 text-secondary pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>--}}
+{{--                            <span class="flex flex-col text-center">--}}
+{{--                                <div class="select-none block text-xs md:text-base">{{ $trip_length }}</div>--}}
+{{--                                <div class="text-xs">{{__('message.form_footer_par5')}}</div>--}}
+{{--                            </span>--}}
+{{--                        </label>--}}
+{{--                    @endforeach--}}
+{{--                    <label class="cursor-pointer btn-check-form text-gray-500 flex justify-start items-start relative bg-gray-50 border border-gray-400 px-4 py-3 flex flex-shrink-0 justify-center items-center hover:bg-white  hover:border-secondary transition duration-500">--}}
+{{--                        <input wire:model="values_trip_length.5" type="checkbox" value="Undecided" class="hidden absolute">--}}
+{{--                        <svg class="fill-current hidden absolute left-0 top-0 p-1  w-7 h-7 text-secondary pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>--}}
+{{--                        <span class="flex flex-col text-center">--}}
+{{--                                <div class="select-none block text-xss tracking-tighter">{{__('message.form_footer_par6')}}</div>--}}
+{{--                            </span>--}}
+{{--                    </label>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             <div class="mx-auto mt-3 grid grid-cols-6 mt-6 gap-2">
                 <label class="md:col-span-1 hidden md:inline-flex bg-gray-50 border border-gray-400  flex items-center justify-center bg-gray-100 text-gray-500">

@@ -6,6 +6,7 @@ use App\Models\TCategoria;
 use App\Models\TDestino;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Jenssegers\Agent\Agent;
 use Livewire\Component;
@@ -137,10 +138,10 @@ class FormFooterDetail extends Component
         // Preparar los datos que se enviarán al servicio
         $data = [
             'package' => $this->paquete,
-            "category_d" => $this->values_categories,
-            "destino_d" => $this->values_destinations, // Aquí puedes agregar los destinos si los tienes
+            "category_d" => array_filter($this->values_categories),
+            "destino_d" => [], // Aquí puedes agregar los destinos si los tienes
             "pasajeros_d" => $travellers,
-            "duracion_d" => $this->values_trip_length,
+            "duracion_d" => [],
             "el_nombre" => $this->name,
             "el_email" => $this->email,
             "el_fecha" => $formattedDate, // O puedes usar $this->travel_day si es relevante
@@ -160,7 +161,7 @@ class FormFooterDetail extends Component
             "hotel_category" => array_values($this->values_categories),
             "destinations" => [],
             "passengers" => $travellers,
-            "duration" => array_values($this->values_trip_length),
+            "duration" => [],
             "travel_date"=>$formattedDate,
             "country"=>$this->country,
             "country_code"=>$this->phonecountry,
@@ -177,52 +178,68 @@ class FormFooterDetail extends Component
 
         ];
 
-        $response2 = Http::post('https://app.g1.agency/api/v1/leads/', $data2);
+        try {
+            $response2 = Http::post('https://app.g1.agency/api/v1/leads/', $data2);
 
 
-        // Enviar los datos al servicio mediante una solicitud HTTP POST
-        $response = Http::post('https://api.gotoecuador.com/api/store/inquire', $data);
-        if ($response2->successful() AND $response->successful()) {
-        Mail::send(['html' => 'notifications.page.admin-form-footer-detail'], [
-            'paquete' => $this->paquete,
-            'category_all' => implode(', ', $this->values_categories),
-            'destinations_all' => implode(', ', $this->values_destinations),
-            'travellers_all' => $travellers,
-            'trip_length' => implode(', ', $this->values_trip_length),
-            'travel_day_all' => $this->travel_day,
-            'comentario' => $this->comment,
-            'nombre' => $this->name,
-            'email' => $this->email,
-            'telefono' => $this->phone,
-            'code' => $this->phonecountry,
-            'device' => $this->device,
-            'browser' => $this->browser
+            // Enviar los datos al servicio mediante una solicitud HTTP POST
+            $response = Http::post('https://api.gotoecuador.com/api/store/inquire', $data);
+            if ($response2->successful() AND $response->successful()) {
+                Mail::send(['html' => 'notifications.page.admin-form-footer-detail'], [
+                    'paquete' => $this->paquete,
+                    'category_all' => implode(', ', $this->values_categories),
+                    //            'destinations_all' => implode(', ', $this->values_destinations),
+                    'travellers_all' => $travellers,
+                    //            'trip_length' => implode(', ', $this->values_trip_length),
+                    'travel_day_all' => $this->travel_day,
+                    'comentario' => $this->comment,
+                    'nombre' => $this->name,
+                    'email' => $this->email,
+                    'telefono' => $this->phone,
+                    'code' => $this->phonecountry,
+                    'device' => $this->device,
+                    'browser' => $this->browser
 
-        ], function ($messaje) use ($from) {
-            $messaje->to($from, 'GotoLatam')
-                ->subject('GotoLatam')
-//                    ->cc($from2, 'GotoLatam')
-                /*->attach('ruta')*/
-                ->from('info@gotolatam.com', 'GotoLatam');
-        });
+                ], function ($messaje) use ($from) {
+                    $messaje->to($from, 'GotoLatam')
+                        ->subject('GotoLatam')
+                        //                    ->cc($from2, 'GotoLatam')
+                        /*->attach('ruta')*/
+                        ->from('info@gotolatam.com', 'GotoLatam');
+                });
 
-        $this->reset('values_categories');
-        $this->reset('values_destinations');
-        $this->reset('values_number');
-        $this->reset('values_number_input');
-        $this->reset('values_trip_length');
-        $this->reset('travel_day');
-        $this->reset('comment');
-        $this->reset('name');
-        $this->reset('email');
-        $this->reset('phone');
-        $this->reset('phonecountry');
+                $this->reset('values_categories');
+                $this->reset('values_destinations');
+                $this->reset('values_number');
+                $this->reset('values_number_input');
+                $this->reset('values_trip_length');
+                $this->reset('travel_day');
+                $this->reset('comment');
+                $this->reset('name');
+                $this->reset('email');
+                $this->reset('phone');
+                $this->reset('phonecountry');
 
-        $this->success = __('message.msg_email');
-        } else {
-            // Manejo de errores
-            $this->addError('error', 'Hubo un problema enviando la información al servicio.');
+                $this->success = __('message.msg_email');
+            } else {
+                // Manejo de errores
+//                $this->addError('error', 'Hubo un problema enviando la información al servicio.');
+                $this->addError('api_error', 'Uno de los servicios falló');
+                Log::error('Uno de los servicios falló', [
+                    'response1_status' => $response->status(),
+                    'response2_status' => $response2->status(),
+                    'response1' => $response->body(),
+                    'response2' => $response2->body(),
+                ]);
+            }
+        }catch (\Throwable $e) {
+            Log::error('Error al enviar datos a los servicios', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+            $this->addError('api_error', 'Ocurrió un error al enviar los datos.');
         }
+
 
     }
 
