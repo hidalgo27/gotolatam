@@ -735,7 +735,7 @@
 {{--                            Contact a South America travel expert--}}
 {{--                            We always aim to reply within 24 hours.--}}
 {{--                        </p>--}}
-                        <img src="{{asset('images/fiorella.jpg')}}" alt="">
+                        <img src="{{asset('images/team/angie2.jpg')}}" alt="">
                         <a href="#form-dream-adventure" class="btn-primary lg:px-4 block text-center ">Contact Us</a>
 {{--                                                    @livewire('page.form-inquire')--}}
                     </div>

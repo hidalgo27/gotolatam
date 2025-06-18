@@ -57,7 +57,7 @@
     </section>
 
     <section class="container grid grid-cols-1 mb-12">
-        <img src="{{asset('images/banners/fiorella.jpg')}}" alt="">
+        <img src="{{asset('images/banners/latam.jpg')}}" alt="">
         <section class="grid grid-cols-1 -mt-6 md:grid-cols-2">
             <div class="bg-secondary p-12">
                 <h2 class="font-bold text-white text-2xl">{{__('message.info_subtitle1')}}: </h2>
