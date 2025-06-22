@@ -122,7 +122,7 @@ class FormFooterDetail extends Component
 
         // Formatear la fecha a ISO 8601 ("Y-m-d\TH:i:s.v\Z"), que es el formato deseado
 //        $formattedDate = $travelDay->format('Y-m-d\TH:i:s.v\Z');
-        $formattedDate = $travelDay->format('Y-m-d H:i:s');
+        $formattedDate = $travelDay->format('Y-m-d');
 
 
 

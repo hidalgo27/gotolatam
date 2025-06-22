@@ -120,7 +120,7 @@ class FormFooter extends Component
 
         // Formatear la fecha a ISO 8601 ("Y-m-d\TH:i:s.v\Z"), que es el formato deseado
 //        $formattedDate = $travelDay->format('Y-m-d\TH:i:s.v\Z');
-        $formattedDate = $travelDay->format('Y-m-d H:i:s');
+        $formattedDate = $travelDay->format('Y-m-d');
 
 
 
@@ -177,11 +177,12 @@ class FormFooter extends Component
 
 //        dd($data2);
 
-        $response2 = Http::post('https://app.g1.agency/api/v1/leads/', $data2);
+        $response2 = Http::post('http://127.0.0.1:8081/api/v1/leads/', $data2);
 
         // Enviar los datos al servicio mediante una solicitud HTTP POST
         $response = Http::post('https://api.gotoecuador.com/api/store/inquire', $data);
 
+//        dd($response2);
 
         try {
             if ($response2->successful() AND $response->successful()) {
