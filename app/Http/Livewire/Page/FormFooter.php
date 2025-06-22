@@ -177,7 +177,7 @@ class FormFooter extends Component
 
 //        dd($data2);
 
-        $response2 = Http::post('http://127.0.0.1:8081/api/v1/leads/', $data2);
+        $response2 = Http::post('https://app.g1.agency/api/v1/leads/', $data2);
 
         // Enviar los datos al servicio mediante una solicitud HTTP POST
         $response = Http::post('https://api.gotoecuador.com/api/store/inquire', $data);
