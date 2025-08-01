@@ -52,6 +52,9 @@ Route::get('/' . __('message.url_12'), [HomeController::class, 'careers'])->name
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/blog/{post}', [HomeController::class, 'blog_show'])->name('blog.show');
 
+Route::get('/'.__('message.url_3').'/our-team', [HomeController::class, 'our_team'])->name('our_team');
+Route::get('/'.__('message.url_3').'/our-team/{id}', [HomeController::class, 'team_member'])->name('member');
+
 //form inquire
 Route::post('/formulario-diseno', [FormpageController::class, 'formulario_diseno'])->name('formulario_diseno');
 
