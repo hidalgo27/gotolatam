@@ -2,11 +2,23 @@
 @section('content')
     <div class="swiper mySwiper2 relative">
         <div class="swiper-wrapper">
-            @foreach ($paquete['imagen_paquetes'] as $paquete_destino)
-                <div class="swiper-slide">
-                    <img src="{{ $paquete_destino['nombre'] }}" alt="" class="object-cover h-50vh w-full object-top">
-                </div>
-            @endforeach
+            @if (count($paquete['imagen_paquetes']) > 0)
+                @foreach ($paquete['imagen_paquetes'] as $paquete_destino)
+                    <div class="swiper-slide">
+                        <img src="{{ $paquete_destino['nombre'] }}" alt=""
+                            class="object-cover h-50vh w-full object-top">
+                    </div>
+                @endforeach
+            @else
+                @foreach ($paquete['paquetes_destinos'] as $paquete_destino)
+                    @foreach ($paquete_destino['destinos']['destino_imagen'] as $destino_imagen)
+                        <div class="swiper-slide">
+                            <img src="{{ $destino_imagen['nombre'] }}" alt=""
+                                class="object-cover h-50vh w-full object-top">
+                        </div>
+                    @endforeach
+                @endforeach
+            @endif
             {{--            <div class="swiper-slide"> --}}
             {{--                @foreach ($paquete['imagen_paquetes'] as $imagen) --}}
             {{--                    <img src="{{$imagen['nombre']}}" alt="{{$paquete['titulo']}}" class="object-cover h-80vh w-full object-top bg-yellow-300  "> --}}
