@@ -466,7 +466,7 @@
                                     Departures Available
                                 </div>
                                 <div class="text-right font-medium">
-                                    Until December 2024
+                                    Until December 2026
                                 </div>
                             </div>
 
@@ -545,7 +545,7 @@
                             </div>
                             <div class="leading-none">
                                 <span class="text-xs block">Season</span>
-                                <span class="text-sm font-medium">MAY - DEC</span>
+                                <span class="text-sm font-medium">JAN - DEC</span>
                             </div>
                         </div>
                         <div class="flex items-center gap-3">
