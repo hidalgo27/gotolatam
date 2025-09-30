@@ -247,7 +247,6 @@
                 'nav_sub_links' => [],
             ],
         ];
-
     @endphp
 
 
@@ -476,18 +475,22 @@
 
 
 
-                        {{-- @foreach ($pais2 as $paises)
-                        <a href="{{ route('destinations.show', $paises) }}" class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 rounded hover:bg-gray-700 hover:text-secondary menu-pop">
-                            <div class="mr-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                </svg>
-                            </div>
-                            <div class="">
-                                {{ucwords(strtolower($paises->nombre))}}
-                            </div>
-                        </a>
-                        @endforeach --}}
+                        @foreach ($pais2 as $paises)
+                            <a href="{{ route('destinations.show', $paises) }}"
+                                class="w-full text-sm flex items-center  transition-colors duration-200  px-4 py-2 text-normal text-gray-500 hover:bg-gray-700 hover:text-secondary menu-pop
+                                {{ $loop->last ? 'rounded-b' : '' }}">
+                                <div class="mr-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </div>
+                                <div class="">
+                                    {{ ucwords(strtolower($paises->nombre)) }}
+                                </div>
+                            </a>
+                        @endforeach
                     </div>
 
 
@@ -507,7 +510,7 @@
 
 
                             <a href="{{ route('country.show', 2) }}"
-                                class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 rounded hover:bg-gray-700 hover:text-secondary menu-pop">
+                                class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 hover:bg-gray-700 hover:text-secondary menu-pop">
                                 <div class="mr-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
@@ -520,7 +523,7 @@
                                 </div>
                             </a>
                             <a href="{{ route('country.show', 3) }}"
-                                class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 rounded hover:bg-gray-700 hover:text-secondary menu-pop">
+                                class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 hover:bg-gray-700 hover:text-secondary menu-pop">
                                 <div class="mr-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
@@ -534,7 +537,7 @@
                             </a>
 
                             <a href="{{ route('country.show', 4) }}"
-                                class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 rounded hover:bg-gray-700 hover:text-secondary menu-pop">
+                                class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 hover:bg-gray-700 hover:text-secondary menu-pop">
                                 <div class="mr-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
@@ -548,7 +551,7 @@
                             </a>
 
                             <a href="{{ route('packages.all') }}"
-                                class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 rounded hover:bg-gray-700 hover:text-secondary menu-pop">
+                                class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 rounded-b hover:bg-gray-700 hover:text-secondary menu-pop">
                                 <div class="mr-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
@@ -596,7 +599,7 @@
                                         @foreach ($nav_link['nav_sub_links'] as $nav_sub)
                                             @foreach ($sub_data as $sub_data_item)
                                                 <a href="{{ $sub_data_item['route'] }}"
-                                                    class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500 rounded hover:bg-gray-700 hover:text-secondary menu-pop {{ $sub_data_item['active'] == 1 ? 'active' : '' }}">
+                                                    class="w-full text-sm flex items-center inline-flex transition-colors duration-200 block px-4 py-2 text-normal text-gray-500  hover:bg-gray-700 hover:text-secondary menu-pop {{ $sub_data_item['active'] == 1 ? 'active' : '' }} {{ $loop->last ? 'rounded-b' : '' }}">
                                                     <span class="mr-1">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3"
                                                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
