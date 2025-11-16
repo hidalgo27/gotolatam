@@ -20,7 +20,18 @@
 {{--        </div>--}}
 
         <div class=" grid grid-cols-1 gap-12 place-items-center text-center justify-center text-white w-full">
+
             <div class="mx-auto w-3/4">
+                <a href="#black-friday" class="block">
+                    <div class="inline-block animate-pulse  bg-yellow-400 cursor-pointer  font-extrabold text-4xl px-4 py-1 skew-x-[-15deg] mb-12">
+                        <div class="flex items-center text-white gap-2 ">
+                            <span class="inline-block -skew-x-[-15deg] text-2xl  t text-gray-900">BLACK FRIDAY</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                 class="w-8 h-8 "><path d="M14 4.1 12 6"/><path d="m5.1 8-2.9-.8"/><path d="m6 12-1.9 2"/><path d="M7.2 2.2 8 5.1"/><path d="M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z"/></svg>
+                        </div>
+                    </div>
+                </a>
+
                 <div class="bg-gray-900 bg-opacity-50 p-4 sm:hidden">
                     <h1 class="text-center text-lg md:text-3xl my-6 font-normal font-cinzel text-white">THE <span class="text-secondary">BEST</span> VACATION IN SOUTH AMERICA WITH THE <span class="text-secondary">BEST</span> LATAM OPERATOR</h1>
                 </div>
@@ -98,7 +109,7 @@
 
 
 
-    <section class="bg-gray-50 hidden sm:flex dark:bg-gray-700">
+    <section class="bg-gray-50 hidden sm:flex">
     <div class="container">
         <div class="w-full swiper-container slider-brands overflow-hidden relative">
             <div class="swiper-wrapper">
@@ -230,6 +241,8 @@
             @endforeach
         </div>
     </section>
+
+
     <section class="px-6 container grid grid-cols-1 md:grid-cols-4 my-12">
         <div class="text-center w-full col-span-4 items-center text-3xl text-secondary dark:text-secondary font-bold gap-2">
             SOUTH AMERICA  TRAVEL PACKAGES
@@ -239,6 +252,9 @@
             <p class="mb-4">GOTOLATAM's travelers get one-of-a-kind experiences in 13 Central and South American countries thanks to the customized tours we offer. Our award-winning staff is ready to help with local needs 24 hours a day, 7 days a week. With us, you can dream, book, and go to the most important LATAM places with confidence and local connections.</p>
             <p class="text-gray-500">We have everything you need to plan the perfect trip to South America, whether you want to walk and trek in Patagonia and the Amazon Rainforest, ski in the Andes Mountains, cruise the Galapagos Islands, explore the Iguazu Falls, or see important historical sites like Easter Island, Machu Picchu, and the Nazca Lines.</p>
         </div>
+    </section>
+    <section class="" id="black-friday">
+        <x-hero-campaign-slider :booking-deadline="'November 30, 2025'" />
     </section>
 
     <section class="grid grid-cols-1 md:grid-cols-6 sm:hidden">
@@ -1235,6 +1251,26 @@
                     slidesPerView: 7,
                 },
             },
+        });
+
+        var heroCampaignSwiper = new Swiper('.hero-campaign-slider', {
+            effect: 'fade',
+            loop: true,
+            speed: 900,
+            autoHeight: false,
+            autoplay: {
+                delay: 56000,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: '.hero-campaign-next',
+                prevEl: '.hero-campaign-prev',
+            },
+            // Si quieres bullets nativos:
+            // pagination: {
+            //     el: '.hero-campaign-pagination',
+            //     clickable: true,
+            // },
         });
     </script>
 
