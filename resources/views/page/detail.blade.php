@@ -1,12 +1,77 @@
 @extends('layouts.page-layout')
 @section('content')
     <div class="swiper mySwiper2 relative">
-        <div class="swiper-wrapper">
+
+        {{-- 1. Bloque PHP para armar los datos del hero --}}
+        @php
+            // Título
+            $heroTitle = $paquete['titulo'];
+
+            // Subtítulo: usamos destinos del paquete
+            $destinos = [];
+            if (!empty($paquete['paquetes_destinos'])) {
+                foreach ($paquete['paquetes_destinos'] as $pd) {
+                    if (!empty($pd['destinos']['nombre'])) {
+                        $destinos[] = $pd['destinos']['nombre'];
+                    }
+                }
+            }
+            $heroSubtitle = !empty($destinos) ? implode(' • ', array_unique($destinos)) : null;
+
+            // Label de días (usas tu traducción actual)
+            $heroDaysLabel = $paquete['duracion'] . ' ' . __('message.pack_par4'); // ej: "5 days"
+
+            // Precio principal: MISMA lógica que tu caja lateral
+            $heroPriceLabel = null;
+
+            if ($paquete['is_p_t'] == 1) {
+                // Paquete con hoteles (precio_paquetes, 3*)
+                if (!empty($paquete['precio_paquetes'])) {
+                    foreach ($paquete['precio_paquetes'] as $precio) {
+                        if ($precio['estrellas'] == 3 && $precio['precio_d'] > 0) {
+                            $heroPriceLabel = $precio['precio_d'];
+                            break;
+                        }
+                    }
+                }
+            } else {
+                // Solo tours (precio_tours)
+                if (!empty($paquete['precio_tours'])) {
+                    $heroPriceLabel = $paquete['precio_tours'];
+                }
+            }
+
+            // CTA principal
+            $heroCta = __('message.button_inquire'); // el texto que ya usas para "Inquire" / "Get a Quote"
+
+            // CTA secundaria tipo "Book" solo si hay código de WeTravel
+            $heroCtaSecondaryLabel = $paquete['codigo_f'] ? 'Book' : null;
+            $heroCtaSecondaryTo     = $paquete['codigo_f'] ? '#form-dream-adventure' : null;
+
+            // Link de terms (puedes apuntarlo donde quieras)
+            $heroTermsTo = '';
+        @endphp
+
+        {{-- 2. Componente Hero sobre el slider --}}
+        <x-package-hero-card
+            :category-chips="[]"
+        :extra-count="null"
+            :price-label="$heroPriceLabel"
+            :title="$heroTitle"
+            :subtitle="$heroSubtitle"
+            :days-label="$heroDaysLabel"
+            :cta="$heroCta"
+            :cta-secondary-label="$heroCtaSecondaryLabel"
+            :cta-secondary-to="$heroCtaSecondaryTo"
+            :terms-to="$heroTermsTo"
+        />
+
+        <div class="swiper-wrapper relative">
             @if (count($paquete['imagen_paquetes']) > 0)
                 @foreach ($paquete['imagen_paquetes'] as $paquete_destino)
                     <div class="swiper-slide">
                         <img src="{{ $paquete_destino['nombre'] }}" alt=""
-                            class="object-cover h-50vh w-full object-top">
+                            class="object-cover h-[85vh] w-full object-center">
                     </div>
                 @endforeach
             @else
@@ -14,7 +79,7 @@
                     @foreach ($paquete_destino['destinos']['destino_imagen'] as $destino_imagen)
                         <div class="swiper-slide">
                             <img src="{{ $destino_imagen['nombre'] }}" alt=""
-                                class="object-cover h-50vh w-full object-top">
+                                class="object-cover h-80vh w-full object-center">
                         </div>
                     @endforeach
                 @endforeach
@@ -32,6 +97,7 @@
             {{--            <div class="swiper-slide">Slide 7</div> --}}
             {{--            <div class="swiper-slide">Slide 8</div> --}}
             {{--            <div class="swiper-slide">Slide 9</div> --}}
+
         </div>
         {{--        <div class="swiper-pagination"></div> --}}
         <div class="absolute bottom-0  m-6 z-10">
@@ -1279,9 +1345,9 @@
                 },
             });
             var swiper = new Swiper(".mySwiper2", {
-                slidesPerView: 2,
+                slidesPerView: 1,
                 spaceBetween: 0,
-                freeMode: true,
+                freeMode: false,
                 autoplay: {
                     delay: 5000,
                     disableOnInteraction: false,
@@ -1290,20 +1356,20 @@
                     el: ".swiper-pagination",
                     clickable: true,
                 },
-                breakpoints: {
-                    320: {
-                        slidesPerView: 1,
-                    },
-                    640: {
-                        slidesPerView: 1,
-                    },
-                    768: {
-                        slidesPerView: 2,
-                    },
-                    1024: {
-                        slidesPerView: 2,
-                    },
-                },
+                // breakpoints: {
+                //     320: {
+                //         slidesPerView: 1,
+                //     },
+                //     640: {
+                //         slidesPerView: 1,
+                //     },
+                //     768: {
+                //         slidesPerView: 1,
+                //     },
+                //     1024: {
+                //         slidesPerView: 1,
+                //     },
+                // },
             });
         </script>
     @endpush

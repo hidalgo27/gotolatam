@@ -20,6 +20,7 @@ module.exports = {
             yellow: colors.yellow,
             primary: '#7F8429',
             secondary: '#f9a825',
+            quaternary: '#88BFB2',
         },
         fontFamily: {
             sans: ['Montserrat', 'sans-serif'],
