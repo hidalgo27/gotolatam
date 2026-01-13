@@ -348,7 +348,7 @@
 
 
     <div class="fixed bottom-0 right-0 z-40 py-6 px-7 sm:inline-flex mb-24 md:mb-0">
-        <a href="https://api.whatsapp.com/send?phone=51936241194" target="_blank">
+        <a href="https://api.whatsapp.com/send?phone=51912668025" target="_blank">
             <span class="flex relative h-10 w-10">
                 <span
                     class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gray-400 opacity-75"></span>
@@ -356,7 +356,7 @@
         </a>
     </div>
     <div class="fixed bottom-0 right-0 z-40 py-5 px-4 sm:inline-flex mb-24 md:mb-0">
-        <a href="https://api.whatsapp.com/send?phone=51936241194" target="_blank">
+        <a href="https://api.whatsapp.com/send?phone=51912668025" target="_blank">
             <img src="{{ asset('images/whatsapp-i.png') }}" alt="" class="w-16">
         </a>
     </div>
