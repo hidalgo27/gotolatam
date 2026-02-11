@@ -605,7 +605,7 @@
 {{--                </p>--}}
 {{--                <div class="flex justify-center gap-12">--}}
 {{--                    <div class="text-center">--}}
-{{--                        <a href="https://api.whatsapp.com/send?phone=51934005414" target="_blank">--}}
+{{--                        <a href="https://api.whatsapp.com/send?phone=12024911478" target="_blank">--}}
 {{--                            <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">--}}
 {{--                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />--}}
 {{--                            </svg>--}}
@@ -621,7 +621,7 @@
 {{--                        </a>--}}
 {{--                    </div>--}}
 {{--                    <div class="text-center">--}}
-{{--                        <a href="https://api.whatsapp.com/send?phone=51934005414" target="_blank">--}}
+{{--                        <a href="https://api.whatsapp.com/send?phone=12024911478" target="_blank">--}}
 {{--                            <img src="{{asset('images/whatsapp-i.png')}}" alt="" class="mx-auto w-14 h-10">--}}
 {{--                            Whatsapp--}}
 {{--                        </a>--}}
