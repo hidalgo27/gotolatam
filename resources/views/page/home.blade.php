@@ -6,7 +6,7 @@
             {{--            <source src="{{asseDestinationst('media/intro.mp4')}}" type="video/mp4" />Your browser does not support the video tag.--}}
 
         <div class="vimeo-wrapper hidden sm:block">
-            <iframe src="https://player.vimeo.com/video/772468390?background=1&autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1"  frameborder="0" allow="autoplay"></iframe>
+            <iframe src="https://player.vimeo.com/video/772468390?autoplay=1&loop=1&title=0&byline=0&portrait=0&muted=1"  frameborder="0" allow="autoplay"></iframe>
             <div class="absolute inset-0 gradient-cicle-gray"></div>
 
         </div>
