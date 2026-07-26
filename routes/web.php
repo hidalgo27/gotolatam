@@ -1,9 +1,10 @@
 <?php
-
+// /routes/web.php
 
 use App\Http\Controllers\API\FormpageController;
 use App\Http\Controllers\Page\HomeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,3 +59,163 @@ Route::get('/'.__('message.url_3').'/our-team/{id}', [HomeController::class, 'te
 //form inquire
 Route::post('/formulario-diseno', [FormpageController::class, 'formulario_diseno'])->name('formulario_diseno');
 
+
+
+Route::get('/test-kommo/account', function () {
+    abort_unless(app()->environment('local'), 404);
+
+    $response = Http::withToken(
+        config('services.kommo.token')
+    )
+        ->acceptJson()
+        ->get(
+            'https://' .
+            config('services.kommo.subdomain') .
+            '.kommo.com/api/v4/account'
+        );
+
+    return response()->json([
+        'status' => $response->status(),
+        'successful' => $response->successful(),
+        'account' => $response->successful()
+            ? [
+                'id' => $response->json('id'),
+                'name' => $response->json('name'),
+                'subdomain' => $response->json('subdomain'),
+            ]
+            : null,
+        'error' => $response->failed()
+            ? $response->json()
+            : null,
+    ], $response->status());
+});
+
+
+Route::get('/test-kommo/configuration', function () {
+    abort_unless(app()->environment('local'), 404);
+
+    $baseUrl = sprintf(
+        'https://%s.kommo.com/api/v4',
+        config('services.kommo.subdomain')
+    );
+
+    $client = Http::withToken(config('services.kommo.token'))
+        ->acceptJson()
+        ->timeout(20);
+
+    $pipelinesResponse = $client->get(
+        "{$baseUrl}/leads/pipelines"
+    );
+
+    $usersResponse = $client->get(
+        "{$baseUrl}/users"
+    );
+
+    $leadFieldsResponse = $client->get(
+        "{$baseUrl}/leads/custom_fields"
+    );
+
+    $contactFieldsResponse = $client->get(
+        "{$baseUrl}/contacts/custom_fields"
+    );
+
+    return response()->json([
+        'pipelines_status' => $pipelinesResponse->status(),
+
+        'pipelines' => collect(
+            $pipelinesResponse->json('_embedded.pipelines', [])
+        )->map(function (array $pipeline) {
+            return [
+                'id' => $pipeline['id'] ?? null,
+                'name' => $pipeline['name'] ?? null,
+                'is_main' => $pipeline['is_main'] ?? false,
+
+                'statuses' => collect(
+                    data_get($pipeline, '_embedded.statuses', [])
+                )->map(function (array $status) {
+                    return [
+                        'id' => $status['id'] ?? null,
+                        'name' => $status['name'] ?? null,
+                        'sort' => $status['sort'] ?? null,
+                    ];
+                })->values(),
+            ];
+        })->values(),
+
+        'users_status' => $usersResponse->status(),
+
+        'users' => collect(
+            $usersResponse->json('_embedded.users', [])
+        )->map(function (array $user) {
+            return [
+                'id' => $user['id'] ?? null,
+                'name' => $user['name'] ?? null,
+                'email' => $user['email'] ?? null,
+                'rights' => [
+                    'is_admin' => data_get(
+                        $user,
+                        'rights.is_admin',
+                        false
+                    ),
+                    'is_active' => data_get(
+                        $user,
+                        'rights.is_active',
+                        false
+                    ),
+                ],
+            ];
+        })->values(),
+
+        'lead_fields_status' => $leadFieldsResponse->status(),
+
+        'lead_fields' => collect(
+            $leadFieldsResponse->json(
+                '_embedded.custom_fields',
+                []
+            )
+        )->map(function (array $field) {
+            return [
+                'id' => $field['id'] ?? null,
+                'name' => $field['name'] ?? null,
+                'code' => $field['code'] ?? null,
+                'type' => $field['type'] ?? null,
+
+                'enums' => collect(
+                    $field['enums'] ?? []
+                )->map(function (array $enum) {
+                    return [
+                        'id' => $enum['id'] ?? null,
+                        'value' => $enum['value'] ?? null,
+                        'sort' => $enum['sort'] ?? null,
+                    ];
+                })->values(),
+            ];
+        })->values(),
+
+        'contact_fields_status' => $contactFieldsResponse->status(),
+
+        'contact_fields' => collect(
+            $contactFieldsResponse->json(
+                '_embedded.custom_fields',
+                []
+            )
+        )->map(function (array $field) {
+            return [
+                'id' => $field['id'] ?? null,
+                'name' => $field['name'] ?? null,
+                'code' => $field['code'] ?? null,
+                'type' => $field['type'] ?? null,
+
+                'enums' => collect(
+                    $field['enums'] ?? []
+                )->map(function (array $enum) {
+                    return [
+                        'id' => $enum['id'] ?? null,
+                        'value' => $enum['value'] ?? null,
+                        'sort' => $enum['sort'] ?? null,
+                    ];
+                })->values(),
+            ];
+        })->values(),
+    ]);
+});

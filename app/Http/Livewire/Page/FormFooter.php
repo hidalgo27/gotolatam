@@ -1,9 +1,10 @@
 <?php
+// /app/Http/Livewire/Page/FormFooter.php
 
 namespace App\Http\Livewire\Page;
 
 use App\Models\TCategoria;
-
+use App\Services\KommoService;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -13,9 +14,37 @@ use Livewire\Component;
 
 class FormFooter extends Component
 {
-    public $values_categories = [], $values_destinations = [], $values_number, $values_trip_length, $travel_day, $comment, $name, $email, $phone, $country, $phonecountry, $values_number_input, $success, $device, $browser;
+    public $values_categories = [];
 
-    public function mount()
+    public $values_destinations = [];
+
+    public $values_number;
+
+    public $values_trip_length = [];
+
+    public $travel_day;
+
+    public $comment;
+
+    public $name;
+
+    public $email;
+
+    public $phone;
+
+    public $country;
+
+    public $phonecountry;
+
+    public $values_number_input;
+
+    public $success;
+
+    public $device;
+
+    public $browser;
+
+    public function mount(): void
     {
         $agent = new Agent();
 
@@ -24,228 +53,685 @@ class FormFooter extends Component
         } elseif ($agent->isTablet()) {
             $this->device = 'Tablet';
         } else {
-            $this->device = 'Desktop';
+            $this->device = 'Computadora de escritorio';
         }
 
         $this->browser = $agent->browser();
     }
+
     public function render()
     {
-        $categories = TCategoria::all();
+        $categories =
+            TCategoria::all();
 
-        $number = ['1','2','3','4','5'];
-        $trip_lengths = ['7-11','12-15','16-21','22-28','29+'];
+        $number = [
+            '1',
+            '2',
+            '3',
+            '4',
+            '5',
+        ];
+
+        $trip_lengths = [
+            '7-11',
+            '12-15',
+            '16-21',
+            '22-28',
+            '29+',
+        ];
+
         $hotels = [
             [
-                'star'=>'5',
-                'category'=>__('message.form_footer_par15')
+                'star' => '5',
+                'category' => __(
+                    'message.form_footer_par15'
+                ),
             ],
             [
-                'star'=>'4',
-                'category'=>__('message.form_footer_par16')
+                'star' => '4',
+                'category' => __(
+                    'message.form_footer_par16'
+                ),
             ],
             [
-                'star'=>'3',
-                'category'=>__('message.form_footer_par17')
-            ]
+                'star' => '3',
+                'category' => __(
+                    'message.form_footer_par17'
+                ),
+            ],
         ];
 
         $destino = [
             [
-                'destino'=>'Perú',
+                'destino' => 'Perú',
             ],
             [
-                'destino'=>'Colombia',
+                'destino' => 'Colombia',
             ],
             [
-                'destino'=>'Chile',
+                'destino' => 'Chile',
             ],
             [
-                'destino'=>'Ecuador',
+                'destino' => 'Ecuador',
             ],
             [
-                'destino'=>'Bolivia',
+                'destino' => 'Bolivia',
             ],
             [
-                'destino'=>'Argentina',
+                'destino' => 'Argentina',
             ],
             [
-                'destino'=>'Brasil',
-            ]
+                'destino' => 'Brasil',
+            ],
         ];
 
-
-//        [
-//            'star'=>'2',
-//            'category'=>__('message.form_footer_par18')
-//        ]
-
-
-        return view('livewire.page.form-footer', compact('categories', 'number','trip_lengths','hotels','destino'));
+        return view(
+            'livewire.page.form-footer',
+            compact(
+                'categories',
+                'number',
+                'trip_lengths',
+                'hotels',
+                'destino'
+            )
+        );
     }
 
-    public function store(){
+    public function store(): void
+    {
+        $this->resetErrorBag();
+        $this->success = null;
+
         $this->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required'
+            'name' => [
+                'required',
+                'string',
+                'max:150',
+            ],
+
+            'email' => [
+                'required',
+                'email',
+                'max:190',
+            ],
+
+            'phone' => [
+                'required',
+                'string',
+                'max:50',
+            ],
+
+            'travel_day' => [
+                'nullable',
+                'string',
+            ],
+
+            'comment' => [
+                'nullable',
+                'string',
+                'max:5000',
+            ],
+
+            'values_categories' => [
+                'nullable',
+                'array',
+            ],
+
+            'values_destinations' => [
+                'nullable',
+                'array',
+            ],
+
+            'values_number' => [
+                'nullable',
+                'string',
+            ],
+
+            'values_number_input' => [
+                'nullable',
+                'integer',
+                'min:1',
+                'max:99',
+            ],
+
+            'values_trip_length' => [
+                'nullable',
+                'array',
+            ],
         ]);
 
+        $productId = 2;
         $from = 'info@gotolatam.com';
+        $product = 'gotolatam.com';
 
-        if ($this->values_number == '6'){
-            $travellers = $this->values_number_input;
-        }else{
-            $travellers = $this->values_number;
-        }
+        $travellers =
+            $this->resolveTravellers();
 
-        $hotels_s = '';
-        foreach ($this->values_categories as $item) {
-            $hotels_s.=$item;
-        }
+        $categories =
+            $this->cleanArray(
+                $this->values_categories
+            );
 
-        $destino_s = '';
-        foreach ($this->values_destinations as $item) {
-            $destino_s.=$item;
-        }
+        $destinations =
+            $this->cleanArray(
+                $this->values_destinations
+            );
 
-//        Mail::send(['html' => 'notifications.page.client-form-design'], ['name' => $this->name], function ($messaje) {
-//            $messaje->to($this->email, $this->name)
-//                ->subject('GotoLatam')
-//                /*->attach('ruta')*/
-//                ->from('info@gotolatam.com', 'GotoLatam');
-//        });
-
-        $travelDay = Carbon::parse($this->travel_day);
-
-        // Formatear la fecha a ISO 8601 ("Y-m-d\TH:i:s.v\Z"), que es el formato deseado
-//        $formattedDate = $travelDay->format('Y-m-d\TH:i:s.v\Z');
-        $formattedDate = $travelDay->format('Y-m-d');
-
-
-
-//        $trip_length = '';
-//        foreach ($this->values_trip_length as $item) {
-//            $trip_length.=$item;
-//        }
-
-//        $formattedDate = Carbon::parse($this->travel_date)->format('Y-m-d H:i:s');
-
-        $inquireDate = Carbon::now('America/Lima')->format('Y-m-d H:i:s');
-
-        // Preparar los datos que se enviarán al servicio
-        $data = [
-            "category_d" => array_filter($this->values_categories),
-            "destino_d" => array_filter($this->values_destinations), // Aquí puedes agregar los destinos si los tienes
-            "pasajeros_d" => $travellers,
-            "duracion_d" => $this->values_trip_length,
-            "el_nombre" => $this->name,
-            "el_email" => $this->email,
-            "el_fecha" => $formattedDate, // O puedes usar $this->travel_day si es relevante
-            "el_telefono" => $this->phone,
-            "el_textarea" => $this->comment,
-            'codigo_pais' => $this->phonecountry,
-            'device' => $this->device,
-            'browser' => $this->browser,
-            'origen' => "Web",
-            'producto' => "gotolatam.com",
-            'inquire_date' => $inquireDate
-        ];
-
-        $data2 = [
-            "product_id" => 2,
-            "package"=>'',
-            "hotel_category" => array_values(array_filter($this->values_categories)),
-            "destinations" => array_values(array_filter($this->values_destinations)),
-            "passengers" => $travellers,
-            "duration" => array_values($this->values_trip_length),
-            "travel_date"=>$formattedDate,
-            "country"=>$this->country,
-            "country_code"=>$this->phonecountry,
-            "device"=>$this->device,
-            "origin"=>"Web",
-            "browser"=>$this->browser,
-            "name"=>$this->name,
-            "email"=>$this->email,
-            "phone"=>$this->phone,
-            "comment"=>$this->comment,
-            "initial_price"=>0,
-            "inquiry_date"=>$inquireDate,
-            "dialCode"=>'',
-
-        ];
-
-//        dd($data2);
-
-        $response2 = Http::post('https://app.g1.agency/api/v1/leads/', $data2);
-
-        // Enviar los datos al servicio mediante una solicitud HTTP POST
-        $response = Http::post('https://api.gotoecuador.com/api/store/inquire', $data);
-
-//        dd($response2);
+        $tripLengths =
+            $this->cleanArray(
+                $this->values_trip_length
+            );
 
         try {
-            if ($response2->successful() AND $response->successful()) {
-                Mail::send(['html' => 'notifications.page.admin-form-footer'], [
+            $formattedDate =
+                filled($this->travel_day)
+                    ? Carbon::parse(
+                    $this->travel_day
+                )->format('Y-m-d')
+                    : null;
+        } catch (\Throwable $exception) {
+            $this->addError(
+                'travel_day',
+                'La fecha de viaje ingresada no es válida.'
+            );
 
-                    'category_all' => implode(', ', $this->values_categories),
-                    'destinations_all' => implode(', ', $this->values_destinations),
-                    'travellers_all' => $travellers,
-                    'trip_length' => implode(', ', $this->values_trip_length),
-                    'travel_day_all' => $this->travel_day,
-                    'comentario' => $this->comment,
-                    'nombre' => $this->name,
-                    'email' => $this->email,
-                    'telefono' => $this->phone,
-                    'code' => $this->phonecountry,
-                    'device' => $this->device,
-                    'browser' => $this->browser
-
-                ], function ($messaje) use ($from) {
-                    $messaje->to($from, 'GotoLatam')
-                        ->subject('GotoLatam')
-                        //                    ->cc($from2, 'GotoLatam')
-                        /*->attach('ruta')*/
-                        ->from('info@gotolatam.com', 'GotoLatam');
-                });
-
-                $this->reset('values_categories');
-                $this->reset('values_destinations');
-                $this->reset('values_number');
-                $this->reset('values_number_input');
-                $this->reset('values_trip_length');
-                $this->reset('travel_day');
-                $this->reset('comment');
-                $this->reset('name');
-                $this->reset('email');
-                $this->reset('phone');
-                $this->reset('phonecountry');
-
-                $this->success = __('message.msg_email');
-            } else {
-                // Manejo de errores
-//                $this->addError('error', 'Hubo un problema enviando la información al servicio.');
-                $this->addError('api_error', 'Uno de los servicios falló');
-                Log::error('Uno de los servicios falló', [
-                    'response1_status' => $response->status(),
-                    'response2_status' => $response2->status(),
-                    'response1' => $response->body(),
-                    'response2' => $response2->body(),
-                ]);
-            }
-        }catch (\Throwable $e) {
-            Log::error('Error al enviar datos a los servicios', [
-                'message' => $e->getMessage(),
-                'trace' => $e->getTraceAsString(),
-            ]);
-            $this->addError('api_error', 'Ocurrió un error al enviar los datos.');
+            return;
         }
 
+        $inquireDate =
+            Carbon::now('America/Lima')
+                ->format('Y-m-d H:i:s');
 
+        $normalizedPhone =
+            $this->normalizedPhone();
+
+        /*
+         * Datos para el servicio anterior.
+         */
+        $legacyData = [
+            'category_d' => $categories,
+            'destino_d' => $destinations,
+            'pasajeros_d' => $travellers,
+            'duracion_d' => $tripLengths,
+            'el_nombre' => trim(
+                (string) $this->name
+            ),
+            'el_email' => strtolower(
+                trim((string) $this->email)
+            ),
+            'el_fecha' => $formattedDate,
+            'el_telefono' =>
+                $normalizedPhone,
+            'el_textarea' =>
+                $this->comment,
+            'codigo_pais' =>
+                $this->phonecountry,
+            'device' => $this->device,
+            'browser' => $this->browser,
+            'origen' => 'Web',
+            'producto' => $product,
+            'inquire_date' =>
+                $inquireDate,
+        ];
+
+        /*
+         * Datos para G1.
+         */
+        $g1Data = [
+            'product_id' => $productId,
+            'package' => '',
+            'hotel_category' => $categories,
+            'destinations' => $destinations,
+            'passengers' => $travellers,
+            'duration' => $tripLengths,
+            'travel_date' => $formattedDate,
+            'country' => $this->country,
+            'country_code' =>
+                $this->phonecountry,
+            'device' => $this->device,
+            'origin' => 'Web',
+            'browser' => $this->browser,
+            'name' => trim(
+                (string) $this->name
+            ),
+            'email' => strtolower(
+                trim((string) $this->email)
+            ),
+            'phone' => $normalizedPhone,
+            'comment' => $this->comment,
+            'initial_price' => 0,
+            'inquiry_date' =>
+                $inquireDate,
+            'dialCode' => '',
+        ];
+
+        /*
+         * Datos exclusivos para Kommo.
+         */
+        $kommoData = [
+            'product_id' => $productId,
+            'product' => $product,
+            'website' => $product,
+
+            'hotel_category' =>
+                $categories,
+
+            'destinations' =>
+                $destinations,
+
+            'passengers' =>
+                $travellers,
+
+            'duration' =>
+                $tripLengths,
+
+            'travel_date' =>
+                $formattedDate,
+
+            'country' =>
+                $this->country,
+
+            'country_code' =>
+                $this->phonecountry,
+
+            'device' =>
+                $this->device,
+
+            'origin' =>
+                'Web',
+
+            'browser' =>
+                $this->browser,
+
+            'name' => trim(
+                (string) $this->name
+            ),
+
+            'email' => strtolower(
+                trim((string) $this->email)
+            ),
+
+            'phone' =>
+                $normalizedPhone,
+
+            'comment' =>
+                $this->comment,
+
+            'inquiry_date' =>
+                $inquireDate,
+        ];
+
+        try {
+            /*
+             * 1. Registrar en G1.
+             */
+            $g1Response =
+                Http::acceptJson()
+                    ->asJson()
+                    ->timeout(20)
+                    ->post(
+                        'https://app.g1.agency/api/v1/leads/',
+                        $g1Data
+                    );
+
+            if ($g1Response->failed()) {
+                Log::error(
+                    'No se pudo registrar el lead de GotoLatam en G1',
+                    [
+                        'status' =>
+                            $g1Response->status(),
+
+                        'response' =>
+                            $g1Response->body(),
+
+                        'product_id' =>
+                            $productId,
+                    ]
+                );
+
+                $this->addError(
+                    'api_error',
+                    'No se pudo enviar la solicitud. Inténtalo nuevamente.'
+                );
+
+                return;
+            }
+
+            /*
+             * 2. Servicio anterior.
+             *
+             * No utiliza connectTimeout porque la
+             * versión actual de Laravel no lo admite.
+             */
+            try {
+                $legacyResponse =
+                    Http::acceptJson()
+                        ->asJson()
+                        ->timeout(20)
+                        ->post(
+                            'https://api.gotoecuador.com/api/store/inquire',
+                            $legacyData
+                        );
+
+                if (
+                    $legacyResponse->failed()
+                ) {
+                    Log::error(
+                        'G1 recibió el lead, pero el servicio anterior respondió con error',
+                        [
+                            'status' =>
+                                $legacyResponse->status(),
+
+                            'response' =>
+                                $legacyResponse->body(),
+
+                            'product' =>
+                                $product,
+                        ]
+                    );
+                }
+            } catch (
+            \Throwable $legacyException
+            ) {
+                Log::error(
+                    'G1 recibió el lead, pero no se pudo conectar al servicio anterior',
+                    [
+                        'message' =>
+                            $legacyException
+                                ->getMessage(),
+
+                        'product' =>
+                            $product,
+                    ]
+                );
+            }
+
+            /*
+             * 3. Kommo.
+             *
+             * Si falla, no bloquea el formulario.
+             */
+            try {
+                /** @var KommoService $kommoService */
+                $kommoService = app(
+                    KommoService::class
+                );
+
+                $kommoService
+                    ->createLeadWithContact(
+                        $kommoData
+                    );
+            } catch (
+            \Throwable $kommoException
+            ) {
+                Log::error(
+                    'G1 recibió el lead de GotoLatam, pero Kommo falló',
+                    [
+                        'message' =>
+                            $kommoException
+                                ->getMessage(),
+
+                        'file' =>
+                            $kommoException
+                                ->getFile(),
+
+                        'line' =>
+                            $kommoException
+                                ->getLine(),
+
+                        'product_id' =>
+                            $productId,
+
+                        'product' =>
+                            $product,
+                    ]
+                );
+            }
+
+            /*
+             * 4. Correo administrativo.
+             */
+            $this->sendAdminEmail(
+                $from,
+                $travellers,
+                $categories,
+                $destinations,
+                $tripLengths,
+                $normalizedPhone
+            );
+
+            $this->resetLeadForm();
+
+            $this->success = __(
+                'message.msg_email'
+            );
+        } catch (\Throwable $exception) {
+            Log::error(
+                'Error al procesar el formulario de GotoLatam',
+                [
+                    'message' =>
+                        $exception->getMessage(),
+
+                    'file' =>
+                        $exception->getFile(),
+
+                    'line' =>
+                        $exception->getLine(),
+
+                    'trace' =>
+                        $exception
+                            ->getTraceAsString(),
+
+                    'product_id' =>
+                        $productId,
+
+                    'product' =>
+                        $product,
+                ]
+            );
+
+            $this->addError(
+                'api_error',
+                'Ocurrió un error al enviar los datos.'
+            );
+        }
     }
 
-    public function load_submit(){
-        return 'loading';
+    private function resolveTravellers()
+    {
+        if (
+            $this->values_number === '6'
+        ) {
+            return filled(
+                $this->values_number_input
+            )
+                ? (string)
+                $this->values_number_input
+                : '6';
+        }
+
+        return $this->values_number;
     }
 
+    private function sendAdminEmail(
+        string $from,
+               $travellers,
+        array $categories,
+        array $destinations,
+        array $tripLengths,
+        string $normalizedPhone
+    ): void {
+        Mail::send(
+            [
+                'html' =>
+                    'notifications.page.admin-form-footer',
+            ],
+            [
+                'category_all' =>
+                    implode(', ', $categories),
+
+                'destinations_all' =>
+                    implode(', ', $destinations),
+
+                'travellers_all' =>
+                    $travellers,
+
+                'trip_length' =>
+                    implode(', ', $tripLengths),
+
+                'travel_day_all' =>
+                    $this->travel_day,
+
+                'comentario' =>
+                    $this->comment,
+
+                'nombre' =>
+                    $this->name,
+
+                'email' =>
+                    $this->email,
+
+                'telefono' =>
+                    $normalizedPhone,
+
+                'code' =>
+                    $this->phonecountry,
+
+                'device' =>
+                    $this->device,
+
+                'browser' =>
+                    $this->browser,
+            ],
+            function ($message) use ($from) {
+                $message
+                    ->to(
+                        $from,
+                        'GotoLatam'
+                    )
+                    ->subject(
+                        'GotoLatam'
+                    )
+                    ->from(
+                        'info@gotolatam.com',
+                        'GotoLatam'
+                    );
+            }
+        );
+    }
+
+    private function sendClientEmail(): void
+    {
+        Mail::send(
+            [
+                'html' =>
+                    'notifications.page.client-form-design',
+            ],
+            [
+                'name' => $this->name,
+            ],
+            function ($message) {
+                $message
+                    ->to(
+                        $this->email,
+                        $this->name
+                    )
+                    ->subject(
+                        'GotoLatam'
+                    )
+                    ->from(
+                        'info@gotolatam.com',
+                        'GotoLatam'
+                    );
+            }
+        );
+    }
+
+    private function normalizedPhone(): string
+    {
+        $phone = trim(
+            (string) $this->phone
+        );
+
+        if ($phone === '') {
+            return '';
+        }
+
+        if (
+            strpos($phone, '+') === 0
+        ) {
+            return preg_replace(
+                '/[^\d+]/',
+                '',
+                $phone
+            ) ?: $phone;
+        }
+
+        preg_match(
+            '/\+\d+/',
+            (string)
+            $this->phonecountry,
+            $matches
+        );
+
+        $dialCode =
+            $matches[0] ?? '';
+
+        $cleanPhone =
+            preg_replace(
+                '/\D+/',
+                '',
+                $phone
+            ) ?: $phone;
+
+        return $dialCode .
+            $cleanPhone;
+    }
+
+    private function cleanArray(
+        $value
+    ): array {
+        if ($value === null) {
+            return [];
+        }
+
+        if (!is_array($value)) {
+            $value = [
+                $value,
+            ];
+        }
+
+        return array_values(
+            array_filter(
+                $value,
+                static function ($item) {
+                    return $item !== null
+                        && $item !== ''
+                        && $item !== false;
+                }
+            )
+        );
+    }
+
+    private function resetLeadForm(): void
+    {
+        $this->reset([
+            'values_categories',
+            'values_destinations',
+            'values_number',
+            'values_number_input',
+            'values_trip_length',
+            'travel_day',
+            'comment',
+            'name',
+            'email',
+            'phone',
+            'country',
+            'phonecountry',
+        ]);
+
+        $this->dispatchBrowserEvent(
+            'form-footer-reset'
+        );
+    }
 }
