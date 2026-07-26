@@ -843,7 +843,7 @@ class KommoService
             $this->normalizeArray($value)
         );
     }
-    
+
     private function normalizeText(
         string $value
     ): string {

@@ -392059,3 +392059,5 @@ Stack trace:
 [2026-07-26 20:45:24] local.ERROR: G1 recibió el lead de GotoLatam, pero Kommo falló {"message":"Method Illuminate\\Support\\Stringable::toString does not exist.","file":"/Users/hidalgoponce/Laravel/gotolatam/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php","line":113,"product_id":2,"product":"gotolatam.com"} 
 [2026-07-26 20:48:56] local.INFO: Enviando lead de GotoLatam a Kommo {"lead_name":"Hidalgo Edely Chata Ponce - gotolatam.com","pipeline_id":14149651,"status_id":109232151,"responsible_user_id":15619719,"custom_fields_count":4,"has_contact":true} 
 [2026-07-26 20:48:57] local.INFO: Lead de GotoLatam creado correctamente en Kommo {"lead_id":13430540,"contact_id":32583360,"merged":false} 
+[2026-07-26 21:11:34] local.INFO: Enviando lead de GotoLatam a Kommo {"lead_name":"Hidalgo Edely Chata Ponce - gotolatam.com","pipeline_id":14149651,"status_id":109232151,"responsible_user_id":15619719,"custom_fields_count":3,"has_contact":true} 
+[2026-07-26 21:11:35] local.INFO: Lead de GotoLatam creado correctamente en Kommo {"lead_id":13434292,"contact_id":32587060,"merged":false} 
