@@ -1,667 +1,416 @@
-{{-- /resources/views/livewire/page/form-footer.blade.php --}}
+<div class="bg-gray-100 dark:bg-gray-700 {{ $success ? 'py-12' : 'py-5 md:py-12' }} text-gray-700 dark:text-gray-100" id="form-dream-adventure" data-quote-form="general"
+     x-data="{
+         step: @entangle('step').defer,
 
-<div
-    id="form-dream-adventure"
-    class="bg-gray-100 py-12 text-gray-500 dark:bg-gray-700 dark:text-gray-100"
->
-    <div class="mx-auto mb-10 w-11/12 text-center md:w-7/12 lg:w-1/2 xl:w-1/3">
-        <img
-            src="{{ asset('images/logos/logo-gotoperu-black.png') }}"
-            alt="GotoLatam"
-            class="mx-auto w-52"
-        >
 
-        <h3 class="mt-2 text-2xl font-semibold text-gray-600 dark:text-gray-300">
-            {{ __('message.form_footer_title') }}
-        </h3>
-
-        <p class="text-sm tracking-tighter">
-            {{ __('message.form_footer_par1') }}
-        </p>
-    </div>
-
-    <form
-        id="form-footer-lead"
-        wire:submit.prevent="store"
-        class="mx-auto grid w-11/12 grid-cols-1 items-center gap-12 md:w-7/12 lg:w-1/2 xl:w-2/5"
-    >
-        <div>
-            {{-- Categoría de hotel --}}
-            <div class="mx-auto grid grid-cols-6 gap-2">
-                <div class="col-span-6 flex flex-col text-center">
-                    <h2 class="text-lg font-bold">
-                        {{ __('message.form_footer_subtitle1') }}
-                    </h2>
-
-                    <p class="text-xs font-semibold">
-                        {{ __('message.form_footer_par2') }}
-                    </p>
-                </div>
-
-                <label
-                    class="hidden items-center justify-center border border-gray-400 bg-gray-50 p-5 dark:bg-gray-700 md:col-span-1 md:inline-flex"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                        />
-                    </svg>
-                </label>
-
-                <div class="col-span-6 grid grid-cols-3 gap-2 md:col-span-5">
-                    @foreach ($hotels as $index => $hotel)
-                        <label
-                            class="btn-check-form relative flex cursor-pointer items-center justify-center border border-gray-400 bg-gray-50 py-3 transition duration-700 hover:border-secondary hover:bg-white dark:bg-gray-700"
-                        >
-                            <input
-                                wire:model="values_categories.{{ $index }}"
-                                type="checkbox"
-                                value="{{ $hotel['star'] }}"
-                                class="absolute opacity-0"
-                            >
-
-                            <svg
-                                class="pointer-events-none absolute left-0 top-0 hidden h-7 w-7 fill-current p-1 text-secondary"
-                                viewBox="0 0 20 20"
-                            >
-                                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
-                            </svg>
-
-                            <span class="flex flex-col text-center">
-                                <span class="block select-none text-xs md:text-base">
-                                    {{ $hotel['category'] }}
-                                </span>
-
-                                <span class="flex justify-center text-secondary">
-                                    @for ($i = 0; $i < $hotel['star']; $i++)
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="h-3 w-3 md:h-4 md:w-4"
-                                            viewBox="0 0 20 20"
-                                            fill="currentColor"
-                                        >
-                                            <path
-                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                                            />
-                                        </svg>
-                                    @endfor
-                                </span>
-                            </span>
-                        </label>
-                    @endforeach
-                </div>
-
-                @error('values_categories')
-                <span class="col-span-6 text-xs text-red-500">
-                        {{ $message }}
-                    </span>
-                @enderror
+         submitted: @entangle('success'),
+         dateReadOnly: window.innerWidth < 768 || /iPhone|iPad|iPod/.test(navigator.userAgent),
+         number: @entangle('values_number').defer,
+         specified: @entangle('values_number_input').defer,
+         preferredContact: @entangle('preferredContactMethod').defer,
+         tripLengths: @entangle('values_trip_length').defer,
+         get travelers() {
+             const value = Number(this.number === '6' ? this.specified : this.number);
+             return Number.isInteger(value) && value > 0 ? value : null;
+         },
+         setTravelers(raw) {
+             const text = String(raw).trim();
+             if (text === '') {
+                 this.number = null;
+                 this.specified = null;
+                 return;
+             }
+             if (!/^[0-9]+$/.test(text)) return;
+             const value = Number(text);
+             if (!Number.isSafeInteger(value) || value < 1 || value > 99) return;
+             this.number = value >= 6 ? '6' : String(value);
+             this.specified = value >= 6 ? String(value) : null;
+         },
+         changeTravelers(change) {
+             this.setTravelers(Math.max(1, (this.travelers || 0) + change));
+         },
+         setPreferredContact(value, checked) {
+             if (checked && value === 'No preference') {
+                 this.preferredContact = ['No preference'];
+                 return;
+             }
+             const selected = Object.values(this.preferredContact || {});
+             this.preferredContact = ['WhatsApp', 'Email', 'Phone'].filter(method =>
+                 method === value ? checked : selected.includes(method)
+             );
+         },
+         init() {
+             this.viewportResizeHandler = () => this.updateFloatingActions();
+             this.viewportScrollHandler = () => this.updateFloatingActions();
+             if (window.visualViewport) {
+                 window.visualViewport.addEventListener('resize', this.viewportResizeHandler);
+                 window.visualViewport.addEventListener('scroll', this.viewportScrollHandler);
+             }
+         },
+         destroy() {
+             this.clearFocusedField();
+             if (window.visualViewport) {
+                 window.visualViewport.removeEventListener('resize', this.viewportResizeHandler);
+                 window.visualViewport.removeEventListener('scroll', this.viewportScrollHandler);
+             }
+         },
+         rememberFocusedField(field) {
+             if (window.innerWidth >= 768 || !field || field.readOnly
+                 || !field.matches('textarea, input[type=text], input[type=email], input[type=tel]')) return;
+             this.clearFocusedField();
+             this.focusedField = field;
+             if (window.visualViewport) {
+                 this.fieldViewportHandler = () => {
+                     cancelAnimationFrame(this.fieldVisibilityFrame);
+                     this.fieldVisibilityFrame = requestAnimationFrame(() => {
+                         this.fieldVisibilityFrame = requestAnimationFrame(() => this.keepFocusedFieldVisible());
+                     });
+                 };
+                 window.visualViewport.addEventListener('resize', this.fieldViewportHandler);
+                 window.visualViewport.addEventListener('scroll', this.fieldViewportHandler);
+             } else {
+                 this.fieldVisibilityTimer = setTimeout(() => this.keepFocusedFieldVisible(), 300);
+             }
+         },
+         clearFocusedField(field = null) {
+             if (field && field !== this.focusedField) return;
+             clearTimeout(this.fieldVisibilityTimer);
+             cancelAnimationFrame(this.fieldVisibilityFrame);
+             if (window.visualViewport && this.fieldViewportHandler) {
+                 window.visualViewport.removeEventListener('resize', this.fieldViewportHandler);
+                 window.visualViewport.removeEventListener('scroll', this.fieldViewportHandler);
+             }
+             this.focusedField = null;
+             this.fieldViewportHandler = null;
+         },
+         keepFocusedFieldVisible() {
+             const field = this.focusedField;
+             if (window.innerWidth >= 768 || !field || document.activeElement !== field || !field.isConnected) return;
+             const viewport = window.visualViewport;
+             if (/CriOS\//.test(navigator.userAgent) && viewport) {
+                 const bounds = field.getBoundingClientRect();
+                 const top = viewport.offsetTop;
+                 const bottom = top + viewport.height;
+                 // Let Chrome finish its own positioning when the field is already visible.
+                 if (bounds.top >= top && bounds.bottom <= bottom) return;
+                 const margin = 8;
+                 const offset = bounds.top < top || bounds.height > viewport.height - margin * 2
+                     ? bounds.top - top - margin : bounds.bottom - bottom + margin;
+                 if (Math.abs(offset) > 1) window.scrollBy({ top: offset, left: 0, behavior: 'auto' });
+                 return;
+             }
+             const top = (viewport ? viewport.offsetTop : 0) + 16;
+             const bottom = (viewport ? viewport.offsetTop + viewport.height : window.innerHeight) - 16;
+             const bounds = field.getBoundingClientRect();
+             if (bounds.top < top || bounds.bottom > bottom) {
+                 const offset = bounds.top < top || bounds.height > bottom - top
+                     ? bounds.top - top : bounds.bottom - bottom;
+                 window.scrollBy({ top: offset, left: 0, behavior: 'auto' });
+             }
+         },
+         updateFloatingActions() {
+             const viewport = window.visualViewport;
+             const top = viewport ? viewport.offsetTop : 0;
+             const bottom = top + (viewport ? viewport.height : window.innerHeight);
+             const hide = window.innerWidth < 768
+                 && Array.from(document.querySelectorAll('[data-quote-form]')).some(form => {
+                     const bounds = form.getBoundingClientRect();
+                     return bounds.height > 0 && bounds.top < bottom && bounds.bottom > top;
+                 });
+             document.querySelectorAll('[data-quote-floating], .fixed.bottom-0.right-0.py-6.px-7, .fixed.bottom-0.right-0.py-5.px-4, .fixed.bg-12.bottom-0.w-full').forEach(action => {
+                 action.classList.toggle('quote-floating-hidden', hide);
+             });
+         },
+         goToStep(value) {
+             this.step = value;
+             this.$nextTick(() => this.$refs.stepHeading.focus());
+         }
+     }"
+     x-effect="step; submitted; $nextTick(() => updateFloatingActions())"
+     @scroll.window.throttle.100ms="updateFloatingActions()"
+     @resize.window.debounce.100ms="dateReadOnly = window.innerWidth < 768 || /iPhone|iPad|iPod/.test(navigator.userAgent); updateFloatingActions()">
+    <div class="container mx-auto">
+        <div class="{{ $success ? 'w-11/12 max-w-6xl mx-auto' : 'quote-form-inner w-11/12 max-w-2xl mx-auto' }}">
+            <div class="{{ $success ? 'quote-form-inner mx-auto text-center mb-6' : 'mb-4 text-center md:block md:mb-6' }}">
+                <img src="{{ asset('images/logos/logo-gotoperu-black.png') }}" alt="GoToLatam" class="block mx-auto h-12 w-auto max-w-full mb-1 md:mb-4">
+                <h2 class="font-semibold text-gray-700 dark:text-gray-100 {{ $success ? 'text-2xl' : 'text-lg text-center md:text-2xl md:text-center' }}">Plan Your Trip</h2>
+                <p class="text-gray-500 dark:text-gray-300 {{ $success ? 'text-sm mt-2' : 'w-full text-sm mt-1 md:mt-2' }}">Tell us about the trip you have in mind.</p>
             </div>
 
-            {{-- Destinos --}}
-            <div class="mx-auto mt-3 grid grid-cols-6 gap-2">
-                <div class="col-span-6 flex flex-col text-center">
-                    <h2 class="text-lg font-bold">
-                        DESTINATIONS
-                    </h2>
-                </div>
+            <form id="form-footer-lead" wire:submit.prevent="store" @submit.capture="if (step === 1) { $event.preventDefault(); $event.stopImmediatePropagation(); goToStep(2); }" novalidate>
+                <input type="hidden" wire:model="device" readonly>
+                <input type="hidden" wire:model="browser" readonly>
+                <div x-show="!submitted">
+                    <div class="mb-4 md:mb-6" aria-label="Quote progress">
+                        <div class="flex items-center justify-between gap-3 mb-2 md:mb-3">
+                            <h3 class="text-base md:text-lg font-semibold text-gray-700 dark:text-gray-100 focus:outline-none" tabindex="-1" x-ref="stepHeading"
+                                x-text="step === 1 ? 'Your Trip' : 'Your Details'">Your Trip</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-300" aria-live="polite">Step <span x-text="step">1</span> of 2</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2" aria-hidden="true">
+                            <span class="h-1 bg-primary"></span>
+                            <span class="h-1" :class="step === 2 ? 'bg-primary' : 'bg-gray-300'"></span>
+                        </div>
+                    </div>
 
-                <label
-                    class="hidden items-center justify-center border border-gray-400 bg-gray-50 p-5 dark:bg-gray-700 md:col-span-1 md:inline-flex"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="h-6 w-6"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
+                    <fieldset class="min-w-0" wire:loading.attr="disabled" wire:target="store">
+                        <div x-show="step === 1" class="grid grid-cols-1 gap-4 md:block md:space-y-6">
+                            <div>
+                                <label for="datepicker" class="block text-sm font-semibold text-gray-700 dark:text-gray-100 mb-2"><span class="md:hidden">Travel date</span><span class="hidden md:inline">When would you like to travel?</span></label>
+                                <input id="datepicker" wire:model.lazy="travel_day" type="text" autocomplete="off"
+                                       :readonly="dateReadOnly" :inputmode="dateReadOnly ? 'none' : null"
+                                       class="quote-input bg-gray-50 dark:bg-gray-800 border border-gray-400 dark:border-gray-600 p-3 md:p-5 text-gray-700 dark:text-gray-100 w-full focus:outline-none focus:border-primary"
+                                       placeholder="Select a tentative date" aria-describedby="quote-date-help-general quote-date-error-general"
+                                       aria-invalid="{{ $errors->has('travel_day') ? 'true' : 'false' }}">
+                                <p id="quote-date-help-general" class="hidden md:block text-xs text-gray-500 dark:text-gray-300 mt-2">Tentative date · Leave blank if you're not sure yet.</p>
+                                @error('travel_day') <p id="quote-date-error-general" class="text-sm text-red-500 mt-2" role="alert">{{ $message }}</p> @enderror
+                            </div>
 
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-                        />
-                    </svg>
-                </label>
+                            <fieldset class="min-w-0">
+                                <legend class="text-sm font-semibold text-gray-700 dark:text-gray-100 mb-1 md:mb-2 w-full md:w-auto">
+                                    <span class="flex items-center justify-between gap-2">
+                                        <span>Number of travelers</span>
+                                        <button type="button" class="quote-action flex-shrink-0 px-2 text-xs md:hidden text-primary focus:outline-none focus:underline"
+                                                :class="number === 'Undecided' ? 'font-semibold' : 'font-normal'"
+                                                :aria-pressed="number === 'Undecided'"
+                                                @click="number = number === 'Undecided' ? null : 'Undecided'; specified = null">
+                                            Not sure yet
+                                        </button>
+                                    </span>
+                                </legend>
+                                <div class="block">
+                                    <div class="min-w-0 flex items-center justify-between gap-2 md:gap-3 bg-gray-50 dark:bg-gray-800 border border-gray-400 dark:border-gray-600 p-1 md:p-2">
+                                        <button type="button" @click="changeTravelers(-1)" :disabled="travelers === null || travelers <= 1"
+                                                class="quote-stepper-button flex items-center justify-center border border-gray-300 dark:border-gray-600 text-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+                                                aria-label="Remove one traveler">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-5 h-5" aria-hidden="true" ><path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" /></svg>
+                                        </button>
+                                        <input type="number" min="1" max="99" step="1" inputmode="numeric" autocomplete="off"
+                                               class="quote-travelers-input min-w-0 flex-1 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 px-2 text-center font-semibold text-gray-700 dark:text-gray-100 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary"
+                                               aria-label="Number of travelers" aria-invalid="{{ $errors->has('values_number') || $errors->has('values_number_input') ? 'true' : 'false' }}" aria-describedby="quote-travelers-error-general quote-travelers-count-error-general" :value="travelers === null ? '' : travelers"
+                                               :placeholder="number === 'Undecided' ? 'Not sure yet' : 'Choose travelers'"
+                                               @input="setTravelers($event.target.value); $event.target.value = travelers === null ? '' : travelers">
+                                        <button type="button" @click="changeTravelers(1)" :disabled="travelers >= 99"
+                                                class="quote-stepper-button flex items-center justify-center border border-gray-300 dark:border-gray-600 text-primary hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+                                                aria-label="Add one traveler">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-5 h-5" aria-hidden="true" ><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" /></svg>
+                                        </button>
+                                    </div>
+                                    <button type="button" class="quote-action hidden w-max max-w-full mx-auto mt-1 px-3 text-sm md:inline-block md:w-auto md:mx-0 md:mt-2 border text-primary focus:outline-none focus:ring-2 focus:ring-primary"
+                                            :class="number === 'Undecided' ? 'border-primary bg-white dark:bg-gray-800' : 'border-transparent'"
+                                            :aria-pressed="number === 'Undecided'"
+                                            @click="number = number === 'Undecided' ? null : 'Undecided'; specified = null">
+                                        Not sure yet
+                                    </button>
+                                </div>
+                                @error('values_number') <p id="quote-travelers-error-general" class="text-sm text-red-500 mt-2" role="alert">{{ $message }}</p> @enderror
+                                @error('values_number_input') <p id="quote-travelers-count-error-general" class="text-sm text-red-500 mt-2" role="alert">{{ $message }}</p> @enderror
+                            </fieldset>
 
-                <div class="col-span-6 grid grid-cols-4 gap-2 md:col-span-5">
-                    @foreach ($destino as $index => $destinos)
-                        <label
-                            class="btn-check-form relative flex cursor-pointer items-center justify-center border border-gray-400 bg-gray-50 py-3 transition duration-700 hover:border-secondary hover:bg-white dark:bg-gray-700"
-                        >
-                            <input
-                                wire:model="values_destinations.{{ $index }}"
-                                type="checkbox"
-                                value="{{ $destinos['destino'] }}"
-                                class="absolute opacity-0"
-                            >
+                            <fieldset class="min-w-0">
+                                <legend id="quote-destinations-label-general" class="text-sm font-semibold text-gray-700 dark:text-gray-100 mb-2">Destinations <span class="text-xs font-normal text-gray-500 dark:text-gray-300">· Optional</span></legend>
+                                <div class="grid grid-cols-2 gap-2 md:grid-cols-4">
+                                    @foreach($destino as $index => $destination)
+                                        <label class="quote-touch-choice relative cursor-pointer min-w-0" wire:key="quote-destination-general-{{ $index }}">
+                                            <input wire:model.defer="values_destinations.{{ $index }}" type="checkbox" value="{{ $destination['destino'] }}" class="quote-choice-input sr-only">
+                                            <span class="quote-choice flex items-center justify-center gap-2 rounded-none border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-2 py-3 text-primary hover:border-primary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="quote-choice-check w-4 h-4 flex-shrink-0" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                                                <span class="text-sm text-gray-700 dark:text-gray-100">{{ $destination['destino'] }}</span>
+                                            </span>
+                                        </label>
+                                    @endforeach
+                                </div>
+                                @error('values_destinations') <p class="text-sm text-red-500 mt-2" role="alert">{{ $message }}</p> @enderror
+                            </fieldset>
 
-                            <svg
-                                class="pointer-events-none absolute left-0 top-0 hidden h-7 w-7 fill-current p-1 text-secondary"
-                                viewBox="0 0 20 20"
-                            >
-                                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
-                            </svg>
+                            <div class="min-w-0">
+                                <label for="quote-length-general" class="block text-sm font-semibold text-gray-700 dark:text-gray-100 mb-2">Trip length</label>
+                                <div class="relative min-w-0">
+                                    <select id="quote-length-general"
+                                            class="quote-input block min-w-0 w-full rounded-none appearance-none bg-gray-50 dark:bg-gray-800 border border-gray-400 dark:border-gray-600 p-3 md:p-5 pr-10 md:pr-10 font-normal focus:outline-none focus:border-primary"
+                                            :class="Object.values(tripLengths || {}).filter(Boolean).length ? 'text-gray-700 dark:text-gray-100' : 'text-gray-400'"
+                                            x-effect="$el.value = Object.values(tripLengths || {}).filter(Boolean)[0] || ''"
+                                            @change="tripLengths = $event.target.value ? [$event.target.value] : []"
+                                            aria-invalid="{{ $errors->has('values_trip_length') ? 'true' : 'false' }}" aria-describedby="quote-length-error-general">
+                                        <option value="">Select trip length</option>
+                                        @foreach($trip_lengths as $trip_length)
+                                            <option value="{{ $trip_length }}">{{ $trip_length }} days</option>
+                                        @endforeach
+                                        <option value="Undecided">Not sure yet</option>
+                                    </select>
+                                    <span class="pointer-events-none absolute inset-y-0 right-0 flex w-10 items-center justify-center text-gray-500 dark:text-gray-300" aria-hidden="true">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                                    </span>
+                                </div>
+                                @error('values_trip_length') <p id="quote-length-error-general" class="text-sm text-red-500 mt-2" role="alert">{{ $message }}</p> @enderror
+                            </div>
 
-                            <span class="flex flex-col text-center">
-                                <span class="block select-none text-xs md:text-base">
-                                    {{ $destinos['destino'] }}
-                                </span>
-                            </span>
-                        </label>
-                    @endforeach
-                </div>
+                            <fieldset class="min-w-0">
+                                <legend class="text-sm font-semibold text-gray-700 dark:text-gray-100 mb-2 md:mb-0">Hotel preference <span class="text-xs font-normal text-gray-500 dark:text-gray-300 md:hidden">· Optional</span></legend>
+                                <p class="hidden md:block text-xs text-gray-500 dark:text-gray-300 mt-1 mb-3">Optional · Select one or more</p>
+                                <div class="grid grid-cols-3 gap-0 border border-gray-300 dark:border-gray-600 divide-x divide-gray-300 md:gap-2 md:border-0 md:divide-x-0">
+                                    @foreach(array_reverse($hotels, true) as $index => $hotel)
+                                        <label class="quote-touch-choice relative cursor-pointer min-w-0" wire:key="quote-hotel-{{ $index }}">
+                                            <input wire:model.defer="values_categories.{{ $index }}" type="checkbox" value="{{ $hotel['star'] }}" class="quote-choice-input sr-only">
+                                            <span class="quote-choice quote-hotel flex flex-col items-center justify-center text-center gap-2 md:gap-1 md:border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-1 py-4 md:py-5 md:px-3 text-primary hover:border-primary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="quote-choice-check !absolute top-0 right-0 mt-2 mr-2 hidden md:block w-4 h-4" aria-hidden="true" ><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                                                <span class="text-sm font-semibold text-gray-700 dark:text-gray-100">{{ $hotel['category'] }}</span>
+                                                <span class="quote-hotel-stars flex items-center justify-center text-secondary" role="img" aria-label="{{ $hotel['star'] }} stars">
+                                                    @for($star = 0; $star < (int) $hotel['star']; $star++)
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3 h-3" aria-hidden="true" ><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                                    @endfor
+                                                </span>
+                                            </span>
+                                        </label>
+                                    @endforeach
+                                </div>
+                                @error('values_categories') <p class="text-sm text-red-500 mt-2" role="alert">{{ $message }}</p> @enderror
+                                @error('values_categories.*') <p class="text-sm text-red-500 mt-2" role="alert">{{ $message }}</p> @enderror
+                            </fieldset>
 
-                @error('values_destinations')
-                <span class="col-span-6 text-xs text-red-500">
-                        {{ $message }}
-                    </span>
-                @enderror
-            </div>
-
-            {{-- Número de pasajeros --}}
-            <div class="mx-auto mt-4 grid grid-cols-6 gap-2">
-                <div class="col-span-6 flex flex-col text-center">
-                    <h2 class="text-lg font-bold">
-                        {{ __('message.form_footer_subtitle2') }}
-                    </h2>
-                </div>
-
-                <label
-                    class="hidden items-center justify-center border border-gray-400 bg-gray-50 p-5 dark:bg-gray-700 md:col-span-1 md:inline-flex"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                        />
-                    </svg>
-                </label>
-
-                <div class="col-span-6 grid grid-cols-7 gap-2 md:col-span-5">
-                    @foreach ($number as $numbers)
-                        <label
-                            class="btn-check-form relative flex cursor-pointer items-center justify-center border border-gray-400 bg-gray-50 py-3 transition duration-500 hover:border-secondary hover:bg-white dark:bg-gray-700"
-                        >
-                            <input
-                                wire:model="values_number"
-                                type="radio"
-                                value="{{ $numbers }}"
-                                class="absolute hidden"
-                            >
-
-                            <svg
-                                class="pointer-events-none absolute left-0 top-0 hidden h-7 w-7 fill-current p-1 text-secondary"
-                                viewBox="0 0 20 20"
-                            >
-                                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
-                            </svg>
-
-                            <span class="flex flex-col text-center">
-                                <span class="block select-none">
-                                    {{ $numbers }}
-                                </span>
-                            </span>
-                        </label>
-                    @endforeach
-
-                    <label
-                        x-data="{ open: false }"
-                        x-on:click="open = true"
-                        x-on:click.away="open = false"
-                        class="btn-check-form relative flex cursor-pointer items-center justify-center border border-gray-400 bg-gray-50 transition duration-500 hover:border-secondary hover:bg-white dark:bg-gray-700"
-                    >
-                        <input
-                            wire:model="values_number"
-                            type="radio"
-                            value="6"
-                            class="absolute hidden"
-                        >
-
-                        <svg
-                            class="pointer-events-none absolute left-0 top-0 hidden h-7 w-7 fill-current p-1 text-secondary"
-                            viewBox="0 0 20 20"
-                        >
-                            <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
-                        </svg>
-
-                        <span class="flex flex-col text-center">
-                            <span class="block select-none">
-                                <span class="break-words text-xss">
-                                    {{ __('message.form_footer_par3') }}
-                                </span>
-
-                                <input
-                                    x-show="open"
-                                    wire:model.defer="values_number_input"
-                                    type="number"
-                                    min="1"
-                                    max="99"
-                                    inputmode="numeric"
-                                    class="form-input w-full text-xs"
-                                >
-                            </span>
-                        </span>
-                    </label>
-
-                    <label
-                        class="btn-check-form relative flex cursor-pointer items-center justify-center border border-gray-400 bg-gray-50 px-4 py-3 transition duration-500 hover:border-secondary hover:bg-white dark:bg-gray-700"
-                    >
-                        <input
-                            wire:model="values_number"
-                            type="radio"
-                            value="Undecided"
-                            class="absolute hidden"
-                        >
-
-                        <svg
-                            class="pointer-events-none absolute left-0 top-0 hidden h-7 w-7 fill-current p-1 text-secondary"
-                            viewBox="0 0 20 20"
-                        >
-                            <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
-                        </svg>
-
-                        <span class="flex flex-col text-center">
-                            <span class="block select-none text-xss tracking-tighter">
-                                {{ __('message.form_footer_par4') }}
-                            </span>
-                        </span>
-                    </label>
-                </div>
-
-                @error('values_number')
-                <span class="col-span-6 text-xs text-red-500">
-                        {{ $message }}
-                    </span>
-                @enderror
-
-                @error('values_number_input')
-                <span class="col-span-6 text-xs text-red-500">
-                        {{ $message }}
-                    </span>
-                @enderror
-            </div>
-
-            {{-- Duración del viaje --}}
-            <div class="mx-auto mt-4 grid grid-cols-6 gap-2">
-                <div class="col-span-6 flex flex-col text-center">
-                    <h2 class="text-lg font-bold">
-                        {{ __('message.form_footer_subtitle3') }}
-                    </h2>
-                </div>
-
-                <label
-                    class="hidden items-center justify-center border border-gray-400 bg-gray-50 p-5 dark:bg-gray-700 md:col-span-1 md:inline-flex"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                        />
-                    </svg>
-                </label>
-
-                <div class="col-span-6 grid grid-cols-6 gap-2 md:col-span-5">
-                    @foreach ($trip_lengths as $index => $trip_length)
-                        <label
-                            class="btn-check-form relative flex cursor-pointer items-center justify-center border border-gray-400 bg-gray-50 px-2 py-3 transition duration-500 hover:border-secondary hover:bg-white dark:bg-gray-700"
-                        >
-                            <input
-                                wire:model="values_trip_length.{{ $index }}"
-                                type="checkbox"
-                                value="{{ $trip_length }}"
-                                class="absolute hidden"
-                            >
-
-                            <svg
-                                class="pointer-events-none absolute left-0 top-0 hidden h-7 w-7 fill-current p-1 text-secondary"
-                                viewBox="0 0 20 20"
-                            >
-                                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
-                            </svg>
-
-                            <span class="flex flex-col text-center">
-                                <span class="block select-none text-xs md:text-base">
-                                    {{ $trip_length }}
-                                </span>
-
-                                <span class="text-xs">
-                                    {{ __('message.form_footer_par5') }}
-                                </span>
-                            </span>
-                        </label>
-                    @endforeach
-
-                    <label
-                        class="btn-check-form relative flex cursor-pointer items-center justify-center border border-gray-400 bg-gray-50 px-4 py-3 transition duration-500 hover:border-secondary hover:bg-white dark:bg-gray-700"
-                    >
-                        <input
-                            wire:model="values_trip_length.5"
-                            type="checkbox"
-                            value="Undecided"
-                            class="absolute hidden"
-                        >
-
-                        <svg
-                            class="pointer-events-none absolute left-0 top-0 hidden h-7 w-7 fill-current p-1 text-secondary"
-                            viewBox="0 0 20 20"
-                        >
-                            <path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/>
-                        </svg>
-
-                        <span class="flex flex-col text-center">
-                            <span class="block select-none text-xss tracking-tighter">
-                                {{ __('message.form_footer_par6') }}
-                            </span>
-                        </span>
-                    </label>
-                </div>
-
-                @error('values_trip_length')
-                <span class="col-span-6 text-xs text-red-500">
-                        {{ $message }}
-                    </span>
-                @enderror
-            </div>
-
-            {{-- Fecha de viaje --}}
-            <div class="mx-auto mt-6 grid grid-cols-6 gap-2">
-                <label
-                    class="hidden items-center justify-center border border-gray-400 bg-gray-50 dark:bg-gray-700 md:col-span-1 md:inline-flex"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                    </svg>
-                </label>
-
-                <div class="col-span-6 md:col-span-5">
-                    <input
-                        id="datepicker"
-                        wire:model.lazy="travel_day"
-                        type="text"
-                        autocomplete="off"
-                        class="w-full border border-gray-400 bg-gray-50 p-3 dark:bg-gray-700 md:p-5"
-                        placeholder="{{ __('message.form_footer_par7') }}"
-                    >
-
-                    @error('travel_day')
-                    <span class="text-xs text-red-500">
-            {{ $message }}
-        </span>
-                    @enderror
-                </div>
-            </div>
-
-            {{-- Nombre --}}
-            <div class="mx-auto mt-6 grid grid-cols-6 gap-2">
-                <label
-                    class="hidden items-center justify-center border border-gray-400 bg-gray-50 p-5 dark:bg-gray-700 md:col-span-1 md:inline-flex"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                        />
-                    </svg>
-                </label>
-
-                <div class="col-span-6 md:col-span-5">
-                    <input
-                        wire:model.defer="name"
-                        type="text"
-                        autocomplete="name"
-                        class="w-full border border-gray-400 bg-gray-50 p-3 focus:outline-none dark:bg-gray-700 md:p-5"
-                        placeholder="{{ __('message.form_footer_par10') }}"
-                    >
-
-                    @error('name')
-                    <span class="text-xs text-red-500">
-                            {{ $message }}
-                        </span>
-                    @enderror
-                </div>
-            </div>
-
-            {{-- Email --}}
-            <div class="mx-auto mt-6 grid grid-cols-6 gap-2">
-                <label
-                    class="hidden items-center justify-center border border-gray-400 bg-gray-50 p-5 dark:bg-gray-700 md:col-span-1 md:inline-flex"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                        />
-                    </svg>
-                </label>
-
-                <div class="col-span-6 md:col-span-5">
-                    <input
-                        wire:model.defer="email"
-                        type="email"
-                        autocomplete="email"
-                        class="w-full border border-gray-400 bg-gray-50 p-3 focus:outline-none dark:bg-gray-700 md:p-5"
-                        placeholder="{{ __('message.form_footer_par11') }}"
-                    >
-
-                    @error('email')
-                    <span class="text-xs text-red-500">
-                            {{ $message }}
-                        </span>
-                    @enderror
-                </div>
-            </div>
-
-            {{-- Teléfono --}}
-            <div class="mx-auto mt-6 grid grid-cols-6 gap-2">
-                <label
-                    class="hidden items-center justify-center border border-gray-400 bg-gray-50 p-5 dark:bg-gray-700 md:col-span-1 md:inline-flex"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                        />
-                    </svg>
-                </label>
-
-                <div
-                    class="col-span-6 md:col-span-5"
-                    wire:ignore
-                >
-                    <input
-                        id="phone"
-                        type="tel"
-                        autocomplete="tel"
-                        class="phone_number w-full border border-gray-400 bg-gray-50 p-3 focus:outline-none dark:bg-gray-700 md:p-5"
-                        placeholder="{{ __('message.form_footer_par12') }}"
-                        data-intl-tel-input
-                    >
-                </div>
-
-                @error('phone')
-                <span class="col-span-6 text-xs text-red-500 md:col-span-5 md:col-start-2">
-                        {{ $message }}
-                    </span>
-                @enderror
-            </div>
-
-            {{-- Comentario --}}
-            <div class="mx-auto mt-3 grid grid-cols-6 gap-2">
-                <div
-                    class="hidden items-center justify-center border border-gray-400 bg-gray-50 p-5 dark:bg-gray-700 md:col-span-1 md:inline-flex"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                        />
-                    </svg>
-                </div>
-
-                <textarea
-                    wire:model.defer="comment"
-                    class="col-span-6 w-full border border-gray-400 bg-gray-50 p-5 focus:outline-none dark:bg-gray-700 md:col-span-5"
-                    rows="4"
-                    maxlength="5000"
-                    placeholder="{{ __('message.form_footer_par9') }}"
-                ></textarea>
-
-                @error('comment')
-                <span class="col-span-6 text-xs text-red-500">
-                        {{ $message }}
-                    </span>
-                @enderror
-
-                <p class="col-span-6 text-right text-xs font-bold text-gray-400">
-                    {{ __('message.form_footer_par13') }}
-                </p>
-            </div>
-        </div>
-
-        @error('api_error')
-        <div class="rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">
-            {{ $message }}
-        </div>
-        @enderror
-
-        <div class="mx-auto">
-            <button
-                type="submit"
-                class="btn-primary"
-                wire:loading.attr="disabled"
-                wire:target="store"
-            >
-                <span
-                    wire:loading.remove
-                    wire:target="store"
-                >
-                    {{ __('message.button_send') }}
-                </span>
-
-                <span
-                    wire:loading
-                    wire:target="store"
-                >
-                    <span class="lds-hourglass"></span>
-                </span>
-            </button>
-        </div>
-
-        @if ($success)
-            <div
-                class="mx-auto mt-3 flex w-11/12 justify-between"
-                x-data="{ dataopen: true }"
-                x-show="dataopen"
-            >
-                <div class="inline-flex w-full overflow-hidden bg-white shadow-sm">
-                    <div class="flex w-12 items-center justify-center bg-green-500"></div>
-
-                    <div class="flex w-full items-center justify-between px-3 py-2 text-left">
-                        <div>
-                            <span class="font-semibold text-green-500">
-                                {{ __('message.form_footer_par8') }}
-                            </span>
-
-                            <p class="mb-1 text-sm leading-none">
-                                {{ $success }}
-                            </p>
+                            <button type="button" class="btn-secondary quote-action quote-main-action w-full" @click="goToStep(2)">
+                                Continue <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="inline-block w-4 h-4 ml-2" aria-hidden="true" ><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                            </button>
                         </div>
 
-                        <button
-                            type="button"
-                            x-on:click="dataopen = false"
-                            class="cursor-pointer rounded border border-green-300 bg-green-200 px-2 py-1 text-sm text-green-500"
-                        >
-                            OK
-                        </button>
-                    </div>
+                        <div x-show="step === 2" x-cloak class="grid grid-cols-1 gap-4 md:block md:space-y-6" @focusin="rememberFocusedField($event.target)" @focusout="clearFocusedField($event.target)">
+                            <div>
+                                <label for="quote-name-general" class="block text-sm font-semibold text-gray-700 dark:text-gray-100 mb-2">Full name</label>
+                                <input id="quote-name-general" wire:model.defer="name" type="text" autocomplete="name" maxlength="150"
+                                       class="quote-input bg-gray-50 dark:bg-gray-800 border border-gray-400 dark:border-gray-600 p-3 md:p-5 text-gray-700 dark:text-gray-100 w-full focus:outline-none focus:border-primary"
+                                       aria-required="true" aria-invalid="{{ $errors->has('name') ? 'true' : 'false' }}" aria-describedby="quote-name-error-general">
+                                @error('name') <p id="quote-name-error-general" class="text-sm text-red-500 mt-2" role="alert">{{ $message }}</p> @enderror
+                            </div>
+                            <div>
+                                <label for="quote-email-general" class="block text-sm font-semibold text-gray-700 dark:text-gray-100 mb-2">Email</label>
+                                <input id="quote-email-general" wire:model.defer="email" type="email" autocomplete="email" maxlength="190" inputmode="email"
+                                       class="quote-input bg-gray-50 dark:bg-gray-800 border border-gray-400 dark:border-gray-600 p-3 md:p-5 text-gray-700 dark:text-gray-100 w-full focus:outline-none focus:border-primary"
+                                       aria-required="true" aria-invalid="{{ $errors->has('email') ? 'true' : 'false' }}" aria-describedby="quote-email-error-general">
+                                @error('email') <p id="quote-email-error-general" class="text-sm text-red-500 mt-2" role="alert">{{ $message }}</p> @enderror
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-semibold text-gray-700 dark:text-gray-100 mb-2">Phone / WhatsApp</label>
+                                <div class="{{ $errors->has('phone') ? 'quote-phone-invalid' : '' }}"><div wire:ignore>
+                                    <input id="phone" type="tel" autocomplete="tel" maxlength="50" inputmode="tel"
+                                           class="quote-input phone_number bg-gray-50 dark:bg-gray-800 border border-gray-400 dark:border-gray-600 p-3 md:p-5 text-gray-700 dark:text-gray-100 w-full focus:outline-none focus:border-primary"
+                                           data-intl-tel-input aria-required="true" aria-invalid="{{ $errors->has('phone') ? 'true' : 'false' }}" aria-describedby="quote-phone-error-general">
+                                </div></div>
+                                @error('phone') <p id="quote-phone-error-general" class="text-sm text-red-500 mt-2" role="alert">{{ $message }}</p> @enderror
+                            </div>
+                            <fieldset class="min-w-0">
+                                <legend class="text-sm font-semibold text-gray-700 dark:text-gray-100">How would you prefer us to contact you?</legend>
+                                <p class="text-xs text-gray-500 dark:text-gray-300 mt-2 mb-3 md:mt-1">Optional</p>
+                                <div class="grid grid-cols-4 gap-0 border border-gray-300 dark:border-gray-600 divide-x divide-gray-300 md:grid md:grid-cols-4 md:gap-2 md:border-0 md:divide-x-0">
+                                    @foreach(['WhatsApp', 'Email', 'Phone', 'No preference'] as $contactMethod)
+                                        <label class="quote-touch-choice relative cursor-pointer min-w-0" wire:key="quote-contact-{{ $loop->index }}">
+                                            <input type="checkbox" value="{{ $contactMethod }}" class="quote-choice-input sr-only"
+                                                   x-effect="$el.checked = (preferredContact || []).includes($el.value)"
+                                                   @change="setPreferredContact($event.target.value, $event.target.checked)">
+                                            <span class="quote-choice flex items-center justify-center gap-2 text-center md:border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 px-2 py-4 md:py-5 md:px-3 text-primary hover:border-primary">
+                                                <span class="text-sm text-gray-700 dark:text-gray-100">@if($contactMethod === 'No preference')<span class="md:hidden">Any</span><span class="hidden md:inline">{{ $contactMethod }}</span>@else{{ $contactMethod }}@endif</span>
+                                            </span>
+                                        </label>
+                                    @endforeach
+                                </div>
+                                @error('preferredContactMethod') <p class="text-sm text-red-500 mt-2" role="alert">{{ $message }}</p> @enderror
+                            </fieldset>
+                            <div>
+                                <label for="quote-comment-general" class="block text-sm font-semibold text-gray-700 dark:text-gray-100 mb-2">Comments <span class="font-normal text-gray-500 dark:text-gray-300">· Optional</span></label>
+                                <textarea id="quote-comment-general" wire:model.defer="comment" rows="3" maxlength="5000"
+                                          class="h-24 md:h-auto quote-input bg-gray-50 dark:bg-gray-800 border border-gray-400 dark:border-gray-600 p-2 md:p-5 text-gray-700 dark:text-gray-100 w-full placeholder:text-sm placeholder:font-normal placeholder:text-gray-400 focus:outline-none focus:border-primary"
+                                          placeholder="{{ __('message.form_footer_par9') }}"></textarea>
+                                @error('comment') <p class="text-sm text-red-500 mt-2" role="alert">{{ $message }}</p> @enderror
+                            </div>
+                            <div class="space-y-1 md:space-y-2">
+                                <button type="submit" class="btn-primary quote-action quote-main-action w-full" wire:loading.attr="disabled" wire:target="store">
+                                    <span wire:loading.remove wire:target="store">Get My Free Quote</span>
+                                    <span wire:loading wire:target="store" role="status">Sending your request…</span>
+                                </button>
+                                <button type="button" class="btn-prev quote-action w-full text-sm" @click="goToStep(1)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="inline-block w-4 h-4 mr-1" aria-hidden="true" ><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" /></svg> Back
+                                </button>
+                            </div>
+                        </div>
+                    </fieldset>
                 </div>
-            </div>
-        @endif
-    </form>
+                @error('api_error') <p class="text-sm text-red-500 mt-4" role="alert">{{ $message }}</p> @enderror
+                @if($success)
+                    <div class="relative" role="status" aria-live="polite">
+                        <div class="absolute inset-0 ml-3 mt-6 bg-gray-700" aria-hidden="true">
+                            <div class="absolute inset-0 bg-line-cover opacity-10"></div>
+                        </div>
+                        <div class="relative">
+                            <div class="relative z-10 min-w-0 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-5 md:p-8 text-left break-words md:w-2/3">
+                                <span class="inline-flex items-center justify-center rounded-full bg-secondary p-2 mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-6 h-6 text-white" aria-hidden="true" ><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                                </span>
+                                <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-100">Thank you, {{ $submittedName }}!</h2>
+                                <p class="text-sm text-gray-500 dark:text-gray-300 mt-2">We've received your trip request.</p>
+                                <div class="mt-6">
+                                    <h3 class="text-xs font-bold tracking-wider text-primary">WHAT HAPPENS NEXT?</h3>
+                                    <p class="text-sm font-bold text-gray-700 dark:text-gray-100 leading-snug mt-3">Our Latin America travel experts will take it from here.</p>
+                                    <ol class="mt-4 text-sm">
+                                        <li class="flex items-start gap-3">
+                                            <span class="flex items-center justify-center flex-shrink-0 w-6 h-6 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-xs font-semibold text-primary" aria-hidden="true">1</span>
+                                            <div class="min-w-0 flex-1">
+                                                <h4 class="font-semibold text-gray-700 dark:text-gray-100">We review your request</h4>
+                                                <p class="text-gray-500 dark:text-gray-300 mt-1">Our travel team will review the details you shared.</p>
+                                            </div>
+                                        </li>
+                                        <li class="flex items-start gap-3 mt-4">
+                                            <span class="flex items-center justify-center flex-shrink-0 w-6 h-6 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-xs font-semibold text-primary" aria-hidden="true">2</span>
+                                            <div class="min-w-0 flex-1">
+                                                <h4 class="font-semibold text-gray-700 dark:text-gray-100">We prepare your proposal</h4>
+                                                <p class="text-gray-500 dark:text-gray-300 mt-1">A GoToLatam travel advisor will work on your personalized quote.</p>
+                                            </div>
+                                        </li>
+                                        <li class="flex items-start gap-3 mt-4">
+                                            <span class="flex items-center justify-center flex-shrink-0 w-6 h-6 rounded-full border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-xs font-semibold text-primary" aria-hidden="true">3</span>
+                                            <div class="min-w-0 flex-1">
+                                                <h4 class="font-semibold text-gray-700 dark:text-gray-100">We'll contact you</h4>
+                                                <p class="text-gray-500 dark:text-gray-300 mt-1">
+                                                    @switch(count($preferredContactMethod ?? []) === 1 ? $preferredContactMethod[0] : null)
+                                                        @case('WhatsApp')
+                                                            We'll reach out via WhatsApp using the number you provided.
+                                                            @break
+                                                        @case('Email')
+                                                            We'll contact you using the email address you provided.
+                                                            @break
+                                                        @case('Phone')
+                                                            A travel advisor will call you using the number you provided.
+                                                            @break
+                                                        @default
+                                                            A travel advisor will contact you using the details you provided.
+                                                    @endswitch
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                </div>
+                                <p class="text-xs text-gray-500 dark:text-gray-300 mt-4">Please check your email and phone for a message from your travel advisor.</p>
+                            </div>
+                            <div class="relative ml-3 grid grid-cols-3 items-end md:contents md:static md:ml-0">
+                                <div class="relative z-10 col-span-2 min-w-0 grid grid-cols-1 gap-3 md:flex md:items-center pl-4 pr-1 py-4 md:p-8 text-left text-gray-50 md:w-2/3">
+                                    <p class="text-sm min-w-0">Want to talk to a travel advisor now?</p>
+                                    <a href="https://api.whatsapp.com/send?phone=51934005414" target="_blank" rel="noopener"
+                                       class="btn-secondary quote-action inline-flex items-center justify-center flex-shrink-0 max-w-full !px-0 text-center">
+                                        <span class="inline-flex items-center gap-1 whitespace-nowrap px-1 text-gray-700 dark:text-gray-100 md:block md:px-3 md:whitespace-normal">
+                                            <span>Chat on WhatsApp</span>
+                                            <span>→</span>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div class="relative self-stretch col-span-1 min-w-0 md:absolute right-0 bottom-0 flex items-end justify-center md:px-3 md:pt-6 md:w-4/12">
+                                    <img src="{{ asset('images/team/pabel.png') }}" alt="GoToLatam travel team" class="absolute inset-0 block w-full h-full max-w-full object-contain object-bottom md:static md:w-full md:h-auto">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            </form>
+        </div>
+    </div>
 </div>
-
-<style>
-    input:checked + svg {
-        display: block;
-    }
-</style>
 
 @push('scripts')
     <link
@@ -683,54 +432,69 @@
                 dateInput &&
                 typeof window.Pikaday === 'function'
             ) {
-                new Pikaday({
-                    field: dateInput,
-
-                    format: 'YYYY-MM-DD',
-
-                    minDate: new Date(),
-
-                    firstDay: 1,
-
-                    onSelect: function (date) {
-                        const year =
-                            date.getFullYear();
-
-                        const month =
-                            String(
-                                date.getMonth() + 1
-                            ).padStart(2, '0');
-
-                        const day =
-                            String(
-                                date.getDate()
-                            ).padStart(2, '0');
-
-                        const formattedDate =
-                            year +
-                            '-' +
-                            month +
-                            '-' +
-                            day;
-
-                        dateInput.value =
-                            formattedDate;
-
-                        dateInput.dispatchEvent(
-                            new Event(
-                                'input',
-                                {
-                                    bubbles: true,
-                                }
-                            )
-                        );
-
-                    @this.set(
-                        'travel_day',
-                        formattedDate
-                    );
-                    },
-                });
+                const formRoot = dateInput.closest('[data-quote-form]');
+                    const isIPhone = /iPhone|iPod/.test(navigator.userAgent);
+                    let suppressDateFocus = false;
+                    let closeAfterSelection = false;
+                    const closeSelectedCalendar = () => {
+                        if (!closeAfterSelection || !picker) return;
+                        picker.hide();
+                        dateInput.blur();
+                    };
+                    const picker = new window.Pikaday({
+                        field: dateInput,
+                        format: 'YYYY-MM-DD',
+                        minDate: new Date(),
+                        firstDay: 1,
+                        toString: function (date) {
+                            return date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0');
+                        },
+                        parse: function (value) {
+                            const parts = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+                            if (!parts) return NaN;
+                            const date = new Date(Number(parts[1]), Number(parts[2]) - 1, Number(parts[3]));
+                            return date.getFullYear() === Number(parts[1]) && date.getMonth() === Number(parts[2]) - 1 && date.getDate() === Number(parts[3]) ? date : NaN;
+                        },
+                        onSelect: function (date) {
+                            const formattedDate = this.toString(date);
+                            dateInput.value = formattedDate;
+                            closeAfterSelection = window.innerWidth < 768 || /iPhone|iPad|iPod/.test(navigator.userAgent);
+                            if (isIPhone) {
+                                suppressDateFocus = true;
+                                this.hide();
+                                dateInput.blur();
+                                requestAnimationFrame(() => @this.set('travel_day', formattedDate, true));
+                            } else {
+                                @this.set('travel_day', formattedDate, true);
+                                if (closeAfterSelection) requestAnimationFrame(closeSelectedCalendar);
+                            }
+                        }
+                    });
+                    formRoot.addEventListener('pointerdown', event => {
+                        if (event.target === dateInput) closeAfterSelection = false;
+                        if (event.target === dateInput || event.target.closest('label[for=' + dateInput.id + ']')) suppressDateFocus = false;
+                    });
+                    if (isIPhone) {
+                        formRoot.addEventListener('change', event => {
+                            if (event.firedBy === picker) event.stopImmediatePropagation();
+                        }, true);
+                        const preventDateReopen = event => {
+                            if (event.target !== dateInput || !suppressDateFocus) return;
+                            if (event.type === 'click' && event.isTrusted && event.detail === 0) {
+                                suppressDateFocus = false;
+                                return;
+                            }
+                            event.stopImmediatePropagation();
+                            if (event.type === 'click') event.preventDefault();
+                            dateInput.blur();
+                        };
+                        formRoot.addEventListener('focus', preventDateReopen, true);
+                        formRoot.addEventListener('click', preventDateReopen, true);
+                    } else if (window.Livewire) {
+                        window.Livewire.hook('message.processed', (message, component) => {
+                            if (component.id === formRoot.getAttribute('wire:id') && closeAfterSelection) requestAnimationFrame(closeSelectedCalendar);
+                        });
+                    }
             }
 
             /*
@@ -742,9 +506,7 @@
                 );
 
             const input =
-                document.querySelector(
-                    '[data-intl-tel-input]'
-                );
+                form ? form.querySelector('[data-intl-tel-input]') : null;
 
             if (
                 !form ||
@@ -859,26 +621,19 @@
                         }
                     }
 
-                @this.set(
-                    'phone',
-                    phoneValue
-                );
+                @this.set('phone', phoneValue, true);
 
-                @this.set(
-                    'phonecountry',
-                    phoneCountry
-                );
+                @this.set('phonecountry', phoneCountry, true);
 
-                @this.set(
-                    'country',
-                    countryName
-                );
+                @this.set('country', countryName, true);
                 };
 
             input.addEventListener(
                 'blur',
                 syncPhone
             );
+            input.addEventListener('input', syncPhone);
+            if (form) form.addEventListener('submit', syncPhone, true);
 
             input.addEventListener(
                 'change',

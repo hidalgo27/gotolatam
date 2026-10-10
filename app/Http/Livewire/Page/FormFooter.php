@@ -44,6 +44,12 @@ class FormFooter extends Component
 
     public $browser;
 
+    public $step = 1;
+
+    public $preferredContactMethod = [];
+
+    public $submittedName;
+
     public function mount(): void
     {
         $agent = new Agent();
@@ -139,66 +145,95 @@ class FormFooter extends Component
 
     public function store(): void
     {
+        if ($this->success) {
+            return;
+        }
+
         $this->resetErrorBag();
         $this->success = null;
+        $this->step = 2;
 
-        $this->validate([
-            'name' => [
-                'required',
-                'string',
-                'max:150',
-            ],
+        try {
+            $this->validate([
+                'name' => [
+                    'required',
+                    'string',
+                    'max:150',
+                ],
 
-            'email' => [
-                'required',
-                'email',
-                'max:190',
-            ],
+                'email' => [
+                    'required',
+                    'email',
+                    'max:190',
+                ],
 
-            'phone' => [
-                'required',
-                'string',
-                'max:50',
-            ],
+                'phone' => [
+                    'required',
+                    'string',
+                    'max:50',
+                ],
 
-            'travel_day' => [
-                'nullable',
-                'string',
-            ],
+                'travel_day' => [
+                    'nullable',
+                    'string',
+                ],
 
-            'comment' => [
-                'nullable',
-                'string',
-                'max:5000',
-            ],
+                'comment' => [
+                    'nullable',
+                    'string',
+                    'max:5000',
+                ],
 
-            'values_categories' => [
-                'nullable',
-                'array',
-            ],
+                'values_categories' => [
+                    'nullable',
+                    'array',
+                ],
 
-            'values_destinations' => [
-                'nullable',
-                'array',
-            ],
+                'values_destinations' => [
+                    'nullable',
+                    'array',
+                ],
 
-            'values_number' => [
-                'nullable',
-                'string',
-            ],
+                'values_number' => [
+                    'nullable',
+                    'string',
+                ],
 
-            'values_number_input' => [
-                'nullable',
-                'integer',
-                'min:1',
-                'max:99',
-            ],
+                'values_number_input' => [
+                    'nullable',
+                    'integer',
+                    'min:1',
+                    'max:99',
+                ],
 
-            'values_trip_length' => [
-                'nullable',
-                'array',
-            ],
-        ]);
+                'values_trip_length' => [
+                    'nullable',
+                    'array',
+                ],
+
+                'preferredContactMethod' => ['nullable', 'array'],
+                'preferredContactMethod.*' => ['string', 'distinct', 'in:WhatsApp,Email,Phone,No preference'],
+            ]);
+
+            if ((string) $this->values_number === '6') {
+                $this->validate([
+                    'values_number_input' => ['required', 'integer', 'min:6', 'max:99'],
+                ]);
+            }
+        } catch (\Illuminate\Validation\ValidationException $exception) {
+            if (array_intersect(array_keys($exception->errors()), [
+                'travel_day', 'values_number', 'values_number_input',
+                'values_categories', 'values_destinations', 'values_trip_length',
+            ])) {
+                $this->step = 1;
+            }
+
+            throw $exception;
+        }
+
+        $this->preferredContactMethod = in_array('No preference', $this->preferredContactMethod ?? [], true)
+            ? ['No preference']
+            : array_values(array_intersect(['WhatsApp', 'Email', 'Phone'], $this->preferredContactMethod ?? []));
 
         $productId = 2;
         $from = 'info@gotolatam.com';
@@ -230,6 +265,7 @@ class FormFooter extends Component
                 )->format('Y-m-d')
                     : null;
         } catch (\Throwable $exception) {
+            $this->step = 1;
             $this->addError(
                 'travel_day',
                 'La fecha de viaje ingresada no es válida.'
@@ -263,7 +299,7 @@ class FormFooter extends Component
             'el_telefono' =>
                 $normalizedPhone,
             'el_textarea' =>
-                $this->comment,
+                $this->leadComment(),
             'codigo_pais' =>
                 $this->phonecountry,
             'device' => $this->device,
@@ -282,9 +318,12 @@ class FormFooter extends Component
             'package' => '',
             'hotel_category' => $categories,
             'destinations' => $destinations,
-            'passengers' => $travellers,
-            'duration' => $tripLengths,
-            'travel_date' => $formattedDate,
+            'passengers' => (string) $travellers,
+            'duration' => array_map(static fn($value) => (string) $value, $tripLengths),
+            // TODO: Solución temporal GOTOLATAM.
+            // Eliminar fecha ficticia cuando G1 permita
+            // registrar travel_date como SQL NULL.
+            'travel_date' => $formattedDate ?? '1900-01-01',
             'country' => $this->country,
             'country_code' =>
                 $this->phonecountry,
@@ -298,7 +337,7 @@ class FormFooter extends Component
                 trim((string) $this->email)
             ),
             'phone' => $normalizedPhone,
-            'comment' => $this->comment,
+            'comment' => $this->leadComment(),
             'initial_price' => 0,
             'inquiry_date' =>
                 $inquireDate,
@@ -355,7 +394,7 @@ class FormFooter extends Component
                 $normalizedPhone,
 
             'comment' =>
-                $this->comment,
+                $this->leadComment(),
 
             'inquiry_date' =>
                 $inquireDate,
@@ -369,20 +408,30 @@ class FormFooter extends Component
                 Http::acceptJson()
                     ->asJson()
                     ->timeout(20)
+                    ->withoutRedirecting()
                     ->post(
                         'https://app.g1.agency/api/v1/leads/',
                         $g1Data
                     );
 
-            if ($g1Response->failed()) {
+            $g1Result = $g1Response->json();
+            if (!$g1Response->successful()
+                || !is_array($g1Result)
+                || ($g1Result['success'] ?? null) !== true
+                || $this->g1ResponseHasErrors($g1Result)) {
+                $errorFields = is_array($g1Result['errors'] ?? null)
+                    ? $g1Result['errors'] : (is_array($g1Result) ? $g1Result : []);
                 Log::error(
                     'No se pudo registrar el lead de GotoLatam en G1',
                     [
                         'status' =>
                             $g1Response->status(),
 
-                        'response' =>
-                            $g1Response->body(),
+                        'response_is_json' => is_array($g1Result),
+                        'error_fields' => array_values(array_intersect(
+                            array_keys($errorFields),
+                            array_merge(array_keys($g1Data), ['travel_date2', 'non_field_errors'])
+                        )),
 
                         'product_id' =>
                             $productId,
@@ -391,7 +440,7 @@ class FormFooter extends Component
 
                 $this->addError(
                     'api_error',
-                    'No se pudo enviar la solicitud. Inténtalo nuevamente.'
+                    'No pudimos confirmar el registro de tu solicitud en el servicio de cotizaciones. Tus datos se han conservado; contacta a nuestro equipo para recibir ayuda.'
                 );
 
                 return;
@@ -491,15 +540,27 @@ class FormFooter extends Component
             /*
              * 4. Correo administrativo.
              */
-            $this->sendAdminEmail(
-                $from,
-                $travellers,
-                $categories,
-                $destinations,
-                $tripLengths,
-                $normalizedPhone
-            );
+            try {
+                $this->sendAdminEmail(
+                    $from,
+                    $travellers,
+                    $categories,
+                    $destinations,
+                    $tripLengths,
+                    $normalizedPhone
+                );
+            } catch (\Throwable $mailException) {
+                Log::error(
+                    'G1 recibió el lead de GotoLatam, pero el correo administrativo falló',
+                    [
+                        'exception_type' => get_class($mailException),
+                        'product_id' => $productId,
+                        'product' => $product,
+                    ]
+                );
+            }
 
+            $this->submittedName = $this->name;
             $this->resetLeadForm();
 
             $this->success = __(
@@ -535,6 +596,30 @@ class FormFooter extends Component
                 'Ocurrió un error al enviar los datos.'
             );
         }
+    }
+
+    private function g1ResponseHasErrors(array $result): bool
+    {
+        foreach (['error', 'errors', 'non_field_errors'] as $key) {
+            if (isset($result[$key]) && !in_array($result[$key], [false, '', []], true)) {
+                return true;
+            }
+        }
+
+        if (array_key_exists('success', $result)
+            && in_array($result['success'], [false, 0, 'false', '0'], true)) {
+            return true;
+        }
+
+        $status = $result['status'] ?? null;
+        if (is_string($status) && in_array(strtolower(trim($status)), [
+            'error', 'failed', 'failure', 'rejected', 'invalid',
+        ], true)) {
+            return true;
+        }
+
+        return is_array($result['data'] ?? null)
+            && $this->g1ResponseHasErrors($result['data']);
     }
 
     private function resolveTravellers()
@@ -583,7 +668,7 @@ class FormFooter extends Component
                     $this->travel_day,
 
                 'comentario' =>
-                    $this->comment,
+                    $this->leadComment(),
 
                 'nombre' =>
                     $this->name,
@@ -711,6 +796,18 @@ class FormFooter extends Component
                 }
             )
         );
+    }
+
+    private function leadComment(): string
+    {
+        $comment = (string) $this->comment;
+
+        if ($this->preferredContactMethod) {
+            $comment .= (trim($comment) !== '' ? "\n\n" : '')
+                . 'Preferred contact: ' . implode(', ', $this->preferredContactMethod);
+        }
+
+        return $comment;
     }
 
     private function resetLeadForm(): void

@@ -27,6 +27,11 @@ class TPaquete extends Model
         return $this->hasMany(TpaqueteItinerario::class, 'idpaquetes');
     }
 
+    public function campaigns()
+    {
+        return $this->hasMany(PackageCampaign::class, 'package_id');
+    }
+
     public function precio_paquetes()
     {
         return $this->hasMany(TPrecioPaquete::class, 'idpaquetes');

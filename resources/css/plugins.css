@@ -355,3 +355,140 @@
     opacity: 0;
     transform: translateX(50%) translateX(-100%);
 }
+
+/* Footer and logo presentation, scoped to the existing shared layout. */
+.site-header-logo {
+    @apply inline-flex min-w-0 max-w-full items-center;
+}
+.site-header-logo img {
+    @apply block h-auto w-36 max-w-full object-contain md:w-44 lg:w-56;
+}
+.site-footer__container {
+    @apply mx-auto w-full max-w-screen-2xl px-4 sm:px-8 lg:px-12 xl:px-16;
+}
+.site-recognition {
+    @apply bg-white py-8 font-sans text-gray-800 md:py-10;
+}
+.site-recognition__logos {
+    @apply grid grid-cols-2 items-center gap-x-8 gap-y-6 sm:grid-cols-3 lg:grid-cols-6 lg:gap-x-10;
+}
+.site-recognition__logos > div {
+    @apply flex h-16 min-w-0 items-center justify-center;
+}
+.site-recognition__logos img {
+    @apply block h-16 w-auto max-w-full object-contain opacity-80 transition-opacity duration-300 hover:opacity-100 motion-reduce:transition-none;
+}
+.site-recognition .site-recognition__poster {
+    @apply inline-flex max-w-full items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary;
+}
+.site-recognition__poster:hover img,
+.site-recognition__poster:focus-visible img {
+    @apply opacity-100;
+}
+.site-recognition-modal .vbox-child img {
+    @apply mx-auto w-auto max-w-full object-contain;
+    max-height: 90vh;
+}
+.site-recognition-modal .vbox-close {
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white;
+}
+.site-footer {
+    @apply relative bg-gray-800 pt-10 pb-12 font-sans text-sm leading-relaxed text-white/70 md:pt-12 md:pb-10;
+}
+.site-footer__top {
+    @apply grid items-start gap-8 border-b border-white/10 pb-8 lg:grid-cols-12 lg:gap-10;
+}
+.site-footer__brand {
+    @apply min-w-0 lg:col-span-5;
+}
+.site-footer__brand img {
+    @apply block h-auto w-56 max-w-full object-contain;
+}
+.site-footer__identity {
+    @apply flex flex-wrap items-center gap-4;
+}
+.site-footer__identity > a {
+    @apply max-w-full;
+}
+.site-footer__affiliation {
+    @apply inline-flex max-w-full items-center gap-3;
+}
+.site-footer__affiliation > a {
+    @apply min-w-0;
+}
+.site-footer__affiliation > span {
+    @apply shrink-0 text-xs;
+}
+.site-footer__brand-title {
+    @apply mt-5 max-w-md text-xl font-medium leading-snug tracking-tight text-white/90;
+}
+.site-footer__brand-description {
+    @apply mt-3 max-w-sm text-sm leading-relaxed text-white/60;
+}
+.site-footer__operations {
+    @apply mt-6 text-xs text-white/50;
+}
+.site-footer__support {
+    @apply grid gap-5;
+}
+.site-footer__support-item {
+    @apply min-w-0;
+}
+.site-footer__support-label {
+    @apply mb-1 text-xs font-medium text-white/60;
+}
+.site-footer__support-link {
+    @apply inline-block break-words text-base font-medium text-white hover:text-secondary sm:text-lg;
+}
+.site-footer__contact {
+    @apply min-w-0 lg:col-span-4;
+}
+.site-footer__label {
+    @apply mb-4 text-xs font-semibold uppercase tracking-wider text-white/90;
+}
+.site-footer__contact .site-footer__label {
+    @apply mb-6 text-secondary;
+}
+.site-footer__advisor {
+    @apply w-48 max-w-full lg:col-span-3 lg:justify-self-end;
+}
+.site-footer__advisor img {
+    @apply block h-auto w-full;
+}
+.site-footer a {
+    @apply transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary;
+}
+.site-footer__navigation a {
+    @apply inline-block break-words py-1 text-white/60 hover:text-white;
+}
+.site-footer .site-footer__quote {
+    @apply mt-6 inline-flex max-w-full items-center justify-between gap-4 rounded-none px-5 py-3;
+    min-height: 3rem;
+    min-width: 13rem;
+}
+.site-footer__navigation {
+    @apply grid grid-cols-1 gap-8 py-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10 lg:py-10;
+}
+.site-footer__navigation > div {
+    @apply min-w-0;
+}
+.site-footer__navigation ul {
+    @apply space-y-1;
+}
+.site-footer__legal {
+    @apply flex flex-col gap-4 border-t border-white/10 pt-6 text-xs leading-relaxed text-white/60 sm:flex-row sm:items-center sm:justify-between md:pt-8 lg:gap-8;
+}
+.site-footer__legal-copy {
+    @apply flex min-w-0 flex-1 flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:gap-6;
+}
+.site-footer__legal-copy > p:last-child {
+    @apply shrink-0;
+}
+@media (prefers-reduced-motion: no-preference) {
+    .site-footer__quote svg {
+        @apply transition-transform duration-300 ease-out;
+    }
+    .site-footer__quote:hover svg {
+        @apply translate-x-1;
+    }
+}

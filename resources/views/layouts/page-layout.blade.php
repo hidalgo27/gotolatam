@@ -7,6 +7,7 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ __('message.seo_title') }}</title>
+    @stack('meta')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/plugins.css') }}" rel="stylesheet">
 
@@ -365,7 +366,8 @@
         <div class="fixed bg-12 bottom-0 w-full z-30 sm:hidden">
             {{--        @livewire('page.form-inquire') --}}
             <a href="#form-dream-adventure"
-                class="btn-primary text-center w-full block">{{ __('message.button_book') }}</a>
+                @if(request()->routeIs('packages.detail', 'offers.show')) data-quote-source="floating" @endif
+                class="btn-primary text-center w-full block">{{ request()->routeIs('packages.detail', 'offers.show') ? 'Request a Quote' : __('message.button_book') }}</a>
             <div
                 class="menu-movil bg-gray-50 dark:bg-gray-800 flex gap-4 w-full mx-auto grid grid-cols-5 gap-3 text-center">
                 @foreach ($nav_links as $nav_link_m)
@@ -446,10 +448,10 @@
     <header>
         <div
             class="border-b dark:border-gray-900 dark:border-opacity-40  shadow p-4 bg-gray-50  items-center flex flex-wrap">
-            <div class="mx-auto">
-                <a href="/"><img
+            <div class="min-w-0">
+                <a href="/" class="site-header-logo"><img
                         src="https://gotolatam.s3.us-west-1.amazonaws.com/logos/logo-gotoperu-black.png"
-                        alt="" class="w-full"></a>
+                        alt=""></a>
             </div>
             <div class="flex-1 p-3 dark:text-gray-400 hidden sm:inline-block">
                 <div class='console-container'>
@@ -663,30 +665,28 @@
     @yield('content')
     {{--    {{$slot}} --}}
 
-    <section class="grid gap-12 bg-gray-100 py-6 grid-cols-8 dark:bg-gray-600 hidden md:inline-flex"><!--.row -->
+    <section class="site-recognition"><!--.row -->
+        <div class="site-footer__container">
+            <div class="site-recognition__logos">
         <div>
-            <img src="{{ asset('images/logos/apavit.png') }}" alt="logo apavit" class="px-3 w-full">
+            <img src="{{ asset('images/logos/apavit.png') }}" alt="logo apavit" loading="lazy" decoding="async">
         </div>
         <div>
-            <img src="{{ asset('images/logos/apotur.png') }}" alt="logo apotur" class="px-3 w-full">
+            <img src="{{ asset('images/logos/apotur.png') }}" alt="logo apotur" loading="lazy" decoding="async">
         </div>
         <div>
-            <img src="{{ asset('images/logos/asta.png') }}" alt="logo asta" class="px-3 w-full">
+            <img src="{{ asset('images/logos/asta.png') }}" alt="logo asta" loading="lazy" decoding="async">
         </div>
         <div>
-            <img src="{{ asset('images/logos/expedia.png') }}" alt="logo expedia" class="px-3 w-full">
+            <img src="{{ asset('images/logos/peru.png') }}" alt="logo marca peru" loading="lazy" decoding="async">
         </div>
         <div>
-            <img src="{{ asset('images/logos/meetup.png') }}" alt="logo meetup" class="px-3 w-full">
+            <img src="{{ asset('images/logos/prom-peru.png') }}" alt="logo prom peru" loading="lazy" decoding="async">
         </div>
         <div>
-            <img src="{{ asset('images/logos/new.png') }}" alt="logo the new york times" class="px-3 w-full">
-        </div>
-        <div>
-            <img src="{{ asset('images/logos/peru.png') }}" alt="logo marca peru" class="px-3 w-full">
-        </div>
-        <div>
-            <img src="{{ asset('images/logos/prom-peru.png') }}" alt="logo prom peru" class="px-3 w-full">
+            <a href="{{ asset('images/banners/codigo-esnna.webp') }}" class="site-recognition__poster" aria-haspopup="dialog" aria-label="Open the Protégeme responsible tourism poster">
+                <img src="{{ asset('images/logos/esnna.png') }}" alt="Protégeme — Turismo Responsable" width="220" height="110" loading="lazy" decoding="async">
+            </a>
         </div>
         {{--        <div> --}}
         {{--            <img src="https://www.gotoperu.com.pe/images/logos/tripadvisor.png" alt="logo tripadvisor" class="w-full dark:filter dark:grayscale"> --}}
@@ -694,29 +694,59 @@
         {{--        <div> --}}
         {{--            <img src="https://www.gotoperu.com.pe/images/logos/yelp.png" alt="logo yelp" class="w-full dark:filter dark:grayscale"> --}}
         {{--        </div> --}}
+            </div>
+        </div>
     </section>
 
-    <footer class="relative bg-gray-800 dark:bg-gray-800 text-gray-500 dark:text-gray-50 pb-16">
+    <footer class="site-footer">
         {{--        <svg class="absolute top-0 w-full h-6 -mt-5 sm:-mt-10 sm:h-16 text-gray-200 dark:text-gray-800" preserveAspectRatio="none" viewBox="0 0 1440 54"> --}}
         {{--            <path fill="currentColor" d="M0 22L120 16.7C240 11 480 1.00001 720 0.700012C960 1.00001 1200 11 1320 16.7L1440 22V54H1320C1200 54 960 54 720 54C480 54 240 54 120 54H0V22Z"></path> --}}
         {{--        </svg> --}}
-        <div class="container pt-12">
-            <div class="text-center mb-20  p-6">
-                <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
-                    <img src="{{ asset('images/logos/logo-gotolatam-white.png') }}" alt="" class="mx-auto">
-                </a>
-                <span class="text-white px-3">part of</span>
-                <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
-                    <img src="{{ asset('images/logos/logo-gotoperu-white.png') }}" alt="" class="mx-auto">
-                </a>
-                <p class="mt-4 font-semibold text-secondary">CONTACT US ALSO VIA EMAIL: travel@gotolatam.com</p>
+        <div class="site-footer__container">
+            <div class="site-footer__top">
+                <div class="site-footer__brand">
+                    <div class="site-footer__identity">
+                        <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
+                            <img src="{{ asset('images/logos/logo-gotolatam-white.png') }}" alt="" width="323" height="51" loading="lazy" decoding="async">
+                        </a>
+                        <div class="site-footer__affiliation">
+                            <span class="text-white">part of</span>
+                            <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
+                                <img src="{{ asset('images/logos/logo-gotoperu-white.png') }}" alt="" width="270" height="51" loading="lazy" decoding="async">
+                            </a>
+                        </div>
+                    </div>
+                    <p class="site-footer__brand-title">Explore Latin America with confidence.</p>
+                    <p class="site-footer__brand-description">Personalized journeys across Latin America, crafted by local travel experts.</p>
+                    <p class="site-footer__operations">Operations 24/7</p>
+                </div>
+                <div class="site-footer__contact">
+                    <p class="site-footer__label">PLAN YOUR NEXT ADVENTURE</p>
+                    <div class="site-footer__support">
+                        <div class="site-footer__support-item">
+                            <p class="site-footer__support-label">Travel Agent's WhatsApp</p>
+                            <a href="https://wa.me/51953358040" class="site-footer__support-link">+51 953 358 040</a>
+                        </div>
+                        <div class="site-footer__support-item">
+                            <p class="site-footer__support-label">Email our travel experts</p>
+                            <a href="mailto:travel@gotolatam.com" class="site-footer__support-link">travel@gotolatam.com</a>
+                        </div>
+                    </div>
+                    <a href="{{ route('home') }}#form-dream-adventure" data-quote-source="footer" class="btn-secondary-2 site-footer__quote group">
+                        Request a Quote
+                        <x-heroicon-o-arrow-narrow-right class="h-4 w-4 flex-shrink-0" aria-hidden="true" />
+                    </a>
+                </div>
+                <div class="site-footer__advisor">
+                    <img src="{{ asset('images/team/angie2.jpg') }}" alt="" loading="lazy" decoding="async">
+                </div>
             </div>
-            <div class="grid grid-cols-2 gap-4 dark:text-gray-300 md:grid-cols-5 mb-24">
+            <nav class="site-footer__navigation">
                 <div>
-                    <p class="font-semibold tracking-wide text-secondary mb-6">
+                    <p class="site-footer__label">
                         {{ __('message.nav_item1') }}
                     </p>
-                    <ul class="mt-2 space-y-2">
+                    <ul>
                         <li>
                             <a href="{{ route('country.show', 2) }}"
                                 class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">2
@@ -744,10 +774,10 @@
                     </ul>
                 </div>
                 <div>
-                    <p class="font-semibold tracking-wide text-secondary mb-6">
+                    <p class="site-footer__label">
                         {{ __('message.nav_item3') }}
                     </p>
-                    <ul class="mt-2 space-y-2">
+                    <ul>
                         <li>
                             <a href="{{ route('destinations.show', 'peru') }}"
                                 class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">Peru</a>
@@ -779,8 +809,8 @@
                     </ul>
                 </div>
                 <div>
-                    <p class="font-semibold tracking-wide text-secondary mb-6">{{ __('message.nav_item4') }}</p>
-                    <ul class="mt-2 space-y-2">
+                    <p class="site-footer__label">{{ __('message.nav_item4') }}</p>
+                    <ul>
                         <li>
                             <a href="{{ route('hotels') }}"
                                 class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">2
@@ -805,10 +835,10 @@
                 </div>
 
                 <div>
-                    <p class="font-semibold tracking-wide text-secondary mb-6">
+                    <p class="site-footer__label">
                         {{ __('message.nav_item8') }}
                     </p>
-                    <ul class="mt-2 space-y-2">
+                    <ul>
                         <li>
                             <a href="{{ route('book') }}"
                                 class="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400">{{ __('message.nav_sub_item1') }}</a>
@@ -831,20 +861,6 @@
                         </li>
                     </ul>
                 </div>
-                <div>
-
-                    <div class="bg-gray-900 p-4 rounded-lg shadow-inner">
-                        {{--                        <p class="mb-2 text-gray-300"> --}}
-                        {{--                            {{__('message.footer_par1')}} --}}
-                        {{--                            Contact a South America travel expert --}}
-                        {{--                            We always aim to reply within 24 hours. --}}
-                        {{--                        </p> --}}
-                        <img src="{{ asset('images/team/angie2.jpg') }}" alt="">
-                        <a href="#form-dream-adventure" class="btn-primary lg:px-4 block text-center ">Contact Us</a>
-                        {{--                                                    @livewire('page.form-inquire') --}}
-                    </div>
-                </div>
-
                 {{--                <div class="md:max-w-md lg:col-span-2"> --}}
                 {{--                    <div class="mt-4 lg:max-w-sm"> --}}
                 {{--                        <p class="text-sm text-deep-purple-50"> --}}
@@ -852,19 +868,18 @@
                 {{--                        </p> --}}
                 {{--                    </div> --}}
                 {{--                </div> --}}
-            </div>
+            </nav>
 
-            <div class="flex flex-col justify-between pt-5 sm:flex-row">
-                <p class="text-sm dark:text-gray-300">
+            <div class="site-footer__legal">
+                <div class="site-footer__legal-copy">
+                <p>
                     <span class="font-semibold">PERU MAIN OFFICE:</span> Avenida El Sol 449 . Cusco , Cusco , Peru |
                     <span class="font-semibold">USA OFFICE:</span> 501 E Kennedy Blvd, Tampa, FL 33602
                 </p>
-            </div>
-
-            <div class="flex flex-col justify-between pt-5 pb-10 border-t border-gray-500 sm:flex-row">
-                <p class="text-sm dark:text-gray-300">
-                    © Copyright 2023 GotoPeru. All rights reserved.
+                <p>
+                    © 2026 GotoLatam. All rights reserved.
                 </p>
+                </div>
                 {{--                <div class="flex items-center mt-4 space-x-4 sm:mt-0"> --}}
                 {{--                    <a href="/" class="transition-colors duration-300 text-blue-100 hover:text-blue-400"> --}}
                 {{--                        <svg viewBox="0 0 24 24" fill="currentColor" class="h-5"> --}}
@@ -898,6 +913,48 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('vendor/intl-tel-input/build/js/utils.js') }}"></script>
     <script src="{{ asset('js/plugins.js') }}"></script>
+    <script>
+        new VenoBox({
+            selector: '.site-recognition__poster',
+            customClass: 'site-recognition-modal',
+            maxWidth: '48rem',
+            fitView: true,
+            navigation: false,
+            navTouch: false,
+            focusItem: true,
+            onPostOpen() {
+                const modal = document.querySelector('.vbox-overlay.site-recognition-modal') || document.querySelector('.vbox-overlay');
+                modal.setAttribute('role', 'dialog');
+                modal.setAttribute('aria-modal', 'true');
+                modal.setAttribute('aria-label', 'Protégeme — Responsible tourism');
+                const close = modal.querySelector('.vbox-close');
+                close.setAttribute('role', 'button');
+                close.setAttribute('tabindex', '0');
+                close.setAttribute('aria-label', 'Close poster');
+                close.addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        close.click();
+                    }
+                });
+                modal.addEventListener('keydown', event => {
+                    if (event.key === 'Tab') {
+                        event.preventDefault();
+                        close.focus();
+                    }
+                });
+                close.focus();
+            },
+            onContentLoaded() {
+                const poster = document.querySelector('.site-recognition-modal .vbox-child img');
+                if (poster) poster.alt = 'Código ESNNA — Protégeme: turismo responsable y prevención de la explotación sexual de niñas, niños y adolescentes.';
+            }
+        });
+
+        if (document.querySelector('[data-quote-form="general"]')) {
+            document.querySelector('.site-footer__quote').setAttribute('href', '#form-dream-adventure');
+        }
+    </script>
     @stack('scripts')
     <script>
         (() => {

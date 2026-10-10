@@ -7,6 +7,9 @@ use App\Models\TCategoria;
 use App\Models\TDestino;
 use App\Services\KommoService;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -48,6 +51,45 @@ class FormFooterDetail extends Component
 
     public $browser;
 
+    public $step = 1;
+
+    public $preferredContactMethod = [];
+
+    public $submittedName;
+
+    public $attributionContext;
+
+    public $firstTouch = [];
+
+    public $ctaSource = 'form';
+
+    public $packageDuration;
+
+    protected $leadMetadata = [];
+
+    private const ATTRIBUTION_QUERY_KEYS = [
+        'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid',
+    ];
+
+    private const ATTRIBUTION_LABELS = [
+        'first_landing_type' => 'First Landing Type',
+        'first_landing_path' => 'First Landing',
+        'utm_source' => 'UTM Source',
+        'utm_medium' => 'UTM Medium',
+        'utm_campaign' => 'UTM Campaign',
+        'utm_content' => 'UTM Content',
+        'utm_term' => 'UTM Term',
+        'gclid' => 'GCLID',
+        'fbclid' => 'FBCLID',
+        'conversion_page_type' => 'Conversion Page Type',
+        'conversion_page_path' => 'Conversion Page',
+        'package_id' => 'Package ID',
+        'package_slug' => 'Package Slug',
+        'campaign_id' => 'Offer Campaign ID',
+        'campaign_slug' => 'Offer Slug',
+        'cta_source' => 'CTA Source',
+    ];
+
     protected $rules = [
         'name' => [
             'required',
@@ -68,7 +110,7 @@ class FormFooterDetail extends Component
         ],
 
         'travel_day' => [
-            'required',
+            'nullable',
             'date',
         ],
 
@@ -93,11 +135,21 @@ class FormFooterDetail extends Component
             'string',
         ],
 
+        'values_destinations' => ['nullable', 'array'],
+        'values_destinations.*' => ['nullable', 'string'],
+        'values_trip_length' => ['nullable', 'array'],
+        'values_trip_length.*' => ['nullable', 'string'],
+
         'comment' => [
             'nullable',
             'string',
             'max:5000',
         ],
+
+        'ctaSource' => ['required', 'string', 'in:hero,header,header_mobile,mobile_drawer,sticky_nav,advisor,footer,floating,rail,final,form'],
+
+        'preferredContactMethod' => ['nullable', 'array'],
+        'preferredContactMethod.*' => ['string', 'distinct', 'in:WhatsApp,Email,Phone,No preference'],
     ];
 
     protected $messages = [
@@ -105,7 +157,6 @@ class FormFooterDetail extends Component
         'email.required' => 'Ingrese su correo electrónico.',
         'email.email' => 'Ingrese un correo electrónico válido.',
         'phone.required' => 'Ingrese su número de teléfono.',
-        'travel_day.required' => 'Seleccione la fecha de viaje.',
         'travel_day.date' => 'La fecha seleccionada no es válida.',
         'values_number.required' => 'Seleccione el número de pasajeros.',
         'values_number_input.integer' => 'Ingrese una cantidad válida de pasajeros.',
@@ -113,7 +164,7 @@ class FormFooterDetail extends Component
         'values_number_input.max' => 'La cantidad máxima permitida es 99.',
     ];
 
-    public function mount(): void
+    public function mount($packageId = null, $packageSlug = null, $campaignId = null, $campaignSlug = null): void
     {
         $agent = new Agent();
 
@@ -126,6 +177,100 @@ class FormFooterDetail extends Component
         }
 
         $this->browser = $agent->browser();
+
+        // IDs/slugs are passed by the server-rendered package view, not read from the query string.
+        $context = [
+            'component_id' => $this->id,
+            'package_id' => $packageId,
+            'package_slug' => $packageSlug,
+            'campaign_id' => $campaignId,
+            'campaign_slug' => $campaignSlug,
+            'landing_url' => request()->getPathInfo(),
+        ];
+        $query = request()->query();
+        foreach (self::ATTRIBUTION_QUERY_KEYS as $key) {
+            $context[$key] = $this->normalizeAttributionValue($query[$key] ?? null, $key);
+        }
+        $this->validateAttributionContext($context);
+        $this->attributionContext = Crypt::encryptString(json_encode($context, JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE));
+    }
+
+    protected function normalizeAttributionValue($value, $key)
+    {
+        if (!is_string($value) || !mb_check_encoding($value, 'UTF-8')) {
+            return null;
+        }
+
+        if (in_array($key, ['gclid', 'fbclid'], true)) {
+            // Preserve valid opaque click IDs byte-for-byte; reject invalid/oversized values, never truncate.
+            return $value !== '' && mb_strlen($value) <= 512
+                && !preg_match('/[<>\x00-\x20\x7F]/u', $value) ? $value : null;
+        }
+
+        $value = trim(preg_replace('/[\x00-\x1F\x7F]+/u', ' ', strip_tags($value)) ?? '');
+        return $value === '' ? null : mb_substr($value, 0, 255);
+    }
+
+    protected function validateAttributionContext($context)
+    {
+        $rules = [
+            'component_id' => 'required|string|max:100',
+            'package_id' => 'nullable|integer|min:1|required_with:campaign_id',
+            'package_slug' => 'nullable|string|max:255|required_with:package_id|not_regex:/[<>\x00-\x1F\x7F]/',
+            'campaign_id' => 'nullable|integer|min:1|required_with:campaign_slug',
+            'campaign_slug' => 'nullable|string|max:120|required_with:campaign_id|not_regex:/[<>\x00-\x1F\x7F]/',
+            'landing_url' => 'required|string|max:1024|starts_with:/|not_regex:/[<>?\x00-\x1F\x7F]/',
+        ];
+        foreach (self::ATTRIBUTION_QUERY_KEYS as $key) {
+            $rules[$key] = 'nullable|string|max:' . (in_array($key, ['gclid', 'fbclid'], true) ? 512 : 255);
+        }
+        if (!is_array($context) || Validator::make($context, $rules)->fails()
+            || ($context['component_id'] ?? null) !== $this->id) {
+            throw ValidationException::withMessages(['api_error' => 'Please refresh the page and try again.']);
+        }
+    }
+
+    public function updatingAttributionContext()
+    {
+        // The initial snapshot is read-only; only the allowlisted CTA source can change in the browser.
+        throw ValidationException::withMessages(['api_error' => 'Please refresh the page and try again.']);
+    }
+
+    protected function leadAttribution()
+    {
+        try {
+            if (!is_string($this->attributionContext) || strlen($this->attributionContext) > 32768) {
+                throw new \UnexpectedValueException('Invalid attribution snapshot.');
+            }
+            $context = json_decode(Crypt::decryptString($this->attributionContext), true, 512, JSON_THROW_ON_ERROR);
+        } catch (\Throwable $exception) {
+            throw ValidationException::withMessages(['api_error' => 'Please refresh the page and try again.']);
+        }
+
+        $this->validateAttributionContext($context);
+        $context['conversion_page_type'] = !empty($context['campaign_id']) ? 'offer' : (!empty($context['package_id']) ? 'package' : 'other');
+        $context['conversion_page_path'] = $context['landing_url'];
+        $firstTouch = is_array($this->firstTouch) ? $this->firstTouch : [];
+        $firstPath = $firstTouch['first_landing_path'] ?? null;
+        $validFirstTouch = in_array($firstTouch['first_landing_type'] ?? null, ['home', 'package', 'offer', 'other'], true)
+            && is_string($firstPath) && mb_check_encoding($firstPath, 'UTF-8') && mb_strlen($firstPath) <= 1024
+            && strpos($firstPath, '/') === 0 && strpos($firstPath, '//') !== 0
+            && !preg_match('/[<>?#\x00-\x1F\x7F]/u', $firstPath);
+        $context['first_landing_type'] = $validFirstTouch ? $firstTouch['first_landing_type'] : $context['conversion_page_type'];
+        $context['first_landing_path'] = $validFirstTouch ? $firstPath : $context['landing_url'];
+        foreach (self::ATTRIBUTION_QUERY_KEYS as $key) {
+            // A valid first touch takes precedence, including an original visit without UTMs.
+            $context[$key] = $this->normalizeAttributionValue($validFirstTouch ? ($firstTouch[$key] ?? null) : ($context[$key] ?? null), $key);
+        }
+
+        $context['cta_source'] = $this->ctaSource;
+        $attribution = [];
+        foreach (self::ATTRIBUTION_LABELS as $key => $label) {
+            if (($context[$key] ?? null) !== null) {
+                $attribution[$label] = $context[$key];
+            }
+        }
+        return $attribution;
     }
 
     public function render()
@@ -218,31 +363,70 @@ class FormFooterDetail extends Component
 
     public function store(): void
     {
-        $this->resetErrorBag();
-
-        if (
-            (string) $this->values_number === '6'
-        ) {
-            $this->validate([
-                'values_number_input' => [
-                    'required',
-                    'integer',
-                    'min:6',
-                    'max:99',
-                ],
-            ], [
-                'values_number_input.required' =>
-                    'Ingrese la cantidad de pasajeros.',
-                'values_number_input.integer' =>
-                    'Ingrese una cantidad válida.',
-                'values_number_input.min' =>
-                    'Ingrese una cantidad igual o mayor a 6.',
-                'values_number_input.max' =>
-                    'La cantidad máxima permitida es 99.',
-            ]);
+        if ($this->success) {
+            return;
         }
 
-        $validated = $this->validate();
+        $this->resetErrorBag();
+        $this->step = 2;
+
+        // Unchecked indexed Livewire checkboxes use false; it is not a selected value.
+        foreach (['values_categories', 'values_destinations', 'values_trip_length'] as $field) {
+            if ($this->{$field} === null) {
+                $this->{$field} = [];
+            }
+            if (is_array($this->{$field})) {
+                $this->{$field} = array_map(
+                    static fn($value) => $value === false ? null : $value,
+                    $this->{$field}
+                );
+            }
+        }
+
+        try {
+            if (
+                (string) $this->values_number === '6'
+            ) {
+                $this->validate([
+                    'values_number_input' => [
+                        'required',
+                        'integer',
+                        'min:6',
+                        'max:99',
+                    ],
+                ], [
+                    'values_number_input.required' =>
+                        'Ingrese la cantidad de pasajeros.',
+                    'values_number_input.integer' =>
+                        'Ingrese una cantidad válida.',
+                    'values_number_input.min' =>
+                        'Ingrese una cantidad igual o mayor a 6.',
+                    'values_number_input.max' =>
+                        'La cantidad máxima permitida es 99.',
+                ]);
+            }
+
+            $validated = $this->validate();
+        } catch (\Illuminate\Validation\ValidationException $exception) {
+            if (array_intersect(array_keys($exception->errors()), [
+                'travel_day', 'values_number', 'values_number_input', 'values_categories',
+                'values_destinations', 'values_trip_length',
+            ]) || collect(array_keys($exception->errors()))->contains(function ($field) {
+                return strpos($field, 'values_categories.') === 0
+                    || strpos($field, 'values_destinations.') === 0
+                    || strpos($field, 'values_trip_length.') === 0;
+            })) {
+                $this->step = 1;
+            }
+
+            throw $exception;
+        }
+
+        $this->preferredContactMethod = in_array('No preference', $this->preferredContactMethod ?? [], true)
+            ? ['No preference']
+            : array_values(array_intersect(['WhatsApp', 'Email', 'Phone'], $this->preferredContactMethod ?? []));
+
+        $this->leadMetadata = $this->leadAttribution();
 
         $travellers =
             (string) $this->values_number === '6'
@@ -251,7 +435,7 @@ class FormFooterDetail extends Component
 
         $hotelCategories = array_values(
             array_filter(
-                $this->values_categories,
+                $validated['values_categories'] ?? [],
                 function ($value) {
                     return $value !== null &&
                         $value !== '';
@@ -261,7 +445,7 @@ class FormFooterDetail extends Component
 
         $destinations = array_values(
             array_filter(
-                $this->values_destinations,
+                $validated['values_destinations'] ?? [],
                 function ($value) {
                     return $value !== null &&
                         $value !== '';
@@ -269,12 +453,25 @@ class FormFooterDetail extends Component
             )
         );
 
+        $duration = array_values(array_filter(
+            $validated['values_trip_length'] ?? [],
+            static fn($value) => $value !== null && $value !== ''
+        ));
+        if ($duration === []
+            && (is_int($this->packageDuration) || is_string($this->packageDuration))
+            && filter_var($this->packageDuration, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]) !== false) {
+            $duration = [(string) (int) $this->packageDuration];
+        }
+
         try {
-            $formattedDate = Carbon::parse(
-                $validated['travel_day'],
-                'America/Lima'
-            )->format('Y-m-d');
+            $formattedDate = filled($validated['travel_day'] ?? null)
+                ? Carbon::parse(
+                    $validated['travel_day'],
+                    'America/Lima'
+                )->format('Y-m-d')
+                : null;
         } catch (Throwable $exception) {
+            $this->step = 1;
             $this->addError(
                 'travel_day',
                 'La fecha seleccionada no es válida.'
@@ -293,8 +490,11 @@ class FormFooterDetail extends Component
             'hotel_category' => $hotelCategories,
             'destinations' => $destinations,
             'passengers' => $travellers,
-            'duration' => [],
-            'travel_date' => $formattedDate,
+            'duration' => $duration,
+            // TODO: Solución temporal GOTOLATAM.
+            // Eliminar fecha ficticia cuando G1 permita
+            // registrar travel_date como SQL NULL.
+            'travel_date' => $formattedDate ?? '1900-01-01',
             'country' => $this->country,
             'country_code' => $this->phonecountry,
             'device' => $this->device,
@@ -312,7 +512,7 @@ class FormFooterDetail extends Component
                 (string) $this->phone
             ),
             'comment' => trim(
-                (string) $this->comment
+                $this->leadComment()
             ),
             'initial_price' => 0,
             'inquiry_date' => $inquireDate,
@@ -342,7 +542,7 @@ class FormFooterDetail extends Component
                 (string) $this->phone
             ),
             'el_textarea' => trim(
-                (string) $this->comment
+                $this->leadComment()
             ),
             'codigo_pais' => $this->phonecountry,
             'device' => $this->device,
@@ -382,7 +582,7 @@ class FormFooterDetail extends Component
                 (string) $this->phone
             ),
             'comment' => trim(
-                (string) $this->comment
+                $this->leadComment()
             ),
             'inquiry_date' => $inquireDate,
             'website' => url()->current(),
@@ -396,27 +596,37 @@ class FormFooterDetail extends Component
              */
             $g1Response = Http::timeout(20)
                 ->acceptJson()
+                ->asJson()
+                ->withoutRedirecting()
                 ->post(
                     'https://app.g1.agency/api/v1/leads/',
                     $g1Data
                 );
 
-            if (!$g1Response->successful()) {
+            $g1Result = $g1Response->json();
+            if (!$g1Response->successful()
+                || !is_array($g1Result)
+                || ($g1Result['success'] ?? null) !== true
+                || $this->g1ResponseHasErrors($g1Result)) {
+                $errorFields = is_array($g1Result['errors'] ?? null)
+                    ? $g1Result['errors'] : (is_array($g1Result) ? $g1Result : []);
                 Log::error(
                     'G1 rechazó el lead de detalle de GotoLatam',
                     [
                         'status' => $g1Response->status(),
-                        'response' => $g1Response->body(),
+                        'response_is_json' => is_array($g1Result),
+                        'error_fields' => array_values(array_intersect(
+                            array_keys($errorFields),
+                            array_merge(array_keys($g1Data), ['travel_date2', 'non_field_errors'])
+                        )),
                         'product_id' => 2,
                         'product' => 'gotolatam.com',
-                        'package' => $this->paquete,
-                        'email' => $this->email,
                     ]
                 );
 
                 $this->addError(
                     'api_error',
-                    'No se pudo registrar la solicitud. Inténtelo nuevamente.'
+                    'No pudimos confirmar el registro de tu solicitud en el servicio de cotizaciones. Tus datos se han conservado; contacta a nuestro equipo para recibir ayuda.'
                 );
 
                 return;
@@ -444,13 +654,9 @@ class FormFooterDetail extends Component
                         [
                             'status' =>
                                 $legacyResponse->status(),
-                            'response' =>
-                                $legacyResponse->body(),
                             'product_id' => 2,
                             'product' =>
                                 'gotolatam.com',
-                            'package' =>
-                                $this->paquete,
                         ]
                     );
                 }
@@ -458,8 +664,8 @@ class FormFooterDetail extends Component
                 Log::error(
                     'G1 recibió el lead de detalle de GotoLatam, pero ocurrió una excepción en la API antigua',
                     [
-                        'message' =>
-                            $exception->getMessage(),
+                        'exception_type' =>
+                            get_class($exception),
                         'file' =>
                             $exception->getFile(),
                         'line' =>
@@ -467,8 +673,6 @@ class FormFooterDetail extends Component
                         'product_id' => 2,
                         'product' =>
                             'gotolatam.com',
-                        'package' =>
-                            $this->paquete,
                     ]
                 );
             }
@@ -494,8 +698,8 @@ class FormFooterDetail extends Component
                 Log::error(
                     'G1 recibió el lead de detalle de GotoLatam, pero Kommo falló',
                     [
-                        'message' =>
-                            $exception->getMessage(),
+                        'exception_type' =>
+                            get_class($exception),
                         'file' =>
                             $exception->getFile(),
                         'line' =>
@@ -503,8 +707,6 @@ class FormFooterDetail extends Component
                         'product_id' => 2,
                         'product' =>
                             'gotolatam.com',
-                        'package' =>
-                            $this->paquete,
                     ]
                 );
             }
@@ -524,8 +726,8 @@ class FormFooterDetail extends Component
                 Log::error(
                     'El lead de detalle de GotoLatam fue registrado, pero el correo administrativo falló',
                     [
-                        'message' =>
-                            $exception->getMessage(),
+                        'exception_type' =>
+                            get_class($exception),
                         'file' =>
                             $exception->getFile(),
                         'line' =>
@@ -533,34 +735,41 @@ class FormFooterDetail extends Component
                         'product_id' => 2,
                         'product' =>
                             'gotolatam.com',
-                        'package' =>
-                            $this->paquete,
                     ]
                 );
             }
 
+            $this->submittedName = $this->name;
             $this->resetLeadForm();
 
             $this->success = __(
                 'message.msg_email'
             );
+
+            $this->dispatchBrowserEvent('gotolatam:generate-lead', array_filter([
+                'lead_event_id' => (string) \Illuminate\Support\Str::uuid(),
+                'first_landing_type' => $this->leadMetadata['First Landing Type'] ?? null,
+                'conversion_page_type' => $this->leadMetadata['Conversion Page Type'] ?? null,
+                'package_id' => $this->leadMetadata['Package ID'] ?? null,
+                'package_slug' => $this->leadMetadata['Package Slug'] ?? null,
+                'offer_slug' => $this->leadMetadata['Offer Slug'] ?? null,
+                'cta_source' => $this->ctaSource,
+                'number_travelers' => filter_var($travellers, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]) ?: null,
+                'hotel_category' => implode('|', $hotelCategories),
+            ], function ($value) { return $value !== null && $value !== ''; }));
         } catch (Throwable $exception) {
             Log::error(
                 'Error al procesar el formulario de detalle de GotoLatam',
                 [
-                    'message' =>
-                        $exception->getMessage(),
+                    'exception_type' =>
+                        get_class($exception),
                     'file' =>
                         $exception->getFile(),
                     'line' =>
                         $exception->getLine(),
-                    'trace' =>
-                        $exception->getTraceAsString(),
                     'product_id' => 2,
                     'product' =>
                         'gotolatam.com',
-                    'package' =>
-                        $this->paquete,
                 ]
             );
 
@@ -571,11 +780,35 @@ class FormFooterDetail extends Component
         }
     }
 
+    private function g1ResponseHasErrors(array $result): bool
+    {
+        foreach (['error', 'errors', 'non_field_errors'] as $key) {
+            if (isset($result[$key]) && !in_array($result[$key], [false, '', []], true)) {
+                return true;
+            }
+        }
+
+        if (array_key_exists('success', $result)
+            && in_array($result['success'], [false, 0, 'false', '0'], true)) {
+            return true;
+        }
+
+        $status = $result['status'] ?? null;
+        if (is_string($status) && in_array(strtolower(trim($status)), [
+            'error', 'failed', 'failure', 'rejected', 'invalid',
+        ], true)) {
+            return true;
+        }
+
+        return is_array($result['data'] ?? null)
+            && $this->g1ResponseHasErrors($result['data']);
+    }
+
     private function sendAdminEmail(
         $travellers,
         array $hotelCategories,
         array $destinations,
-        string $formattedDate
+        ?string $formattedDate
     ): void {
         $from = 'info@gotolatam.com';
 
@@ -617,7 +850,7 @@ class FormFooterDetail extends Component
                     $formattedDate,
 
                 'comentario' =>
-                    $this->comment,
+                    $this->leadComment(),
 
                 'nombre' =>
                     $this->name,
@@ -656,6 +889,27 @@ class FormFooterDetail extends Component
                     );
             }
         );
+    }
+
+    private function leadComment(): string
+    {
+        $comment = (string) $this->comment;
+
+        if ($this->preferredContactMethod) {
+            $comment .= (trim($comment) !== '' ? "\n\n" : '')
+                . 'Preferred contact: ' . implode(', ', $this->preferredContactMethod);
+        }
+
+        if ($this->leadMetadata) {
+            $lines = [];
+            foreach ($this->leadMetadata as $label => $value) {
+                $lines[] = $label . ': ' . $value;
+            }
+            $comment .= (trim($comment) !== '' ? "\n\n" : '')
+                . "[Marketing Attribution]\n" . implode("\n", $lines) . "\n[/Marketing Attribution]";
+        }
+
+        return $comment;
     }
 
     private function resetLeadForm(): void

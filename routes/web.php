@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\API\FormpageController;
 use App\Http\Controllers\Page\HomeController;
+use App\Http\Controllers\Page\OfferController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 
@@ -28,6 +29,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/' . __('message.url_1'), [HomeController::class, 'packages'])->name('packages.all');
 Route::get('/' . __('message.url_1') . '/{paquete}', [HomeController::class, 'packages_detail'])->name('packages.detail');
+
+Route::get('/offers/{packageSlug}/{campaignSlug}', [OfferController::class, 'show'])->name('offers.show');
 
 Route::get('/'.__('message.url_2'), [HomeController::class, 'destinations'])->name('destinations.all');
 Route::get('/'.__('message.url_2').'/{pais}', [HomeController::class, 'destinations_show'])->name('destinations.show');
