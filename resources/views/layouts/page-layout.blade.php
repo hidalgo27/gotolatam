@@ -729,7 +729,7 @@
                         </div>
                         <div class="site-footer__support-item">
                             <p class="site-footer__support-label">Email our travel experts</p>
-                            <a href="mailto:travel@gotolatam.com" class="site-footer__support-link">travel@gotolatam.com</a>
+                            <a href="mailto:info@gotolatam.com" class="site-footer__support-link">info@gotolatam.com</a>
                         </div>
                     </div>
                     <a href="{{ route('home') }}#form-dream-adventure" data-quote-source="footer" class="btn-secondary-2 site-footer__quote group">
